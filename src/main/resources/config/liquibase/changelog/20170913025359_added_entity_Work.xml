@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Work.
+    -->
+    <changeSet id="20170913025359-1" author="jhipster">
+        <createTable tableName="work">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="description" type="varchar(70)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="budget" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="total_price" type="double">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="start_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="end_date" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="created_time" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="updated_time" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="updated_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="wm_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ws_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="wf_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="work" columnName="created_time" columnDataType="datetime"/>
+        <dropDefaultValue tableName="work" columnName="updated_time" columnDataType="datetime"/>
+        
+        <createTable tableName="work_project">
+            <column name="projects_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="works_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="works_id, projects_id" tableName="work_project"/>
+        
+        <createTable tableName="work_serv">
+            <column name="servs_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="works_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="works_id, servs_id" tableName="work_serv"/>
+        
+    </changeSet>
+</databaseChangeLog>

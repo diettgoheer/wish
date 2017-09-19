@@ -1,0 +1,147 @@
+<div>
+    <h2 *jhiHasAnyAuthority="'ROLE_ADMIN'">
+        <span jhiTranslate="wishApp.person.home.title">People</span>
+        <button  class="btn btn-primary float-right create-person" [routerLink]="['/', { outlets: { popup: ['person-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.person.home.createLabel">
+            Create new Person
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div *jhiHasAnyAuthority="'ROLE_ADMIN'"  class="row">
+        <div  class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.person.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+   <!-- <br/>-->
+    <!--<div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="table-responsive" *ngIf="people">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wishApp.person.name">Name</span></th>
+            <th><span jhiTranslate="wishApp.person.email">Email</span></th>
+            <th><span jhiTranslate="wishApp.person.telephone">Telephone</span></th>
+            <th><span jhiTranslate="wishApp.person.description">Description</span></th>
+            <th><span jhiTranslate="wishApp.person.homePage">Home Page</span></th>
+            <th><span jhiTranslate="wishApp.person.pic">Pic</span></th>
+ &lt;!&ndash;           <th><span jhiTranslate="wishApp.person.saa">Saa</span></th>
+            <th><span jhiTranslate="wishApp.person.sab">Sab</span></th>
+            <th><span jhiTranslate="wishApp.person.mac">Mac</span></th>
+            <th><span jhiTranslate="wishApp.person.mad">Mad</span></th>
+            <th><span jhiTranslate="wishApp.person.lae">Lae</span></th>
+            <th><span jhiTranslate="wishApp.person.laf">Laf</span></th>
+            <th><span jhiTranslate="wishApp.person.lag">Lag</span></th>
+            <th><span jhiTranslate="wishApp.person.xlah">Xlah</span></th>
+            <th><span jhiTranslate="wishApp.person.xlai">Xlai</span></th>
+            <th><span jhiTranslate="wishApp.person.xlaj">Xlaj</span></th>
+            <th><span jhiTranslate="wishApp.person.ba">Ba</span></th>
+            <th><span jhiTranslate="wishApp.person.bb">Bb</span></th>
+            <th><span jhiTranslate="wishApp.person.bc">Bc</span></th>
+            <th><span jhiTranslate="wishApp.person.bd">Bd</span></th>
+            <th><span jhiTranslate="wishApp.person.be">Be</span></th>
+            <th><span jhiTranslate="wishApp.person.type">Type</span></th>
+            <th><span jhiTranslate="wishApp.person.status">Status</span></th>
+            <th><span jhiTranslate="wishApp.person.user">User</span></th>&ndash;&gt;
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let person of people ;trackBy: trackId">
+                <td><a [routerLink]="['../person', person.id ]">{{person.id}}</a></td>
+                <td>{{person.name}}</td>
+                <td>{{person.email}}</td>
+                <td>{{person.telephone}}</td>
+                <td>{{person.description}}</td>
+                <td>{{person.homePage}}</td>
+                <td>
+                    <a *ngIf="person.pic" (click)="openFile(person.picContentType, person.pic)">
+                        <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-height: 30px;" alt="person image"/>
+                    </a>
+                    <span *ngIf="person.pic">{{person.picContentType}}, {{byteSize(person.pic)}}</span>
+                </td>
+               &lt;!&ndash; <td>{{person.saa}}</td>
+                <td>{{person.sab}}</td>
+                <td>{{person.mac}}</td>
+                <td>{{person.mad}}</td>
+                <td>{{person.lae}}</td>
+                <td>{{person.laf}}</td>
+                <td>{{person.lag}}</td>
+                <td>{{person.xlah}}</td>
+                <td>{{person.xlai}}</td>
+                <td>{{person.xlaj}}</td>
+                <td>{{person.ba | date:'medium'}}</td>
+                <td>{{person.bb | date:'medium'}}</td>
+                <td>{{person.bc | date:'medium'}}</td>
+                <td>{{person.bd | date:'medium'}}</td>
+                <td>{{person.be | date:'medium'}}</td>
+                <td>{{person.type}}</td>
+                <td>{{person.status}}</td>
+                <td>{{person.user}}</td>&ndash;&gt;
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../person', person.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
+    <div class="row">
+        <div *ngFor="let person of people ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <img class="vivi-img" [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="" alt="person image">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{person.name}}</h2>
+                    <h4 class="card-text">{{person.email}}</h4>
+                    <h4 class="card-text">{{person.telephone}}</h4>
+                    <p class="card-title">{{person.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../person', person.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+<div>
+    <h2>
+        <span jhiTranslate="wishApp.serv.home.title">Servs</span>
+        <button class="btn btn-primary float-right create-serv" [routerLink]="['/', { outlets: { popup: ['serv-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.serv.home.createLabel">
+            Create new Serv
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.serv.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+<!--    <div class="table-responsive" *ngIf="servs">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wishApp.serv.name">Name</span></th>
+            <th><span jhiTranslate="wishApp.serv.price">Price</span></th>
+            <th><span jhiTranslate="wishApp.serv.unit">Unit</span></th>
+            <th><span jhiTranslate="wishApp.serv.description">Description</span></th>
+            <th><span jhiTranslate="wishApp.serv.terma">Terma</span></th>
+            <th><span jhiTranslate="wishApp.serv.termb">Termb</span></th>
+            <th><span jhiTranslate="wishApp.serv.termc">Termc</span></th>
+            <th><span jhiTranslate="wishApp.serv.type">Type</span></th>
+            <th><span jhiTranslate="wishApp.serv.status">Status</span></th>
+            <th><span jhiTranslate="wishApp.serv.createdTime">Created Time</span></th>
+            <th><span jhiTranslate="wishApp.serv.createdBy">Created By</span></th>
+            <th><span jhiTranslate="wishApp.serv.updatedTime">Updated Time</span></th>
+            <th><span jhiTranslate="wishApp.serv.updatedBy">Updated By</span></th>
+            <th><span jhiTranslate="wishApp.serv.annexa">Annexa</span></th>
+            <th><span jhiTranslate="wishApp.serv.annexb">Annexb</span></th>
+            <th><span jhiTranslate="wishApp.serv.annexc">Annexc</span></th>
+            <th><span jhiTranslate="wishApp.serv.annexd">Annexd</span></th>
+            <th><span jhiTranslate="wishApp.serv.annexe">Annexe</span></th>
+            <th><span jhiTranslate="wishApp.serv.sm">Sm</span></th>
+            <th><span jhiTranslate="wishApp.serv.father">Father</span></th>
+            <th><span jhiTranslate="wishApp.serv.sp">Sp</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let serv of servs ;trackBy: trackId">
+                <td><a [routerLink]="['../serv', serv.id ]">{{serv.id}}</a></td>
+                <td>{{serv.name}}</td>
+                <td>{{serv.price}}</td>
+                <td>{{serv.unit}}</td>
+                <td>{{serv.description}}</td>
+                <td>{{serv.terma}}</td>
+                <td>{{serv.termb}}</td>
+                <td>{{serv.termc}}</td>
+                <td>{{serv.type}}</td>
+                <td>{{serv.status}}</td>
+                <td>{{serv.createdTime | date:'medium'}}</td>
+                <td>{{serv.createdBy}}</td>
+                <td>{{serv.updatedTime | date:'medium'}}</td>
+                <td>{{serv.updatedBy}}</td>
+                <td>
+                    <a *ngIf="serv.annexa" (click)="openFile(serv.annexaContentType, serv.annexa)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="serv.annexa">{{serv.annexaContentType}}, {{byteSize(serv.annexa)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="serv.annexb" (click)="openFile(serv.annexbContentType, serv.annexb)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="serv.annexb">{{serv.annexbContentType}}, {{byteSize(serv.annexb)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="serv.annexc" (click)="openFile(serv.annexcContentType, serv.annexc)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="serv.annexc">{{serv.annexcContentType}}, {{byteSize(serv.annexc)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="serv.annexd" (click)="openFile(serv.annexdContentType, serv.annexd)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="serv.annexd">{{serv.annexdContentType}}, {{byteSize(serv.annexd)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="serv.annexe" (click)="openFile(serv.annexeContentType, serv.annexe)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="serv.annexe">{{serv.annexeContentType}}, {{byteSize(serv.annexe)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="serv.sm">
+                        <a [routerLink]="['../person', serv.sm?.id ]" >{{serv.sm?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="serv.father">
+                        <a [routerLink]="['../serv', serv.father?.id ]" >{{serv.father?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="serv.sp">
+                        <a [routerLink]="['../service-provider', serv.sp?.id ]" >{{serv.sp?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../serv', serv.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'serv/'+ serv.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'serv/'+ serv.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
+    <div class="row">
+        <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{serv.name}}</h2>
+                    <h4 class="card-text">{{serv.price}}</h4>
+                    <p class="card-title">{{serv.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../serv', serv.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'serv/'+ serv.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

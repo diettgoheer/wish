@@ -1,0 +1,196 @@
+
+<div *ngIf="serviceProvider">
+    <h2><span jhiTranslate="wishApp.serviceProvider.detail.title">Service Provider</span> {{serviceProvider.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wishApp.serviceProvider.name">Name</span></dt>
+        <dd>
+            <span>{{serviceProvider.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.enterpriseCreatedTime">Enterprise Created Time</span></dt>
+        <dd>
+            <span>{{serviceProvider.enterpriseCreatedTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.description">Description</span></dt>
+        <dd>
+            <span>{{serviceProvider.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.contactPerson">Contact Person</span></dt>
+        <dd>
+            <span>{{serviceProvider.contactPerson}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.contactNumber">Contact Number</span></dt>
+        <dd>
+            <span>{{serviceProvider.contactNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.contactEmail">Contact Email</span></dt>
+        <dd>
+            <span>{{serviceProvider.contactEmail}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.address">Address</span></dt>
+        <dd>
+            <span>{{serviceProvider.address}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.zipCode">Zip Code</span></dt>
+        <dd>
+            <span>{{serviceProvider.zipCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.organizationCode">Organization Code</span></dt>
+        <dd>
+            <span>{{serviceProvider.organizationCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessLicenseNumber">Business License Number</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessLicenseNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.legalRepresentative">Legal Representative</span></dt>
+        <dd>
+            <span>{{serviceProvider.legalRepresentative}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.generalManager">General Manager</span></dt>
+        <dd>
+            <span>{{serviceProvider.generalManager}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.technicalManager">Technical Manager</span></dt>
+        <dd>
+            <span>{{serviceProvider.technicalManager}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.qualityManager">Quality Manager</span></dt>
+        <dd>
+            <span>{{serviceProvider.qualityManager}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.qualityManagerContact">Quality Manager Contact</span></dt>
+        <dd>
+            <span>{{serviceProvider.qualityManagerContact}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessName">Business Name</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessName}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessBank">Business Bank</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessBank}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessCity">Business City</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessCity}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessAccount">Business Account</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessAccount}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessLicense">Business License</span></dt>
+        <dd>
+            <div *ngIf="serviceProvider.businessLicense">
+                <a (click)="openFile(serviceProvider.businessLicenseContentType, serviceProvider.businessLicense)" jhiTranslate="entity.action.open">open</a>
+                {{serviceProvider.businessLicenseContentType}}, {{byteSize(serviceProvider.businessLicense)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessScope">Business Scope</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessScope}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessScopePreLicense">Business Scope Pre License</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessScopePreLicense}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessYears">Business Years</span></dt>
+        <dd>
+            <span>{{serviceProvider.businessYears}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.character">Character</span></dt>
+        <dd>
+            <span>{{serviceProvider.character}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.scale">Scale</span></dt>
+        <dd>
+            <span>{{serviceProvider.scale}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.serialNumber">Serial Number</span></dt>
+        <dd>
+            <span>{{serviceProvider.serialNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.subsidiary">Subsidiary</span></dt>
+        <dd>
+            <span>{{serviceProvider.subsidiary}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.haveSubsidiary">Have Subsidiary</span></dt>
+        <dd>
+            <span>{{serviceProvider.haveSubsidiary}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.qualityCertificaionSystem">Quality Certificaion System</span></dt>
+        <dd>
+            <span>{{serviceProvider.qualityCertificaionSystem}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.certificationOrg">Certification Org</span></dt>
+        <dd>
+            <span>{{serviceProvider.certificationOrg}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.certificationTime">Certification Time</span></dt>
+        <dd>
+            <span>{{serviceProvider.certificationTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.employeesNumber">Employees Number</span></dt>
+        <dd>
+            <span>{{serviceProvider.employeesNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.employeesBachelorDegreeOrAbove">Employees Bachelor Degree Or Above</span></dt>
+        <dd>
+            <span>{{serviceProvider.employeesBachelorDegreeOrAbove}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.employeesTechnical">Employees Technical</span></dt>
+        <dd>
+            <span>{{serviceProvider.employeesTechnical}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.employeesCertification">Employees Certification</span></dt>
+        <dd>
+            <span>{{serviceProvider.employeesCertification}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.registeredCapital">Registered Capital</span></dt>
+        <dd>
+            <span>{{serviceProvider.registeredCapital}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.developTeam">Develop Team</span></dt>
+        <dd>
+            <span>{{serviceProvider.developTeam}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.testTeam">Test Team</span></dt>
+        <dd>
+            <span>{{serviceProvider.testTeam}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.complaints">Complaints</span></dt>
+        <dd>
+            <span>{{serviceProvider.complaints}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.training">Training</span></dt>
+        <dd>
+            <span>{{serviceProvider.training}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.trainingDocuments">Training Documents</span></dt>
+        <dd>
+            <span>{{serviceProvider.trainingDocuments}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.status">Status</span></dt>
+        <dd>
+            <span>{{serviceProvider.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.type">Type</span></dt>
+        <dd>
+            <span>{{serviceProvider.type}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'service-provider/'+ serviceProvider.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,183 @@
+<div>
+    <h2>
+        <span jhiTranslate="wishApp.serviceProvider.home.title">Service Providers</span>
+        <button class="btn btn-primary float-right create-service-provider" [routerLink]="['/', { outlets: { popup: ['service-provider-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.serviceProvider.home.createLabel">
+            Create new Service Provider
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.serviceProvider.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+<!--    <div class="table-responsive" *ngIf="serviceProviders">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.name">Name</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.enterpriseCreatedTime">Enterprise Created Time</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.description">Description</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.contactPerson">Contact Person</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.contactNumber">Contact Number</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.contactEmail">Contact Email</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.address">Address</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.zipCode">Zip Code</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.organizationCode">Organization Code</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessLicenseNumber">Business License Number</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.legalRepresentative">Legal Representative</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.generalManager">General Manager</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.technicalManager">Technical Manager</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.qualityManager">Quality Manager</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.qualityManagerContact">Quality Manager Contact</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessName">Business Name</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessBank">Business Bank</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessCity">Business City</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessAccount">Business Account</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessLicense">Business License</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessScope">Business Scope</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessScopePreLicense">Business Scope Pre License</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.businessYears">Business Years</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.character">Character</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.scale">Scale</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.serialNumber">Serial Number</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.subsidiary">Subsidiary</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.haveSubsidiary">Have Subsidiary</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.qualityCertificaionSystem">Quality Certificaion System</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.certificationOrg">Certification Org</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.certificationTime">Certification Time</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.employeesNumber">Employees Number</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.employeesBachelorDegreeOrAbove">Employees Bachelor Degree Or Above</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.employeesTechnical">Employees Technical</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.employeesCertification">Employees Certification</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.registeredCapital">Registered Capital</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.developTeam">Develop Team</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.testTeam">Test Team</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.complaints">Complaints</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.training">Training</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.trainingDocuments">Training Documents</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.status">Status</span></th>
+            <th><span jhiTranslate="wishApp.serviceProvider.type">Type</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let serviceProvider of serviceProviders ;trackBy: trackId">
+                <td><a [routerLink]="['../service-provider', serviceProvider.id ]">{{serviceProvider.id}}</a></td>
+                <td>{{serviceProvider.name}}</td>
+                <td>{{serviceProvider.enterpriseCreatedTime | date:'mediumDate'}}</td>
+                <td>{{serviceProvider.description}}</td>
+                <td>{{serviceProvider.contactPerson}}</td>
+                <td>{{serviceProvider.contactNumber}}</td>
+                <td>{{serviceProvider.contactEmail}}</td>
+                <td>{{serviceProvider.address}}</td>
+                <td>{{serviceProvider.zipCode}}</td>
+                <td>{{serviceProvider.organizationCode}}</td>
+                <td>{{serviceProvider.businessLicenseNumber}}</td>
+                <td>{{serviceProvider.legalRepresentative}}</td>
+                <td>{{serviceProvider.generalManager}}</td>
+                <td>{{serviceProvider.technicalManager}}</td>
+                <td>{{serviceProvider.qualityManager}}</td>
+                <td>{{serviceProvider.qualityManagerContact}}</td>
+                <td>{{serviceProvider.businessName}}</td>
+                <td>{{serviceProvider.businessBank}}</td>
+                <td>{{serviceProvider.businessCity}}</td>
+                <td>{{serviceProvider.businessAccount}}</td>
+                <td>
+                    <a *ngIf="serviceProvider.businessLicense" (click)="openFile(serviceProvider.businessLicenseContentType, serviceProvider.businessLicense)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="serviceProvider.businessLicense">{{serviceProvider.businessLicenseContentType}}, {{byteSize(serviceProvider.businessLicense)}}</span>
+                </td>
+                <td>{{serviceProvider.businessScope}}</td>
+                <td>{{serviceProvider.businessScopePreLicense}}</td>
+                <td>{{serviceProvider.businessYears}}</td>
+                <td>{{serviceProvider.character}}</td>
+                <td>{{serviceProvider.scale}}</td>
+                <td>{{serviceProvider.serialNumber}}</td>
+                <td>{{serviceProvider.subsidiary}}</td>
+                <td>{{serviceProvider.haveSubsidiary}}</td>
+                <td>{{serviceProvider.qualityCertificaionSystem}}</td>
+                <td>{{serviceProvider.certificationOrg}}</td>
+                <td>{{serviceProvider.certificationTime | date:'mediumDate'}}</td>
+                <td>{{serviceProvider.employeesNumber}}</td>
+                <td>{{serviceProvider.employeesBachelorDegreeOrAbove}}</td>
+                <td>{{serviceProvider.employeesTechnical}}</td>
+                <td>{{serviceProvider.employeesCertification}}</td>
+                <td>{{serviceProvider.registeredCapital}}</td>
+                <td>{{serviceProvider.developTeam}}</td>
+                <td>{{serviceProvider.testTeam}}</td>
+                <td>{{serviceProvider.complaints}}</td>
+                <td>{{serviceProvider.training}}</td>
+                <td>{{serviceProvider.trainingDocuments}}</td>
+                <td>{{serviceProvider.status}}</td>
+                <td>{{serviceProvider.type}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../service-provider', serviceProvider.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'service-provider/'+ serviceProvider.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'service-provider/'+ serviceProvider.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
+    <div class="row">
+        <div *ngFor="let serviceProvider of serviceProviders ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{serviceProvider.name}}</h2>
+                    <h4 class="card-text">{{serviceProvider.contactPerson}}</h4>
+                    <h4 class="card-text">{{serviceProvider.contactEmail}}</h4>
+                    <h4 class="card-text">{{serviceProvider.type}}</h4>
+                    <p class="card-text">{{serviceProvider.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../serviceProvider', serviceProvider.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'service-provider/'+ serviceProvider.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

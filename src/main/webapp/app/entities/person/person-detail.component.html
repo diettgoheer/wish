@@ -1,0 +1,145 @@
+
+<div *ngIf="person">
+    <h2><span jhiTranslate="wishApp.person.detail.title">Person</span> {{person.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <!--<dt><span jhiTranslate="wishApp.person.pic">Pic</span></dt>-->
+        <dd>
+            <div *ngIf="person.pic">
+                    <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-width: 100%;" alt="person image"/>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.name">Name</span></dt>
+        <dd>
+            <span>{{person.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.email">Email</span></dt>
+        <dd>
+            <span>{{person.email}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.telephone">Telephone</span></dt>
+        <dd>
+            <span>{{person.telephone}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.description">Description</span></dt>
+        <dd>
+            <span>{{person.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.homePage">Home Page</span></dt>
+        <dd>
+            <span>{{person.homePage}}</span>
+        </dd>
+<!--        <dt><span jhiTranslate="wishApp.person.saa">Saa</span></dt>
+        <dd>
+            <span>{{person.saa}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.sab">Sab</span></dt>
+        <dd>
+            <span>{{person.sab}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.mac">Mac</span></dt>
+        <dd>
+            <span>{{person.mac}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.mad">Mad</span></dt>
+        <dd>
+            <span>{{person.mad}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.lae">Lae</span></dt>
+        <dd>
+            <span>{{person.lae}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.laf">Laf</span></dt>
+        <dd>
+            <span>{{person.laf}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.lag">Lag</span></dt>
+        <dd>
+            <span>{{person.lag}}</span>
+        </dd>-->
+        <dt><span jhiTranslate="wishApp.person.xlah">Xlah</span></dt>
+        <dd>
+            <span>{{person.xlah}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.xlai">Xlai</span></dt>
+        <dd>
+            <span>{{person.xlai}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.xlaj">Xlaj</span></dt>
+        <dd>
+            <span>{{person.xlaj}}</span>
+        </dd>
+<!--        <dt><span jhiTranslate="wishApp.person.ba">Ba</span></dt>
+        <dd>
+            <span>{{person.ba | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.bb">Bb</span></dt>
+        <dd>
+            <span>{{person.bb | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.bc">Bc</span></dt>
+        <dd>
+            <span>{{person.bc | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.bd">Bd</span></dt>
+        <dd>
+            <span>{{person.bd | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.be">Be</span></dt>
+        <dd>
+            <span>{{person.be | date:'medium'}}</span>
+        </dd>-->
+        <dt><span jhiTranslate="wishApp.person.type">Type</span></dt>
+        <dd>
+            <span>{{person.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.person.status">Status</span></dt>
+        <dd>
+            <span>{{person.status}}</span>
+        </dd>
+<!--        <dt><span jhiTranslate="wishApp.person.user">User</span></dt>
+        <dd>
+            <span>{{person.user}}</span>
+        </dd>-->
+    </dl>
+    <div class="row">
+        <div *ngFor="let project of person.projects ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{project.name}}</h2>
+                    <h4 class="card-text">{{project.pm?.name}}</h4>
+                    <h5 class="card-text">{{project.startDate | date:'yyyy/MM/dd'}}-{{project.endDate | date:'yyyy/MM/dd'}}</h5>
+                    <h4 class="card-text">{{project.type}}</h4>
+                    <p class="card-text">{{project.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../project', project.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

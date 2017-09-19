@@ -1,0 +1,26 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "person",
+            "otherEntityName": "person",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "userLogin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "friendLogin",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170912063201",
+    "entityTableName": "circle",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

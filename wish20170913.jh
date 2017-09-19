@@ -1,0 +1,176 @@
+entity Person{
+	name String required minlength(3) maxlength(50),
+    email String required pattern("^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$"),
+    telephone String pattern("^0?(1)[0-9]{10}$"),
+    description String maxlength(70),
+    homePage String minlength(3) maxlength(20),
+    pic ImageBlob maxbytes(500000),
+    saa String maxlength(70),
+    sab String maxlength(70),
+    mac String maxlength(200),
+    mad String maxlength(200),
+    lae String maxlength(500),
+    laf String maxlength(500),
+    lag String maxlength(500),
+    xlah String maxlength(1000),
+    xlai String maxlength(1000),
+    xlaj String maxlength(1000),
+    ba ZonedDateTime,
+    bb ZonedDateTime,
+    bc ZonedDateTime,
+    bd ZonedDateTime,
+    be ZonedDateTime,
+    type String,
+    status String,
+    user String
+}
+
+relationship ManyToOne{
+	Circle{person(name)} to Person,
+    Project{pm(name)} to Person,
+    Serv{sm(name)} to Person,
+    Work{wm(name)} to Person,
+    Work{ws(name)} to Person,
+    Work{wf(name)} to Person
+}
+
+relationship ManyToMany{
+	Project{team(name)} to Person{Project(name)}
+}
+
+entity Circle{
+	userLogin String,
+    friendLogin String
+}
+
+entity Project{
+	name String required minlength(3) maxlength(50),
+    simpleName String maxlength(10)
+    code String maxlength(20),
+    description String maxlength(200),
+    sponsor String required maxlength(10),
+    scienceField String,
+    budget Double,
+    source String maxlength(20),
+    startDate LocalDate,
+    endDate LocalDate,
+    type String,
+    status String,
+    createdTime Instant,
+    createdBy String,
+    updatedTime Instant,
+    updatedBy String,
+    annexa Blob maxbytes(500000),
+    annexb Blob maxbytes(500000),
+    annexc Blob maxbytes(500000),
+    annexd Blob maxbytes(500000),
+    annexe Blob maxbytes(500000)
+}
+
+relationship ManyToOne{
+	Project{father(name)} to Project
+}
+
+entity Work{
+	name String required minlength(3) maxlength(20),
+    description String maxlength(70),
+    budget Double,
+    totalPrice Double,
+    startDate LocalDate,
+    endDate LocalDate,
+    type String,
+    status String,    
+    createdTime Instant,
+    createdBy String,
+    updatedTime Instant,
+    updatedBy String
+}
+
+relationship ManyToMany{
+	Work{project(name)} to Project{ord(name)},
+    Work{serv(name)} to Serv{ord(name)}
+}
+
+entity Serv{
+	name String required minlength(3) maxlength(20),
+    price Double required,
+    unit String,
+    description String maxlength(200),
+    terma String maxlength(200),
+    termb String maxlength(200),
+    termc String maxlength(200),
+    type String,
+    status String,    
+    createdTime Instant,
+    createdBy String,
+    updatedTime Instant,
+    updatedBy String,
+    annexa Blob maxbytes(500000),
+    annexb Blob maxbytes(500000),
+    annexc Blob maxbytes(500000),
+    annexd Blob maxbytes(500000),
+    annexe Blob maxbytes(500000)
+}
+
+relationship ManyToOne{
+	Serv{father(name)} to Serv
+}
+
+entity ServiceProvider{
+	name String required maxlength(20),
+    enterpriseCreatedTime LocalDate,
+    description String required maxlength(200),
+    contactPerson String,
+    contactNumber String,
+    contactEmail String,
+    address String,
+    zipCode String,
+    organizationCode String required,
+    businessLicenseNumber String required,
+    legalRepresentative String required,
+    generalManager String required,
+    technicalManager String,
+    qualityManager String,
+    qualityManagerContact String,
+    businessName String,
+    businessBank String,
+    businessCity String,
+    businessAccount String,
+    businessLicense Blob,
+    businessScope String,
+    businessScopePreLicense String,
+    businessYears Integer,
+    character String,
+    scale String,
+    serialNumber String,
+    subsidiary Boolean,
+    haveSubsidiary Boolean,
+    qualityCertificaionSystem String,
+    certificationOrg String,
+    certificationTime LocalDate,
+    employeesNumber Integer,
+    employeesBachelorDegreeOrAbove Integer,
+    employeesTechnical Integer,
+    employeesCertification String,
+    registeredCapital Integer,
+    developTeam Boolean,
+    testTeam Boolean,
+    complaints Boolean,
+    training Boolean,
+    trainingDocuments Boolean,
+    status String,
+    type String,
+}
+
+relationship OneToMany{
+	ServiceProvider{serv(name)} to Serv{sp(name)}
+}
+
+
+// Set pagination options
+
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl
+// Set an angular suffix

@@ -1,0 +1,275 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPersonLabel" jhiTranslate="wishApp.person.home.createOrEditLabel">Create or edit a Person</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!person.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="person.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="person.name" required minlength="1" maxlength="50" />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 50 }">
+                   This field cannot be longer than 50 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.email" for="field_email">Email</label>
+            <input type="text" class="form-control" name="email" id="field_email"
+                [(ngModel)]="person.email" required pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" />
+            <div [hidden]="!(editForm.controls.email?.dirty && editForm.controls.email?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.email?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.email?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Email' }">
+                    This field should follow pattern for "Email".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.telephone" for="field_telephone">Telephone</label>
+            <input type="text" class="form-control" name="telephone" id="field_telephone"
+                [(ngModel)]="person.telephone" pattern="^0?(1)[0-9]{10}$" />
+            <div [hidden]="!(editForm.controls.telephone?.dirty && editForm.controls.telephone?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.telephone?.errors?.pattern" jhiTranslate="entity.validation.pattern" translateValues="{ pattern: 'Telephone' }">
+                    This field should follow pattern for "Telephone".
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="person.description" maxlength="70" />
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 70 }">
+                   This field cannot be longer than 70 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.homePage" for="field_homePage">Home Page</label>
+            <input type="text" class="form-control" name="homePage" id="field_homePage"
+                [(ngModel)]="person.homePage" minlength="3" maxlength="20" />
+            <div [hidden]="!(editForm.controls.homePage?.dirty && editForm.controls.homePage?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.homePage?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.homePage?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.pic" for="field_pic">Pic</label>
+            <div>
+                <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-height: 100px;" *ngIf="person.pic" alt="person image"/>
+                <div *ngIf="person.pic" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{person.picContentType}}, {{byteSize(person.pic)}}</span>
+                    <button type="button" (click)="clearInputImage('pic', 'picContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="fileImage" (change)="setFileData($event, person, 'pic', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="pic" id="field_pic"
+                [(ngModel)]="person.pic" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="picContentType" id="field_picContentType"
+                [(ngModel)]="person.picContentType" />
+            <div [hidden]="!(editForm.controls.pic?.dirty && editForm.controls.pic?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.pic?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+<!--        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.saa" for="field_saa">Saa</label>
+            <input type="text" class="form-control" name="saa" id="field_saa"
+                [(ngModel)]="person.saa" maxlength="70" />
+            <div [hidden]="!(editForm.controls.saa?.dirty && editForm.controls.saa?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.saa?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 70 }">
+                   This field cannot be longer than 70 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.sab" for="field_sab">Sab</label>
+            <input type="text" class="form-control" name="sab" id="field_sab"
+                [(ngModel)]="person.sab" maxlength="70" />
+            <div [hidden]="!(editForm.controls.sab?.dirty && editForm.controls.sab?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sab?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 70 }">
+                   This field cannot be longer than 70 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.mac" for="field_mac">Mac</label>
+            <input type="text" class="form-control" name="mac" id="field_mac"
+                [(ngModel)]="person.mac" maxlength="200" />
+            <div [hidden]="!(editForm.controls.mac?.dirty && editForm.controls.mac?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.mac?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.mad" for="field_mad">Mad</label>
+            <input type="text" class="form-control" name="mad" id="field_mad"
+                [(ngModel)]="person.mad" maxlength="200" />
+            <div [hidden]="!(editForm.controls.mad?.dirty && editForm.controls.mad?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.mad?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.lae" for="field_lae">Lae</label>
+            <input type="text" class="form-control" name="lae" id="field_lae"
+                [(ngModel)]="person.lae" maxlength="500" />
+            <div [hidden]="!(editForm.controls.lae?.dirty && editForm.controls.lae?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lae?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 500 }">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.laf" for="field_laf">Laf</label>
+            <input type="text" class="form-control" name="laf" id="field_laf"
+                [(ngModel)]="person.laf" maxlength="500" />
+            <div [hidden]="!(editForm.controls.laf?.dirty && editForm.controls.laf?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.laf?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 500 }">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.lag" for="field_lag">Lag</label>
+            <input type="text" class="form-control" name="lag" id="field_lag"
+                [(ngModel)]="person.lag" maxlength="500" />
+            <div [hidden]="!(editForm.controls.lag?.dirty && editForm.controls.lag?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lag?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 500 }">
+                   This field cannot be longer than 500 characters.
+                </small>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.xlah" for="field_xlah">Xlah</label>
+            <textarea type="text" class="form-control" name="xlah" id="field_xlah"
+                      [(ngModel)]="person.xlah" maxlength="1000" ></textarea>
+            <div [hidden]="!(editForm.controls.xlah?.dirty && editForm.controls.xlah?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.xlah?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 1000 }">
+                   This field cannot be longer than 1000 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.xlai" for="field_xlai">Xlai</label>
+            <textarea type="text" class="form-control" name="xlai" id="field_xlai"
+                      [(ngModel)]="person.xlai" maxlength="1000" ></textarea>
+            <div [hidden]="!(editForm.controls.xlai?.dirty && editForm.controls.xlai?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.xlai?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 1000 }">
+                   This field cannot be longer than 1000 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.xlaj" for="field_xlaj">Xlaj</label>
+            <textarea type="text" class="form-control" name="xlaj" id="field_xlaj"
+                [(ngModel)]="person.xlaj" maxlength="1000" ></textarea>
+            <div [hidden]="!(editForm.controls.xlaj?.dirty && editForm.controls.xlaj?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.xlaj?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 1000 }">
+                   This field cannot be longer than 1000 characters.
+                </small>
+            </div>
+        </div>
+<!--        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.ba" for="field_ba">Ba</label>
+            <div class="d-flex">
+                <input id="field_ba" type="datetime-local" class="form-control" name="ba" [(ngModel)]="person.ba"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.bb" for="field_bb">Bb</label>
+            <div class="d-flex">
+                <input id="field_bb" type="datetime-local" class="form-control" name="bb" [(ngModel)]="person.bb"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.bc" for="field_bc">Bc</label>
+            <div class="d-flex">
+                <input id="field_bc" type="datetime-local" class="form-control" name="bc" [(ngModel)]="person.bc"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.bd" for="field_bd">Bd</label>
+            <div class="d-flex">
+                <input id="field_bd" type="datetime-local" class="form-control" name="bd" [(ngModel)]="person.bd"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.be" for="field_be">Be</label>
+            <div class="d-flex">
+                <input id="field_be" type="datetime-local" class="form-control" name="be" [(ngModel)]="person.be"
+                  />
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="person.type"  />
+        </div>
+<!--        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="person.status"  />
+        </div>-->
+        <!--<div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.user" for="field_user">User</label>
+            <input type="text" class="form-control" name="user" id="field_user"
+                [(ngModel)]="person.user"  />
+        </div>-->
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,142 @@
+
+<div *ngIf="project">
+    <h2><span jhiTranslate="wishApp.project.detail.title">Project</span> {{project.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wishApp.project.name">Name</span></dt>
+        <dd>
+            <span>{{project.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.simpleName">Simple Name</span></dt>
+        <dd>
+            <span>{{project.simpleName}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.code">Code</span></dt>
+        <dd>
+            <span>{{project.code}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.description">Description</span></dt>
+        <dd>
+            <span>{{project.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.sponsor">Sponsor</span></dt>
+        <dd>
+            <span>{{project.sponsor}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.scienceField">Science Field</span></dt>
+        <dd>
+            <span>{{project.scienceField}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.budget">Budget</span></dt>
+        <dd>
+            <span>{{project.budget}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.source">Source</span></dt>
+        <dd>
+            <span>{{project.source}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{project.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.endDate">End Date</span></dt>
+        <dd>
+            <span>{{project.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.type">Type</span></dt>
+        <dd>
+            <span>{{project.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.status">Status</span></dt>
+        <dd>
+            <span>{{project.status}}</span>
+        </dd>
+<!--        <dt><span jhiTranslate="wishApp.project.createdTime">Created Time</span></dt>
+        <dd>
+            <span>{{project.createdTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{project.createdBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.updatedTime">Updated Time</span></dt>
+        <dd>
+            <span>{{project.updatedTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.updatedBy">Updated By</span></dt>
+        <dd>
+            <span>{{project.updatedBy}}</span>
+        </dd>-->
+        <dt><span jhiTranslate="wishApp.project.annexa">Annexa</span></dt>
+        <dd>
+            <div *ngIf="project.annexa">
+                <a (click)="openFile(project.annexaContentType, project.annexa)" jhiTranslate="entity.action.open">open</a>
+                {{project.annexaContentType}}, {{byteSize(project.annexa)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.annexb">Annexb</span></dt>
+        <dd>
+            <div *ngIf="project.annexb">
+                <a (click)="openFile(project.annexbContentType, project.annexb)" jhiTranslate="entity.action.open">open</a>
+                {{project.annexbContentType}}, {{byteSize(project.annexb)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.annexc">Annexc</span></dt>
+        <dd>
+            <div *ngIf="project.annexc">
+                <a (click)="openFile(project.annexcContentType, project.annexc)" jhiTranslate="entity.action.open">open</a>
+                {{project.annexcContentType}}, {{byteSize(project.annexc)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.annexd">Annexd</span></dt>
+        <dd>
+            <div *ngIf="project.annexd">
+                <a (click)="openFile(project.annexdContentType, project.annexd)" jhiTranslate="entity.action.open">open</a>
+                {{project.annexdContentType}}, {{byteSize(project.annexd)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.annexe">Annexe</span></dt>
+        <dd>
+            <div *ngIf="project.annexe">
+                <a (click)="openFile(project.annexeContentType, project.annexe)" jhiTranslate="entity.action.open">open</a>
+                {{project.annexeContentType}}, {{byteSize(project.annexe)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.pm">Pm</span></dt>
+        <dd>
+            <div *ngIf="project.pm">
+                <a [routerLink]="['/person', project.pm?.id]">{{project.pm?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.father">Father</span></dt>
+        <dd>
+            <div *ngIf="project.father">
+                <a [routerLink]="['/project', project.father?.id]">{{project.father?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.project.team">Team</span></dt>
+        <dd>
+            <span *ngFor="let team of project.teams; let last = last">
+                <a [routerLink]="['/person', team?.id ]">{{team.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+
+
+</div>

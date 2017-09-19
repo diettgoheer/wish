@@ -1,0 +1,99 @@
+
+<div *ngIf="work">
+    <h2><span jhiTranslate="wishApp.work.detail.title">Work</span> {{work.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wishApp.work.name">Name</span></dt>
+        <dd>
+            <span>{{work.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.description">Description</span></dt>
+        <dd>
+            <span>{{work.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.budget">Budget</span></dt>
+        <dd>
+            <span>{{work.budget}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.totalPrice">Total Price</span></dt>
+        <dd>
+            <span>{{work.totalPrice}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{work.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.endDate">End Date</span></dt>
+        <dd>
+            <span>{{work.endDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.type">Type</span></dt>
+        <dd>
+            <span>{{work.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.status">Status</span></dt>
+        <dd>
+            <span>{{work.status}}</span>
+        </dd>
+ <!--       <dt><span jhiTranslate="wishApp.work.createdTime">Created Time</span></dt>
+        <dd>
+            <span>{{work.createdTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{work.createdBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.updatedTime">Updated Time</span></dt>
+        <dd>
+            <span>{{work.updatedTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.updatedBy">Updated By</span></dt>
+        <dd>
+            <span>{{work.updatedBy}}</span>
+        </dd>-->
+        <dt><span jhiTranslate="wishApp.work.wm">Wm</span></dt>
+        <dd>
+            <div *ngIf="work.wm">
+                <a [routerLink]="['/person', work.wm?.id]">{{work.wm?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.ws">Ws</span></dt>
+        <dd>
+            <div *ngIf="work.ws">
+                <a [routerLink]="['/person', work.ws?.id]">{{work.ws?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.wf">Wf</span></dt>
+        <dd>
+            <div *ngIf="work.wf">
+                <a [routerLink]="['/person', work.wf?.id]">{{work.wf?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.project">Project</span></dt>
+        <dd>
+            <span *ngFor="let project of work.projects; let last = last">
+                <a [routerLink]="['/project', project?.id ]">{{project.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.serv">Serv</span></dt>
+        <dd>
+            <span *ngFor="let serv of work.servs; let last = last">
+                <a [routerLink]="['/serv', serv?.id ]">{{serv.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

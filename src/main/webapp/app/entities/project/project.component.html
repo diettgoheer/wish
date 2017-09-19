@@ -1,0 +1,169 @@
+<div>
+    <h2>
+        <span jhiTranslate="wishApp.project.home.title">Projects</span>
+        <button class="btn btn-primary float-right create-project" [routerLink]="['/', { outlets: { popup: ['project-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.project.home.createLabel">
+            Create new Project
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+   <!-- <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.project.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="projects">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wishApp.project.name">Name</span></th>
+            <th><span jhiTranslate="wishApp.project.simpleName">Simple Name</span></th>
+            <th><span jhiTranslate="wishApp.project.code">Code</span></th>
+            <th><span jhiTranslate="wishApp.project.description">Description</span></th>
+            <th><span jhiTranslate="wishApp.project.sponsor">Sponsor</span></th>
+            <th><span jhiTranslate="wishApp.project.scienceField">Science Field</span></th>
+            <th><span jhiTranslate="wishApp.project.budget">Budget</span></th>
+            <th><span jhiTranslate="wishApp.project.source">Source</span></th>
+            <th><span jhiTranslate="wishApp.project.startDate">Start Date</span></th>
+            <th><span jhiTranslate="wishApp.project.endDate">End Date</span></th>
+            <th><span jhiTranslate="wishApp.project.type">Type</span></th>
+            <th><span jhiTranslate="wishApp.project.status">Status</span></th>
+            <th><span jhiTranslate="wishApp.project.createdTime">Created Time</span></th>
+            <th><span jhiTranslate="wishApp.project.createdBy">Created By</span></th>
+            <th><span jhiTranslate="wishApp.project.updatedTime">Updated Time</span></th>
+            <th><span jhiTranslate="wishApp.project.updatedBy">Updated By</span></th>
+            <th><span jhiTranslate="wishApp.project.annexa">Annexa</span></th>
+            <th><span jhiTranslate="wishApp.project.annexb">Annexb</span></th>
+            <th><span jhiTranslate="wishApp.project.annexc">Annexc</span></th>
+            <th><span jhiTranslate="wishApp.project.annexd">Annexd</span></th>
+            <th><span jhiTranslate="wishApp.project.annexe">Annexe</span></th>
+            <th><span jhiTranslate="wishApp.project.pm">Pm</span></th>
+            <th><span jhiTranslate="wishApp.project.father">Father</span></th>
+            <th><span jhiTranslate="wishApp.project.team">Team</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let project of projects ;trackBy: trackId">
+                <td><a [routerLink]="['../project', project.id ]">{{project.id}}</a></td>
+                <td>{{project.name}}</td>
+                <td>{{project.simpleName}}</td>
+                <td>{{project.code}}</td>
+                <td>{{project.description}}</td>
+                <td>{{project.sponsor}}</td>
+                <td>{{project.scienceField}}</td>
+                <td>{{project.budget}}</td>
+                <td>{{project.source}}</td>
+                <td>{{project.startDate | date:'mediumDate'}}</td>
+                <td>{{project.endDate | date:'mediumDate'}}</td>
+                <td>{{project.type}}</td>
+                <td>{{project.status}}</td>
+                <td>{{project.createdTime | date:'medium'}}</td>
+                <td>{{project.createdBy}}</td>
+                <td>{{project.updatedTime | date:'medium'}}</td>
+                <td>{{project.updatedBy}}</td>
+                <td>
+                    <a *ngIf="project.annexa" (click)="openFile(project.annexaContentType, project.annexa)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="project.annexa">{{project.annexaContentType}}, {{byteSize(project.annexa)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="project.annexb" (click)="openFile(project.annexbContentType, project.annexb)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="project.annexb">{{project.annexbContentType}}, {{byteSize(project.annexb)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="project.annexc" (click)="openFile(project.annexcContentType, project.annexc)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="project.annexc">{{project.annexcContentType}}, {{byteSize(project.annexc)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="project.annexd" (click)="openFile(project.annexdContentType, project.annexd)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="project.annexd">{{project.annexdContentType}}, {{byteSize(project.annexd)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="project.annexe" (click)="openFile(project.annexeContentType, project.annexe)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="project.annexe">{{project.annexeContentType}}, {{byteSize(project.annexe)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="project.pm">
+                        <a [routerLink]="['../person', project.pm?.id ]" >{{project.pm?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="project.father">
+                        <a [routerLink]="['../project', project.father?.id ]" >{{project.father?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let team of project.teams; let last = last">
+                            <a class="form-control-static" [routerLink]="['../person', team?.id ]">{{team.name}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../project', project.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
+    <div class="row">
+        <div *ngFor="let project of projects ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{project.name}}</h2>
+                    <h4 class="card-text">{{project.pm?.name}}</h4>
+                    <h5 class="card-text">{{project.startDate | date:'yyyy/MM/dd'}}-{{project.endDate | date:'yyyy/MM/dd'}}</h5>
+                    <h4 class="card-text">{{project.type}}</h4>
+                    <p class="card-text">{{project.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../project', project.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

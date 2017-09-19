@@ -1,0 +1,46 @@
+{
+    "wishApp": {
+        "person" : {
+            "home": {
+                "title": "个人",
+                "createLabel": "Create a new Person",
+                "createOrEditLabel": "Create or edit a Person",
+                "search": "Search for Person"
+            },
+            "created": "A new Person is created with identifier {{ param }}",
+            "updated": "成功更新名片 {{ param }}",
+            "deleted": "A Person is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Person {{ id }}?"
+            },
+            "detail": {
+                "title": "名片"
+            },
+            "name": "姓名",
+            "email": "邮箱",
+            "telephone": "电话",
+            "description": "描述",
+            "homePage": "个人主页",
+            "pic": "头像",
+            "saa": "Saa",
+            "sab": "Sab",
+            "mac": "Mac",
+            "mad": "Mad",
+            "lae": "Lae",
+            "laf": "Laf",
+            "lag": "Lag",
+            "xlah": "教育经历",
+            "xlai": "工作经历",
+            "xlaj": "主要著作",
+            "ba": "Ba",
+            "bb": "Bb",
+            "bc": "Bc",
+            "bd": "Bd",
+            "be": "Be",
+            "type": "职业",
+            "status": "状态",
+            "user": "User",
+            "project": "项目"
+        }
+    }
+}

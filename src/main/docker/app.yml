@@ -1,0 +1,19 @@
+version: '2'
+services:
+    wish-app:
+        image: wish
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://wish-mysql:3306/wish?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=wish-elasticsearch:9300
+        ports:
+            - 8080:8080
+    wish-mysql:
+        extends:
+            file: mysql.yml
+            service: wish-mysql
+    wish-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: wish-elasticsearch

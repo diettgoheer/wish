@@ -1,0 +1,45 @@
+
+<div *ngIf="circle">
+    <h2><span jhiTranslate="wishApp.circle.detail.title">Circle</span> {{circle.friend?.firstName}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+<!--        <dt><span jhiTranslate="wishApp.circle.userLogin">User Login</span></dt>
+        <dd>
+            <span>{{circle.userLogin}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.circle.friendLogin">Friend Login</span></dt>
+        <dd>
+            <span>{{circle.friendLogin}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.circle.user">User</span></dt>
+        <dd>
+            {{circle.user?.login}}
+        </dd>-->
+        <dt><span jhiTranslate="userManagement.firstName">Friend</span></dt>
+        <dd>
+            {{circle.person?.constructorame}}
+        </dd>
+        <dt><span jhiTranslate="userManagement.lastName">Friend</span></dt>
+        <dd>
+            {{circle.person?.homePage}}
+        </dd>
+        <dt><span jhiTranslate="userManagement.email">Friend</span></dt>
+        <dd>
+            {{circle.friendLogin}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <!--<button type="button"
+            [routerLink]="['/', { outlets: { popup: 'circle/'+ circle.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>-->
+</div>

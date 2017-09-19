@@ -1,0 +1,155 @@
+<div>
+    <h2>
+        <span jhiTranslate="wishApp.work.home.title">Works</span>
+        <button class="btn btn-primary float-right create-work" [routerLink]="['/', { outlets: { popup: ['work-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.work.home.createLabel">
+            Create new Work
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.work.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+<!--    <div class="table-responsive" *ngIf="works">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="wishApp.work.name">Name</span></th>
+            <th><span jhiTranslate="wishApp.work.description">Description</span></th>
+            <th><span jhiTranslate="wishApp.work.budget">Budget</span></th>
+            <th><span jhiTranslate="wishApp.work.totalPrice">Total Price</span></th>
+            <th><span jhiTranslate="wishApp.work.startDate">Start Date</span></th>
+            <th><span jhiTranslate="wishApp.work.endDate">End Date</span></th>
+            <th><span jhiTranslate="wishApp.work.type">Type</span></th>
+            <th><span jhiTranslate="wishApp.work.status">Status</span></th>
+            <th><span jhiTranslate="wishApp.work.createdTime">Created Time</span></th>
+            <th><span jhiTranslate="wishApp.work.createdBy">Created By</span></th>
+            <th><span jhiTranslate="wishApp.work.updatedTime">Updated Time</span></th>
+            <th><span jhiTranslate="wishApp.work.updatedBy">Updated By</span></th>
+            <th><span jhiTranslate="wishApp.work.wm">Wm</span></th>
+            <th><span jhiTranslate="wishApp.work.ws">Ws</span></th>
+            <th><span jhiTranslate="wishApp.work.wf">Wf</span></th>
+            <th><span jhiTranslate="wishApp.work.project">Project</span></th>
+            <th><span jhiTranslate="wishApp.work.serv">Serv</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let work of works ;trackBy: trackId">
+                <td><a [routerLink]="['../work', work.id ]">{{work.id}}</a></td>
+                <td>{{work.name}}</td>
+                <td>{{work.description}}</td>
+                <td>{{work.budget}}</td>
+                <td>{{work.totalPrice}}</td>
+                <td>{{work.startDate | date:'mediumDate'}}</td>
+                <td>{{work.endDate | date:'mediumDate'}}</td>
+                <td>{{work.type}}</td>
+                <td>{{work.status}}</td>
+                <td>{{work.createdTime | date:'medium'}}</td>
+                <td>{{work.createdBy}}</td>
+                <td>{{work.updatedTime | date:'medium'}}</td>
+                <td>{{work.updatedBy}}</td>
+                <td>
+                    <div *ngIf="work.wm">
+                        <a [routerLink]="['../person', work.wm?.id ]" >{{work.wm?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="work.ws">
+                        <a [routerLink]="['../person', work.ws?.id ]" >{{work.ws?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="work.wf">
+                        <a [routerLink]="['../person', work.wf?.id ]" >{{work.wf?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let project of work.projects; let last = last">
+                            <a class="form-control-static" [routerLink]="['../project', project?.id ]">{{project.name}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let serv of work.servs; let last = last">
+                            <a class="form-control-static" [routerLink]="['../serv', serv?.id ]">{{serv.name}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../work', work.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
+    <div class="row">
+        <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{work.name}}</h2>
+                    <h4 class="card-text">{{work.wm?.name}}</h4>
+                    <h5 class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</h5>
+                    <h4 class="card-text">{{work.type}}</h4>
+                    <p class="card-text">{{work.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../work', work.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/delete'} }]"
+                            replaceUrl="true"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

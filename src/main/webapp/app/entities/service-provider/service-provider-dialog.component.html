@@ -1,0 +1,307 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myServiceProviderLabel" jhiTranslate="wishApp.serviceProvider.home.createOrEditLabel">Create or edit a Service Provider</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!serviceProvider.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="serviceProvider.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="serviceProvider.name" required maxlength="20" />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.enterpriseCreatedTime" for="field_enterpriseCreatedTime">Enterprise Created Time</label>
+            <div class="input-group">
+                <input id="field_enterpriseCreatedTime" type="text" class="form-control" name="enterpriseCreatedTime" ngbDatepicker  #enterpriseCreatedTimeDp="ngbDatepicker" [(ngModel)]="serviceProvider.enterpriseCreatedTime"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="enterpriseCreatedTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="serviceProvider.description" required maxlength="200" />
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.contactPerson" for="field_contactPerson">Contact Person</label>
+            <input type="text" class="form-control" name="contactPerson" id="field_contactPerson"
+                [(ngModel)]="serviceProvider.contactPerson"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.contactNumber" for="field_contactNumber">Contact Number</label>
+            <input type="text" class="form-control" name="contactNumber" id="field_contactNumber"
+                [(ngModel)]="serviceProvider.contactNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.contactEmail" for="field_contactEmail">Contact Email</label>
+            <input type="text" class="form-control" name="contactEmail" id="field_contactEmail"
+                [(ngModel)]="serviceProvider.contactEmail"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.address" for="field_address">Address</label>
+            <input type="text" class="form-control" name="address" id="field_address"
+                [(ngModel)]="serviceProvider.address"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.zipCode" for="field_zipCode">Zip Code</label>
+            <input type="text" class="form-control" name="zipCode" id="field_zipCode"
+                [(ngModel)]="serviceProvider.zipCode"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.organizationCode" for="field_organizationCode">Organization Code</label>
+            <input type="text" class="form-control" name="organizationCode" id="field_organizationCode"
+                [(ngModel)]="serviceProvider.organizationCode" required />
+            <div [hidden]="!(editForm.controls.organizationCode?.dirty && editForm.controls.organizationCode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.organizationCode?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessLicenseNumber" for="field_businessLicenseNumber">Business License Number</label>
+            <input type="text" class="form-control" name="businessLicenseNumber" id="field_businessLicenseNumber"
+                [(ngModel)]="serviceProvider.businessLicenseNumber" required />
+            <div [hidden]="!(editForm.controls.businessLicenseNumber?.dirty && editForm.controls.businessLicenseNumber?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.businessLicenseNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.legalRepresentative" for="field_legalRepresentative">Legal Representative</label>
+            <input type="text" class="form-control" name="legalRepresentative" id="field_legalRepresentative"
+                [(ngModel)]="serviceProvider.legalRepresentative" required />
+            <div [hidden]="!(editForm.controls.legalRepresentative?.dirty && editForm.controls.legalRepresentative?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.legalRepresentative?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.generalManager" for="field_generalManager">General Manager</label>
+            <input type="text" class="form-control" name="generalManager" id="field_generalManager"
+                [(ngModel)]="serviceProvider.generalManager" required />
+            <div [hidden]="!(editForm.controls.generalManager?.dirty && editForm.controls.generalManager?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.generalManager?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.technicalManager" for="field_technicalManager">Technical Manager</label>
+            <input type="text" class="form-control" name="technicalManager" id="field_technicalManager"
+                [(ngModel)]="serviceProvider.technicalManager"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.qualityManager" for="field_qualityManager">Quality Manager</label>
+            <input type="text" class="form-control" name="qualityManager" id="field_qualityManager"
+                [(ngModel)]="serviceProvider.qualityManager"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.qualityManagerContact" for="field_qualityManagerContact">Quality Manager Contact</label>
+            <input type="text" class="form-control" name="qualityManagerContact" id="field_qualityManagerContact"
+                [(ngModel)]="serviceProvider.qualityManagerContact"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessName" for="field_businessName">Business Name</label>
+            <input type="text" class="form-control" name="businessName" id="field_businessName"
+                [(ngModel)]="serviceProvider.businessName"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessBank" for="field_businessBank">Business Bank</label>
+            <input type="text" class="form-control" name="businessBank" id="field_businessBank"
+                [(ngModel)]="serviceProvider.businessBank"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessCity" for="field_businessCity">Business City</label>
+            <input type="text" class="form-control" name="businessCity" id="field_businessCity"
+                [(ngModel)]="serviceProvider.businessCity"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessAccount" for="field_businessAccount">Business Account</label>
+            <input type="text" class="form-control" name="businessAccount" id="field_businessAccount"
+                [(ngModel)]="serviceProvider.businessAccount"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessLicense" for="field_businessLicense">Business License</label>
+            <div>
+                <div *ngIf="serviceProvider.businessLicense" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(serviceProvider.businessLicenseContentType, serviceProvider.businessLicense)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{serviceProvider.businessLicenseContentType}}, {{byteSize(serviceProvider.businessLicense)}}</span>
+                    <button type="button" (click)="serviceProvider.businessLicense=null;serviceProvider.businessLicenseContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, serviceProvider, 'businessLicense', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="businessLicense" id="field_businessLicense"
+                [(ngModel)]="serviceProvider.businessLicense"  />
+            <input type="hidden" class="form-control" name="businessLicenseContentType" id="field_businessLicenseContentType"
+                [(ngModel)]="serviceProvider.businessLicenseContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessScope" for="field_businessScope">Business Scope</label>
+            <input type="text" class="form-control" name="businessScope" id="field_businessScope"
+                [(ngModel)]="serviceProvider.businessScope"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessScopePreLicense" for="field_businessScopePreLicense">Business Scope Pre License</label>
+            <input type="text" class="form-control" name="businessScopePreLicense" id="field_businessScopePreLicense"
+                [(ngModel)]="serviceProvider.businessScopePreLicense"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessYears" for="field_businessYears">Business Years</label>
+            <input type="number" class="form-control" name="businessYears" id="field_businessYears"
+                [(ngModel)]="serviceProvider.businessYears"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.character" for="field_character">Character</label>
+            <input type="text" class="form-control" name="character" id="field_character"
+                [(ngModel)]="serviceProvider.character"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.scale" for="field_scale">Scale</label>
+            <input type="text" class="form-control" name="scale" id="field_scale"
+                [(ngModel)]="serviceProvider.scale"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.serialNumber" for="field_serialNumber">Serial Number</label>
+            <input type="text" class="form-control" name="serialNumber" id="field_serialNumber"
+                [(ngModel)]="serviceProvider.serialNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.subsidiary" for="field_subsidiary">Subsidiary</label>
+            <input type="checkbox" class="form-control" name="subsidiary" id="field_subsidiary"
+                [(ngModel)]="serviceProvider.subsidiary"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.haveSubsidiary" for="field_haveSubsidiary">Have Subsidiary</label>
+            <input type="checkbox" class="form-control" name="haveSubsidiary" id="field_haveSubsidiary"
+                [(ngModel)]="serviceProvider.haveSubsidiary"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.qualityCertificaionSystem" for="field_qualityCertificaionSystem">Quality Certificaion System</label>
+            <input type="text" class="form-control" name="qualityCertificaionSystem" id="field_qualityCertificaionSystem"
+                [(ngModel)]="serviceProvider.qualityCertificaionSystem"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.certificationOrg" for="field_certificationOrg">Certification Org</label>
+            <input type="text" class="form-control" name="certificationOrg" id="field_certificationOrg"
+                [(ngModel)]="serviceProvider.certificationOrg"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.certificationTime" for="field_certificationTime">Certification Time</label>
+            <div class="input-group">
+                <input id="field_certificationTime" type="text" class="form-control" name="certificationTime" ngbDatepicker  #certificationTimeDp="ngbDatepicker" [(ngModel)]="serviceProvider.certificationTime"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="certificationTimeDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.employeesNumber" for="field_employeesNumber">Employees Number</label>
+            <input type="number" class="form-control" name="employeesNumber" id="field_employeesNumber"
+                [(ngModel)]="serviceProvider.employeesNumber"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.employeesBachelorDegreeOrAbove" for="field_employeesBachelorDegreeOrAbove">Employees Bachelor Degree Or Above</label>
+            <input type="number" class="form-control" name="employeesBachelorDegreeOrAbove" id="field_employeesBachelorDegreeOrAbove"
+                [(ngModel)]="serviceProvider.employeesBachelorDegreeOrAbove"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.employeesTechnical" for="field_employeesTechnical">Employees Technical</label>
+            <input type="number" class="form-control" name="employeesTechnical" id="field_employeesTechnical"
+                [(ngModel)]="serviceProvider.employeesTechnical"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.employeesCertification" for="field_employeesCertification">Employees Certification</label>
+            <input type="text" class="form-control" name="employeesCertification" id="field_employeesCertification"
+                [(ngModel)]="serviceProvider.employeesCertification"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.registeredCapital" for="field_registeredCapital">Registered Capital</label>
+            <input type="number" class="form-control" name="registeredCapital" id="field_registeredCapital"
+                [(ngModel)]="serviceProvider.registeredCapital"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.developTeam" for="field_developTeam">Develop Team</label>
+            <input type="checkbox" class="form-control" name="developTeam" id="field_developTeam"
+                [(ngModel)]="serviceProvider.developTeam"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.testTeam" for="field_testTeam">Test Team</label>
+            <input type="checkbox" class="form-control" name="testTeam" id="field_testTeam"
+                [(ngModel)]="serviceProvider.testTeam"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.complaints" for="field_complaints">Complaints</label>
+            <input type="checkbox" class="form-control" name="complaints" id="field_complaints"
+                [(ngModel)]="serviceProvider.complaints"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.training" for="field_training">Training</label>
+            <input type="checkbox" class="form-control" name="training" id="field_training"
+                [(ngModel)]="serviceProvider.training"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.trainingDocuments" for="field_trainingDocuments">Training Documents</label>
+            <input type="checkbox" class="form-control" name="trainingDocuments" id="field_trainingDocuments"
+                [(ngModel)]="serviceProvider.trainingDocuments"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="serviceProvider.status"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="serviceProvider.type"  />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

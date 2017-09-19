@@ -1,0 +1,160 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sm",
+            "otherEntityName": "person",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "father",
+            "otherEntityName": "serv",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "sp",
+            "otherEntityName": "serviceProvider",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "ord",
+            "otherEntityName": "work",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "serv"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "terma",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "termb",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "termc",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "annexa",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexb",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexc",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexd",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexe",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        }
+    ],
+    "changelogDate": "20170913025400",
+    "entityTableName": "serv",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

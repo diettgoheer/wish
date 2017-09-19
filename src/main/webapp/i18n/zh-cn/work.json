@@ -1,0 +1,38 @@
+{
+    "wishApp": {
+        "work" : {
+            "home": {
+                "title": "事务",
+                "createLabel": "创建事务",
+                "createOrEditLabel": "创建或编辑事务",
+                "search": "搜索事务"
+            },
+            "created": "成功创建事务 {{ param }}",
+            "updated": "成功更新事务 {{ param }}",
+            "deleted": "成功删除事务 {{ param }}",
+            "delete": {
+                "question": "您确定要删除事务 {{ id }}?"
+            },
+            "detail": {
+                "title": "事务"
+            },
+            "name": "名称",
+            "description": "详细描述",
+            "budget": "预算",
+            "totalPrice": "实际支出",
+            "startDate": "开始时间",
+            "endDate": "结束时间",
+            "type": "类型",
+            "status": "状态",
+            "createdTime": "Created Time",
+            "createdBy": "Created By",
+            "updatedTime": "Updated Time",
+            "updatedBy": "Updated By",
+            "wm": "事务负责人",
+            "ws": "事务发起人",
+            "wf": "事务审批人",
+            "project": "项目",
+            "serv": "服务"
+        }
+    }
+}

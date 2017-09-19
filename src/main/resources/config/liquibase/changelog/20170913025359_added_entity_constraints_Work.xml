@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Work.
+    -->
+    <changeSet id="20170913025359-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="wm_id"
+                                 baseTableName="work"
+                                 constraintName="fk_work_wm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="ws_id"
+                                 baseTableName="work"
+                                 constraintName="fk_work_ws_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="wf_id"
+                                 baseTableName="work"
+                                 constraintName="fk_work_wf_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="person"/>
+
+        <addForeignKeyConstraint baseColumnNames="works_id"
+                                 baseTableName="work_project"
+                                 constraintName="fk_work_project_works_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work"/>
+        <addForeignKeyConstraint baseColumnNames="projects_id"
+                                 baseTableName="work_project"
+                                 constraintName="fk_work_project_projects_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="project"/>
+        
+        <addForeignKeyConstraint baseColumnNames="works_id"
+                                 baseTableName="work_serv"
+                                 constraintName="fk_work_serv_works_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work"/>
+        <addForeignKeyConstraint baseColumnNames="servs_id"
+                                 baseTableName="work_serv"
+                                 constraintName="fk_work_serv_servs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="serv"/>
+        
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,176 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "pm",
+            "otherEntityName": "person",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "father",
+            "otherEntityName": "project",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "project",
+            "relationshipName": "team",
+            "otherEntityName": "person",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "ord",
+            "otherEntityName": "work",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "project"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "simpleName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "sponsor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 10
+        },
+        {
+            "fieldName": "scienceField",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "budget",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "source",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "updatedTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "updatedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "annexa",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexb",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexc",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexd",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "annexe",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        }
+    ],
+    "changelogDate": "20170913025358",
+    "entityTableName": "project",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

@@ -1,0 +1,283 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myServLabel" jhiTranslate="wishApp.serv.home.createOrEditLabel">Create or edit a Serv</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!serv.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="serv.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="serv.name" required minlength="3" maxlength="20" />
+            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 3 characters.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.name?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                   This field cannot be longer than 20 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.price" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                [(ngModel)]="serv.price" required />
+            <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.price?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.price?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.unit" for="field_unit">Unit</label>
+            <input type="text" class="form-control" name="unit" id="field_unit"
+                [(ngModel)]="serv.unit"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="serv.description" maxlength="200" />
+            <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.terma" for="field_terma">Terma</label>
+            <input type="text" class="form-control" name="terma" id="field_terma"
+                [(ngModel)]="serv.terma" maxlength="200" />
+            <div [hidden]="!(editForm.controls.terma?.dirty && editForm.controls.terma?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.terma?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.termb" for="field_termb">Termb</label>
+            <input type="text" class="form-control" name="termb" id="field_termb"
+                [(ngModel)]="serv.termb" maxlength="200" />
+            <div [hidden]="!(editForm.controls.termb?.dirty && editForm.controls.termb?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.termb?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.termc" for="field_termc">Termc</label>
+            <input type="text" class="form-control" name="termc" id="field_termc"
+                [(ngModel)]="serv.termc" maxlength="200" />
+            <div [hidden]="!(editForm.controls.termc?.dirty && editForm.controls.termc?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.termc?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
+                   This field cannot be longer than 200 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="serv.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.status" for="field_status">Status</label>
+            <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="serv.status"  />
+        </div>
+      <!--  <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.createdTime" for="field_createdTime">Created Time</label>
+            <div class="d-flex">
+                <input id="field_createdTime" type="datetime-local" class="form-control" name="createdTime" [(ngModel)]="serv.createdTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.createdBy" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="serv.createdBy"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.updatedTime" for="field_updatedTime">Updated Time</label>
+            <div class="d-flex">
+                <input id="field_updatedTime" type="datetime-local" class="form-control" name="updatedTime" [(ngModel)]="serv.updatedTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.updatedBy" for="field_updatedBy">Updated By</label>
+            <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
+                [(ngModel)]="serv.updatedBy"  />
+        </div>-->
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.annexa" for="field_annexa">Annexa</label>
+            <div>
+                <div *ngIf="serv.annexa" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(serv.annexaContentType, serv.annexa)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{serv.annexaContentType}}, {{byteSize(serv.annexa)}}</span>
+                    <button type="button" (click)="serv.annexa=null;serv.annexaContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, serv, 'annexa', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="annexa" id="field_annexa"
+                [(ngModel)]="serv.annexa" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="annexaContentType" id="field_annexaContentType"
+                [(ngModel)]="serv.annexaContentType" />
+            <div [hidden]="!(editForm.controls.annexa?.dirty && editForm.controls.annexa?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.annexa?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.annexb" for="field_annexb">Annexb</label>
+            <div>
+                <div *ngIf="serv.annexb" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(serv.annexbContentType, serv.annexb)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{serv.annexbContentType}}, {{byteSize(serv.annexb)}}</span>
+                    <button type="button" (click)="serv.annexb=null;serv.annexbContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, serv, 'annexb', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="annexb" id="field_annexb"
+                [(ngModel)]="serv.annexb" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="annexbContentType" id="field_annexbContentType"
+                [(ngModel)]="serv.annexbContentType" />
+            <div [hidden]="!(editForm.controls.annexb?.dirty && editForm.controls.annexb?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.annexb?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.annexc" for="field_annexc">Annexc</label>
+            <div>
+                <div *ngIf="serv.annexc" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(serv.annexcContentType, serv.annexc)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{serv.annexcContentType}}, {{byteSize(serv.annexc)}}</span>
+                    <button type="button" (click)="serv.annexc=null;serv.annexcContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, serv, 'annexc', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="annexc" id="field_annexc"
+                [(ngModel)]="serv.annexc" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="annexcContentType" id="field_annexcContentType"
+                [(ngModel)]="serv.annexcContentType" />
+            <div [hidden]="!(editForm.controls.annexc?.dirty && editForm.controls.annexc?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.annexc?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.annexd" for="field_annexd">Annexd</label>
+            <div>
+                <div *ngIf="serv.annexd" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(serv.annexdContentType, serv.annexd)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{serv.annexdContentType}}, {{byteSize(serv.annexd)}}</span>
+                    <button type="button" (click)="serv.annexd=null;serv.annexdContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, serv, 'annexd', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="annexd" id="field_annexd"
+                [(ngModel)]="serv.annexd" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="annexdContentType" id="field_annexdContentType"
+                [(ngModel)]="serv.annexdContentType" />
+            <div [hidden]="!(editForm.controls.annexd?.dirty && editForm.controls.annexd?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.annexd?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serv.annexe" for="field_annexe">Annexe</label>
+            <div>
+                <div *ngIf="serv.annexe" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(serv.annexeContentType, serv.annexe)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{serv.annexeContentType}}, {{byteSize(serv.annexe)}}</span>
+                    <button type="button" (click)="serv.annexe=null;serv.annexeContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" (change)="setFileData($event, serv, 'annexe', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="annexe" id="field_annexe"
+                [(ngModel)]="serv.annexe" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="annexeContentType" id="field_annexeContentType"
+                [(ngModel)]="serv.annexeContentType" />
+            <div [hidden]="!(editForm.controls.annexe?.dirty && editForm.controls.annexe?.invalid)">
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.annexe?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="wishApp.serv.sm" for="field_sm">Sm</label>
+            <select class="form-control" id="field_sm" name="sm" [(ngModel)]="serv.sm" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="personOption.id === serv.sm?.id ? serv.sm : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="wishApp.serv.father" for="field_father">Father</label>
+            <select class="form-control" id="field_father" name="father" [(ngModel)]="serv.father" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="servOption.id === serv.father?.id ? serv.father : servOption" *ngFor="let servOption of servs; trackBy: trackServById">{{servOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="wishApp.serv.sp" for="field_sp">Sp</label>
+            <select class="form-control" id="field_sp" name="sp" [(ngModel)]="serv.sp" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="serviceProviderOption.id === serv.sp?.id ? serv.sp : serviceProviderOption" *ngFor="let serviceProviderOption of serviceproviders; trackBy: trackServiceProviderById">{{serviceProviderOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

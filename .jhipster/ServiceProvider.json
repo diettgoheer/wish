@@ -1,0 +1,213 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "serv",
+            "otherEntityName": "serv",
+            "otherEntityRelationshipName": "sp"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "enterpriseCreatedTime",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "contactPerson",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contactNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contactEmail",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "address",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "zipCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "organizationCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "businessLicenseNumber",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "legalRepresentative",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "generalManager",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "technicalManager",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "qualityManager",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "qualityManagerContact",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessBank",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessCity",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessAccount",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessLicense",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "businessScope",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessScopePreLicense",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "businessYears",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "character",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "scale",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serialNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "subsidiary",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "haveSubsidiary",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "qualityCertificaionSystem",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "certificationOrg",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "certificationTime",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "employeesNumber",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "employeesBachelorDegreeOrAbove",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "employeesTechnical",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "employeesCertification",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "registeredCapital",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "developTeam",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "testTeam",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "complaints",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "training",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "trainingDocuments",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913025401",
+    "entityTableName": "service_provider",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

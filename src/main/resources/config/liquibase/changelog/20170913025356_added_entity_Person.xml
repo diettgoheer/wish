@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity Person.
+    -->
+    <changeSet id="20170913025356-1" author="jhipster">
+        <createTable tableName="person">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="telephone" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="description" type="varchar(70)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="home_page" type="varchar(20)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="pic" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="pic_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="saa" type="varchar(70)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sab" type="varchar(70)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="mac" type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="mad" type="varchar(200)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lae" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="laf" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="lag" type="varchar(500)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xlah" type="varchar(1000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xlai" type="varchar(1000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="xlaj" type="varchar(1000)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="ba" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bb" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bc" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="bd" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="be" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="jhi_user" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="person" columnName="ba" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="bb" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="bc" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="bd" columnDataType="datetime"/>
+        <dropDefaultValue tableName="person" columnName="be" columnDataType="datetime"/>
+        
+    </changeSet>
+</databaseChangeLog>

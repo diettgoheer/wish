@@ -1,0 +1,103 @@
+<div>
+    <h2>
+        <span jhiTranslate="wishApp.circle.home.title">Circles</span>
+        <button class="btn btn-primary float-right create-circle" [routerLink]="['/', { outlets: { popup: ['circle-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.circle.home.createLabel">
+            Create new Circle
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.circle.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+ <!--   <div class="table-responsive" *ngIf="circles">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="userManagement.firstName">Friend</span></th>
+                <th><span jhiTranslate="userManagement.lastName">Friend</span></th>
+                <th><span jhiTranslate="userManagement.email">Friend</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let circle of circles ;trackBy: trackId">
+                &lt;!&ndash;<td><a [routerLink]="['../circle', circle.id ]">{{circle.id}}</a></td>&ndash;&gt;
+                &lt;!&ndash;                <td>{{circle.userLogin}}</td>
+                                <td>{{circle.friendLogin}}</td>
+                                <td>
+                                    {{circle.user?.login}}
+                                </td>&ndash;&gt;
+                <td>
+                    <a [routerLink]="['../person', circle.person?.id ]">{{circle.person?.name}}</a>
+                </td>
+                <td>
+                    {{circle.person?.homePage}}
+                </td>
+                <td>
+                    {{circle.friendLogin}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../circle', circle.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                       &lt;!&ndash; <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'circle/'+ circle.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>&ndash;&gt;
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'circle/'+ circle.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>-->
+   <div class="row">
+        <div *ngFor="let circle of circles ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <img class="vivi-img" [src]="'data:' + circle.person.picContentType + ';base64,' + circle.person?.pic" style="" alt="person image">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{circle.person?.name}}</h2>
+                    <h4 class="card-text">{{circle.person?.email}}</h4>
+                    <h4 class="card-text">{{circle.person?.telephone}}</h4>
+                    <p class="card-title">{{circle.person?.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../person', circle.person.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

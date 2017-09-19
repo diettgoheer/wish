@@ -1,0 +1,186 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "project",
+            "otherEntityName": "project",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "team"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 50
+        },
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^([a-zA-Z0-9_\\.\\-])+\\@(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})+$"
+        },
+        {
+            "fieldName": "telephone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "pattern"
+            ],
+            "fieldValidateRulesPattern": "^0?(1)[0-9]{10}$"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 70
+        },
+        {
+            "fieldName": "homePage",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 3,
+            "fieldValidateRulesMaxlength": 20
+        },
+        {
+            "fieldName": "pic",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 500000
+        },
+        {
+            "fieldName": "saa",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 70
+        },
+        {
+            "fieldName": "sab",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 70
+        },
+        {
+            "fieldName": "mac",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "mad",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 200
+        },
+        {
+            "fieldName": "lae",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "laf",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "lag",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "xlah",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        },
+        {
+            "fieldName": "xlai",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        },
+        {
+            "fieldName": "xlaj",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        },
+        {
+            "fieldName": "ba",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "bb",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "bc",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "bd",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "be",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "user",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170913025356",
+    "entityTableName": "person",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

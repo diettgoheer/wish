@@ -1,0 +1,24 @@
+{
+    "wishApp": {
+        "circle" : {
+            "home": {
+                "title": "圈子",
+                "createLabel": "添加朋友",
+                "createOrEditLabel": "添加朋友",
+                "search": "搜索朋友"
+            },
+            "created": "成功新增一个朋友 {{ param }}",
+            "updated": "成功新增一个朋友 {{ param }}",
+            "deleted": "成功删除一个朋友{{ param }}",
+            "delete": {
+                "question": "您确定要删除这个朋友?"
+            },
+            "detail": {
+                "title": "朋友"
+            },
+            "userLogin": "User Login",
+            "friendLogin": "邮箱",
+            "person": "Person"
+        }
+    }
+}

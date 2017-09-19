@@ -1,0 +1,43 @@
+{
+    "wishApp": {
+        "serv" : {
+            "home": {
+                "title": "服务",
+                "createLabel": "创建服务",
+                "createOrEditLabel": "创建或编辑服务",
+                "search": "搜索服务"
+            },
+            "created": "成功创建服务 {{ param }}",
+            "updated": "成功更新服务 {{ param }}",
+            "deleted": "成功删除服务 {{ param }}",
+            "delete": {
+                "question": "您确定要删除服务 {{ name }}?"
+            },
+            "detail": {
+                "title": "服务"
+            },
+            "name": "名称",
+            "price": "价格",
+            "unit": "单位",
+            "description": "描述",
+            "terma": "条款",
+            "termb": "附加条款",
+            "termc": "特别附加条款",
+            "type": "类型",
+            "status": "状态",
+            "createdTime": "创建时间",
+            "createdBy": "创建人",
+            "updatedTime": "更新时间",
+            "updatedBy": "更新人",
+            "annexa": "附件1",
+            "annexb": "附件2",
+            "annexc": "附件3",
+            "annexd": "附件4",
+            "annexe": "附件5",
+            "sm": "负责人",
+            "father": "上级服务",
+            "sp": "服务提供商",
+            "ord": "相关订单"
+        }
+    }
+}

@@ -1,0 +1,126 @@
+
+<div *ngIf="serv">
+    <h2><span jhiTranslate="wishApp.serv.detail.title">Serv</span> {{serv.name}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wishApp.serv.name">Name</span></dt>
+        <dd>
+            <span>{{serv.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.price">Price</span></dt>
+        <dd>
+            <span>{{serv.price}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.unit">Unit</span></dt>
+        <dd>
+            <span>{{serv.unit}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.description">Description</span></dt>
+        <dd>
+            <span>{{serv.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.terma">Terma</span></dt>
+        <dd>
+            <span>{{serv.terma}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.termb">Termb</span></dt>
+        <dd>
+            <span>{{serv.termb}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.termc">Termc</span></dt>
+        <dd>
+            <span>{{serv.termc}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.type">Type</span></dt>
+        <dd>
+            <span>{{serv.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.status">Status</span></dt>
+        <dd>
+            <span>{{serv.status}}</span>
+        </dd>
+      <!--  <dt><span jhiTranslate="wishApp.serv.createdTime">Created Time</span></dt>
+        <dd>
+            <span>{{serv.createdTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{serv.createdBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.updatedTime">Updated Time</span></dt>
+        <dd>
+            <span>{{serv.updatedTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.updatedBy">Updated By</span></dt>
+        <dd>
+            <span>{{serv.updatedBy}}</span>
+        </dd>-->
+        <dt><span jhiTranslate="wishApp.serv.annexa">Annexa</span></dt>
+        <dd>
+            <div *ngIf="serv.annexa">
+                <a (click)="openFile(serv.annexaContentType, serv.annexa)" jhiTranslate="entity.action.open">open</a>
+                {{serv.annexaContentType}}, {{byteSize(serv.annexa)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.annexb">Annexb</span></dt>
+        <dd>
+            <div *ngIf="serv.annexb">
+                <a (click)="openFile(serv.annexbContentType, serv.annexb)" jhiTranslate="entity.action.open">open</a>
+                {{serv.annexbContentType}}, {{byteSize(serv.annexb)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.annexc">Annexc</span></dt>
+        <dd>
+            <div *ngIf="serv.annexc">
+                <a (click)="openFile(serv.annexcContentType, serv.annexc)" jhiTranslate="entity.action.open">open</a>
+                {{serv.annexcContentType}}, {{byteSize(serv.annexc)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.annexd">Annexd</span></dt>
+        <dd>
+            <div *ngIf="serv.annexd">
+                <a (click)="openFile(serv.annexdContentType, serv.annexd)" jhiTranslate="entity.action.open">open</a>
+                {{serv.annexdContentType}}, {{byteSize(serv.annexd)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.annexe">Annexe</span></dt>
+        <dd>
+            <div *ngIf="serv.annexe">
+                <a (click)="openFile(serv.annexeContentType, serv.annexe)" jhiTranslate="entity.action.open">open</a>
+                {{serv.annexeContentType}}, {{byteSize(serv.annexe)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.sm">Sm</span></dt>
+        <dd>
+            <div *ngIf="serv.sm">
+                <a [routerLink]="['/person', serv.sm?.id]">{{serv.sm?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.father">Father</span></dt>
+        <dd>
+            <div *ngIf="serv.father">
+                <a [routerLink]="['/serv', serv.father?.id]">{{serv.father?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serv.sp">Sp</span></dt>
+        <dd>
+            <div *ngIf="serv.sp">
+                <a [routerLink]="['/service-provider', serv.sp?.id]">{{serv.sp?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'serv/'+ serv.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
