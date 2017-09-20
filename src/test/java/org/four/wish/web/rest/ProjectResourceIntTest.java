@@ -3,6 +3,7 @@ package org.four.wish.web.rest;
 import org.four.wish.WishApp;
 
 import org.four.wish.domain.Project;
+import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.ProjectRepository;
 import org.four.wish.repository.search.ProjectSearchRepository;
 import org.four.wish.web.rest.errors.ExceptionTranslator;
@@ -123,6 +124,9 @@ public class ProjectResourceIntTest {
     private ProjectSearchRepository projectSearchRepository;
 
     @Autowired
+    private PersonRepository personRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -141,7 +145,7 @@ public class ProjectResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        ProjectResource projectResource = new ProjectResource(projectRepository, projectSearchRepository);
+        ProjectResource projectResource = new ProjectResource(personRepository,projectRepository, projectSearchRepository);
         this.restProjectMockMvc = MockMvcBuilders.standaloneSetup(projectResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

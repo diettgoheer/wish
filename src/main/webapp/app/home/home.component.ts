@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
+import {Work} from '../entities/work/work.model';
+import {WorkService} from '../entities/work/work.service';
+import {ResponseWrapper} from '../shared/model/response-wrapper.model';
 
 @Component({
     selector: 'jhi-home',
@@ -15,12 +18,23 @@ import { Account, LoginModalService, Principal } from '../shared';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
-
+    works: Work[];
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private alertService: JhiAlertService,
+        private eventManager: JhiEventManager,
+        private workService: WorkService
     ) {
+    }
+
+    loadAll() {
+        this.workService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.works = res.json;
+             },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
     }
 
     ngOnInit() {
@@ -36,6 +50,7 @@ export class HomeComponent implements OnInit {
                 this.account = account;
             });
         });
+        this.loadAll();
     }
 
     isAuthenticated() {
@@ -44,5 +59,9 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    private onError(error) {
+        this.alertService.error(error.message, null, null);
     }
 }

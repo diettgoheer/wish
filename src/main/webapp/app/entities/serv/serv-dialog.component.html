@@ -250,13 +250,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+<!--        <div class="form-group">
             <label jhiTranslate="wishApp.serv.sm" for="field_sm">Sm</label>
             <select class="form-control" id="field_sm" name="sm" [(ngModel)]="serv.sm" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="personOption.id === serv.sm?.id ? serv.sm : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group">
             <label jhiTranslate="wishApp.serv.father" for="field_father">Father</label>
             <select class="form-control" id="field_father" name="father" [(ngModel)]="serv.father" >

@@ -3,6 +3,7 @@ package org.four.wish.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.four.wish.domain.Serv;
 
+import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.ServRepository;
 import org.four.wish.repository.search.ServSearchRepository;
 import org.four.wish.web.rest.util.HeaderUtil;
@@ -38,9 +39,12 @@ public class ServResource {
 
     private final ServSearchRepository servSearchRepository;
 
-    public ServResource(ServRepository servRepository, ServSearchRepository servSearchRepository) {
+    private final PersonRepository personRepository;
+
+    public ServResource(ServRepository servRepository, ServSearchRepository servSearchRepository, PersonRepository personRepository) {
         this.servRepository = servRepository;
         this.servSearchRepository = servSearchRepository;
+        this.personRepository = personRepository;
     }
 
     /**
@@ -57,6 +61,7 @@ public class ServResource {
         if (serv.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new serv cannot already have an ID")).body(null);
         }
+        serv.setSm(personRepository.findByPersonIsCurrentUser().get(0));
         Serv result = servRepository.save(serv);
         servSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/servs/" + result.getId()))
@@ -97,6 +102,18 @@ public class ServResource {
     public List<Serv> getAllServs() {
         log.debug("REST request to get all Servs");
         return servRepository.findAll();
+    }
+
+    /**
+     * GET  /users/{login}/servs : get all the servs by user login.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of servs in body
+     */
+    @GetMapping("/users/{login}/servs")
+    @Timed
+    public List<Serv> getAllServsByPersonLogin(@PathVariable String login) {
+        log.debug("REST request to get all Works");
+        return servRepository.findAllByPersonLogin(login);
     }
 
     /**

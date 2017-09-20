@@ -275,13 +275,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+       <!-- <div class="form-group">
             <label jhiTranslate="wishApp.project.pm" for="field_pm">Pm</label>
             <select class="form-control" id="field_pm" name="pm" [(ngModel)]="project.pm" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="personOption.id === project.pm?.id ? project.pm : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group">
             <label jhiTranslate="wishApp.project.father" for="field_father">Father</label>
             <select class="form-control" id="field_father" name="father" [(ngModel)]="project.father" >

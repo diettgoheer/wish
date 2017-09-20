@@ -1,9 +1,10 @@
 
 <div *ngIf="person">
+
     <h2><span jhiTranslate="wishApp.person.detail.title">Person</span> {{person.name}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
+    <dl class="row-md col-md-4  jh-entity-details">
         <!--<dt><span jhiTranslate="wishApp.person.pic">Pic</span></dt>-->
         <dd>
             <div *ngIf="person.pic">
@@ -98,13 +99,26 @@
         <dd>
             <span>{{person.status}}</span>
         </dd>
-<!--        <dt><span jhiTranslate="wishApp.person.user">User</span></dt>
-        <dd>
-            <span>{{person.user}}</span>
-        </dd>-->
     </dl>
-    <div class="row">
-        <div *ngFor="let project of person.projects ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+    </div>
+
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+    <hr>
+    <div *ngIf=projects class="row ">
+        <h3>项目</h3>
+        <div *ngFor="let project of projects ;trackBy: trackId"  class="col-md-4" style="padding: 20px;width:100%">
             <div class="vivi-card">
                 <div class="vivi-card-body">
                     <h2 class="card-title">{{project.name}}</h2>
@@ -130,16 +144,68 @@
 
         </div>
     </div>
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
+    <div *ngIf=servs class="row">
+        <h3>服务</h3>
+        <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4"  style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{serv.name}}</h2>
+                    <h4 class="card-text">￥{{serv.price}}</h4>
+                    <p class="card-title">{{serv.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../serv', serv.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'serv/'+ serv.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                </div>
+            </div>
 
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
+        </div>
+    </div>
+
+    <div *ngIf=works class="row">
+        <h3>事务</h3>
+        <div *ngFor="let work of works ;trackBy: trackId"  class="col-md-4" style="padding: 20px;width:100%">
+            <div class="vivi-card">
+                <div class="vivi-card-body">
+                    <h2 class="card-title">{{work.name}}</h2>
+                    <h4 class="card-text">{{work.wm?.name}}</h4>
+                    <h5 class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</h5>
+                    <h4 class="card-text">{{work.type}}</h4>
+                    <p class="card-text">{{work.description}}</p>
+                    <button type="submit"
+                            [routerLink]="['../work', work.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/delete'} }]"
+                            replaceUrl="true"
+                            class="btn btn-danger btn-sm">
+                        <span class="fa fa-remove"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 </div>

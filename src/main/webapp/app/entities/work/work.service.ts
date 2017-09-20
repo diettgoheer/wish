@@ -11,6 +11,8 @@ export class WorkService {
 
     private resourceUrl = 'api/works';
     private resourceSearchUrl = 'api/_search/works';
+    private resourceUserUrl = 'api/users';
+    private works = 'works';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -43,6 +45,11 @@ export class WorkService {
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    queryByUserLogin(login: String): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUserUrl}/${login}/${this.works}`)
             .map((res: Response) => this.convertResponse(res));
     }
 

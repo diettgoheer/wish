@@ -83,7 +83,7 @@
    <div class="row">
         <div *ngFor="let circle of circles ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
             <div class="vivi-card">
-                <img class="vivi-img" [src]="'data:' + circle.person.picContentType + ';base64,' + circle.person?.pic" style="" alt="person image">
+                <img *ngIf="circle.person?.pic" class="vivi-img" [src]="'data:' + circle.person.picContentType + ';base64,' + circle.person?.pic" style="" alt="person image">
                 <div class="vivi-card-body">
                     <h2 class="card-title">{{circle.person?.name}}</h2>
                     <h4 class="card-text">{{circle.person?.email}}</h4>

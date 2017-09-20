@@ -11,6 +11,9 @@ export class ProjectService {
 
     private resourceUrl = 'api/projects';
     private resourceSearchUrl = 'api/_search/projects';
+    private ords = 'ords';
+    private resourceUserUrl = 'api/users';
+    private projects = 'projects';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -43,6 +46,16 @@ export class ProjectService {
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    queryByProject(id: number): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUrl}/${id}/${this.ords}`)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    queryByUserLogin(login: String): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUserUrl}/${login}/${this.projects}`)
             .map((res: Response) => this.convertResponse(res));
     }
 

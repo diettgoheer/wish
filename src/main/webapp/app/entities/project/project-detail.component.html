@@ -121,6 +121,12 @@
                 <a [routerLink]="['/person', team?.id ]">{{team.name}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
+        <dt><span jhiTranslate="wishApp.project.ord">Ord</span></dt>
+        <dd>
+            <span *ngFor="let ord of ords; let last = last">
+                <a [routerLink]="['/work', ord?.id ]">{{ord.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
 

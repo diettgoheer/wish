@@ -1,7 +1,9 @@
 package org.four.wish.repository;
 
 import org.four.wish.domain.Serv;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.*;
 
@@ -12,5 +14,9 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ServRepository extends JpaRepository<Serv,Long> {
-    
+    @Query("select serv from Serv serv where serv.sm.user = ?#{principal.username}")
+    List<Serv> findAllByCurrentUser();
+
+    @Query("select serv from Serv serv where serv.sm.user = :login")
+    List<Serv> findAllByPersonLogin(@Param("login") String login);
 }

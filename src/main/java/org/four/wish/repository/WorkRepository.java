@@ -13,11 +13,20 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface WorkRepository extends JpaRepository<Work,Long> {
-    
+
     @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs")
     List<Work> findAllWithEagerRelationships();
 
+    @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs where work.wm.user = ?#{principal.username}")
+    List<Work> findAllWithEagerRelationshipsByCurrentUser();
+
+    @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs where work.wm.user = :login")
+    List<Work> findAllWithEagerRelationshipsByPersonLogin(@Param("login") String login);
+
+    @Query("select distinct work from Work work left join fetch work.projects project left join fetch work.servs where project.id = :id")
+    List<Work> findAllWithEagerRelationshipsByProject(@Param("id") Long id);
+
     @Query("select work from Work work left join fetch work.projects left join fetch work.servs where work.id =:id")
     Work findOneWithEagerRelationships(@Param("id") Long id);
-    
+
 }

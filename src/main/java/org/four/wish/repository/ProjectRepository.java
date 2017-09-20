@@ -18,9 +18,16 @@ public interface ProjectRepository extends JpaRepository<Project,Long> {
     List<Project> findAllWithEagerRelationships();
 
     @Query("select distinct project from Project project left join fetch project.teams person where person.user = ?#{principal.username}")
+    List<Project> findAllWithEagerRelationshipsByCurrentUserInTeam();
+
+    @Query("select distinct project from Project project left join fetch project.teams person where project.pm.user = ?#{principal.username}")
     List<Project> findAllWithEagerRelationshipsByCurrentUser();
+
+    @Query("select distinct project from Project project left join fetch project.teams person where project.pm.user = :login")
+    List<Project> findAllWithEagerRelationshipsByPersonLogin(@Param("login") String login);
 
     @Query("select project from Project project left join fetch project.teams where project.id =:id")
     Project findOneWithEagerRelationships(@Param("id") Long id);
+
 
 }

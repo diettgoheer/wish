@@ -11,11 +11,48 @@
                 <span *ngIf="account" jhiTranslate="home.logged.message"
                       translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
             </div>
-
+            <div class="alert alert-warning" *ngSwitchCase="false">
+                <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
+                <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a>
+            </div>
 
             <div class="alert alert-warning" *ngSwitchCase="false">
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
+                <div class="vivi-card">
+                    <div class="vivi-card-body">
+                        <h2 class="card-title">{{work.name}}</h2>
+                        <h4 class="card-text">{{work.wm?.name}}</h4>
+                        <h5 class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</h5>
+                        <h4 class="card-text">{{work.type}}</h4>
+                        <p class="card-text">{{work.description}}</p>
+                        <button type="submit"
+                                [routerLink]="['../work', work.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

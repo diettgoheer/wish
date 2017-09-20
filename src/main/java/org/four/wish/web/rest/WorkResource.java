@@ -3,6 +3,7 @@ package org.four.wish.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.four.wish.domain.Work;
 
+import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.WorkRepository;
 import org.four.wish.repository.search.WorkSearchRepository;
 import org.four.wish.web.rest.util.HeaderUtil;
@@ -38,9 +39,12 @@ public class WorkResource {
 
     private final WorkSearchRepository workSearchRepository;
 
-    public WorkResource(WorkRepository workRepository, WorkSearchRepository workSearchRepository) {
+    private final PersonRepository personRepository;
+
+    public WorkResource(PersonRepository personRepository, WorkRepository workRepository, WorkSearchRepository workSearchRepository) {
         this.workRepository = workRepository;
         this.workSearchRepository = workSearchRepository;
+        this.personRepository = personRepository;
     }
 
     /**
@@ -57,6 +61,7 @@ public class WorkResource {
         if (work.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new work cannot already have an ID")).body(null);
         }
+        work.setWm(personRepository.findByPersonIsCurrentUser().get(0));
         Work result = workRepository.save(work);
         workSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/works/" + result.getId()))
@@ -97,6 +102,30 @@ public class WorkResource {
     public List<Work> getAllWorks() {
         log.debug("REST request to get all Works");
         return workRepository.findAllWithEagerRelationships();
+    }
+
+   /**
+     * GET  /users/{login}/works : get all the works by user login.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of works in body
+     */
+    @GetMapping("/users/{login}/works")
+    @Timed
+    public List<Work> getAllWorksByPersonLogin(@PathVariable String login) {
+        log.debug("REST request to get all Works");
+        return workRepository.findAllWithEagerRelationshipsByPersonLogin(login);
+    }
+
+    /**
+     * GET  /projects/{id}/ords : get all the works By project.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of works in body
+     */
+    @GetMapping("/projects/{id}/ords")
+    @Timed
+    public List<Work> getAllWorksByProject(@PathVariable Long id) {
+        log.debug("REST request to get all Works By Project");
+        return workRepository.findAllWithEagerRelationshipsByProject(id);
     }
 
     /**

@@ -3,6 +3,7 @@ package org.four.wish.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.four.wish.domain.ServiceProvider;
 
+import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.ServiceProviderRepository;
 import org.four.wish.repository.search.ServiceProviderSearchRepository;
 import org.four.wish.web.rest.util.HeaderUtil;
@@ -38,9 +39,12 @@ public class ServiceProviderResource {
 
     private final ServiceProviderSearchRepository serviceProviderSearchRepository;
 
-    public ServiceProviderResource(ServiceProviderRepository serviceProviderRepository, ServiceProviderSearchRepository serviceProviderSearchRepository) {
+/*    private final PersonRepository personRepository;*/
+
+    public ServiceProviderResource( ServiceProviderRepository serviceProviderRepository, ServiceProviderSearchRepository serviceProviderSearchRepository) {
         this.serviceProviderRepository = serviceProviderRepository;
         this.serviceProviderSearchRepository = serviceProviderSearchRepository;
+      /*  this.personRepository = personRepository;*/
     }
 
     /**

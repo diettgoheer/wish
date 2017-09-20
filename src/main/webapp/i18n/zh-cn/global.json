@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "Wish",
+        "title": "维思会",
         "browsehappy": "您目前使用<strong>过于老旧</strong>的浏览器, 建议您<a href=\"http://browsehappy.com/?locale=en\">升级浏览器</a>让您有更佳的上网体验.",
         "menu": {
             "home": "首页",
@@ -44,8 +44,8 @@
             "firstName.placeholder":"您的姓名",
             "lastName":"个人主页",
             "lastName.placeholder":"您的个人主页(http://homepage.com)",
-            "username": "账号",
-            "username.placeholder": "您的账号",
+            "username": "邮箱",
+            "username.placeholder": "您的邮箱",
             "newpassword": "新密码",
             "newpassword.placeholder": "您的新密码",
             "confirmpassword": "新密码确认",

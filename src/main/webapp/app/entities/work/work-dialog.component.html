@@ -107,13 +107,13 @@
                 [(ngModel)]="work.updatedBy"  />
         </div>-->
 
-        <div class="form-group">
+        <!--<div class="form-group">
             <label jhiTranslate="wishApp.work.wm" for="field_wm">Wm</label>
             <select class="form-control" id="field_wm" name="wm" [(ngModel)]="work.wm" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="personOption.id === work.wm?.id ? work.wm : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group">
             <label jhiTranslate="wishApp.work.ws" for="field_ws">Ws</label>
             <select class="form-control" id="field_ws" name="ws" [(ngModel)]="work.ws" >

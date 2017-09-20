@@ -3,6 +3,7 @@ package org.four.wish.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import org.four.wish.domain.Project;
 
+import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.ProjectRepository;
 import org.four.wish.repository.search.ProjectSearchRepository;
 import org.four.wish.security.SecurityUtils;
@@ -39,9 +40,12 @@ public class ProjectResource {
 
     private final ProjectSearchRepository projectSearchRepository;
 
-    public ProjectResource(ProjectRepository projectRepository, ProjectSearchRepository projectSearchRepository) {
+    private final PersonRepository personRepository;
+
+    public ProjectResource(PersonRepository personRepository, ProjectRepository projectRepository, ProjectSearchRepository projectSearchRepository) {
         this.projectRepository = projectRepository;
         this.projectSearchRepository = projectSearchRepository;
+        this.personRepository = personRepository;
     }
 
     /**
@@ -58,6 +62,7 @@ public class ProjectResource {
         if (project.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new project cannot already have an ID")).body(null);
         }
+        project.setPm(personRepository.findByPersonIsCurrentUser().get(0));
         Project result = projectRepository.save(project);
         projectSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/projects/" + result.getId()))
@@ -100,8 +105,19 @@ public class ProjectResource {
         if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
             return projectRepository.findAllWithEagerRelationships();
         else
-            return projectRepository.findAllWithEagerRelationshipsByCurrentUser();
+            return projectRepository.findAllWithEagerRelationshipsByCurrentUserInTeam();
+    }
 
+    /**
+     * GET  /users/{login}/projects : get all the works by user login.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of works in body
+     */
+    @GetMapping("/users/{login}/projects")
+    @Timed
+    public List<Project> getAllWorksByPersonLogin(@PathVariable String login) {
+        log.debug("REST request to get all Works");
+        return projectRepository.findAllWithEagerRelationshipsByPersonLogin(login);
     }
 
     /**

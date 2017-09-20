@@ -8,7 +8,7 @@
     "baseName": "wish",
     "packageName": "org.four.wish",
     "packageFolder": "org/four/wish",
-    "serverPort": "8080",
+    "serverPort": "8443",
     "authenticationType": "jwt",
     "hibernateCache": "ehcache",
     "clusteredHttpSession": false,

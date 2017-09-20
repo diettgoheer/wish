@@ -81,11 +81,6 @@
             "uniformSocialCreditCode": "统一社会信用代码",
             "qualityManagementSystemCertificate": "质量管理体系证书",
             "status": "状态",
-            "statusson":{
-                "CREATED": "初创",
-                "ONLINE": "已审核",
-                "OFFLINE": "已下线"
-            },
             "user": "用户"
         }
     }

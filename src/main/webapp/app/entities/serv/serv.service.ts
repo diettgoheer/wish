@@ -11,6 +11,8 @@ export class ServService {
 
     private resourceUrl = 'api/servs';
     private resourceSearchUrl = 'api/_search/servs';
+    private resourceUserUrl = 'api/users';
+    private servs = 'servs';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
@@ -43,6 +45,11 @@ export class ServService {
     query(req?: any): Observable<ResponseWrapper> {
         const options = createRequestOption(req);
         return this.http.get(this.resourceUrl, options)
+            .map((res: Response) => this.convertResponse(res));
+    }
+
+    queryByUserLogin(login: String): Observable<ResponseWrapper> {
+        return this.http.get(`${this.resourceUserUrl}/${login}/${this.servs}`)
             .map((res: Response) => this.convertResponse(res));
     }
 

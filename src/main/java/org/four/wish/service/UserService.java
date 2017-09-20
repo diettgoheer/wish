@@ -1,10 +1,12 @@
 package org.four.wish.service;
 
 import org.four.wish.domain.Authority;
+import org.four.wish.domain.Circle;
 import org.four.wish.domain.Person;
 import org.four.wish.domain.User;
 import org.four.wish.repository.AuthorityRepository;
 import org.four.wish.config.Constants;
+import org.four.wish.repository.CircleRepository;
 import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.UserRepository;
 import org.four.wish.repository.search.UserSearchRepository;
@@ -49,13 +51,16 @@ public class UserService {
 
     private final PersonRepository personRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository,PersonRepository personRepository) {
+    private final CircleRepository circleRepository;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository,PersonRepository personRepository,CircleRepository circleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
         this.userSearchRepository = userSearchRepository;
         this.authorityRepository = authorityRepository;
         this.personRepository = personRepository;
+        this.circleRepository = circleRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -124,7 +129,13 @@ public class UserService {
         newPerson.setEmail(newUser.getLogin());
         newPerson.setHomePage(newUser.getLastName());
         newPerson.setUser(newUser.getLogin());
-        personRepository.save(newPerson);
+        newPerson = personRepository.save(newPerson);
+        // new circle by user
+        Circle newCircle = new Circle();
+        newCircle.setPerson(newPerson);
+        newCircle.setUserLogin(login);
+        newCircle.setFriendLogin(login);
+        circleRepository.save(newCircle);
         log.debug("Created Information for Person: {}", newPerson);
         return newUser;
     }
