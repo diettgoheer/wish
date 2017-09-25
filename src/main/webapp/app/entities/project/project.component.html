@@ -9,7 +9,7 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-   <!-- <div class="row">
+   <div class="row">
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="projects">
+    <!--<div class="table-responsive" *ngIf="projects">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -140,8 +140,12 @@
         </table>
     </div>-->
     <div class="row">
-        <div *ngFor="let project of projects ;trackBy: trackId" class="col-md-4" style="padding: 20px;width:100%">
-            <div class="vivi-card">
+        <div *ngFor="let project of projects ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
+            <div class="vivi-card vivi-project">
+                <div class="btn-warning  vivi-icon"  *ngIf="project.status==='未开始'" ></div>
+                <div class="btn-primary  vivi-icon" *ngIf="project.status==='进行中'" ></div>
+                <div class="btn-success  vivi-icon"  *ngIf="project.status==='已完成'" ></div>
+                <div class="btn-danger  vivi-icon" *ngIf="project.status==='失败'" ></div>
                 <div class="vivi-card-body">
                     <h2 class="card-title">{{project.name}}</h2>
                     <h4 class="card-text">{{project.pm?.name}}</h4>

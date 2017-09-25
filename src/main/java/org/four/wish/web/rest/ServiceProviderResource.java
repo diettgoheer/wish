@@ -64,7 +64,7 @@ public class ServiceProviderResource {
         ServiceProvider result = serviceProviderRepository.save(serviceProvider);
         serviceProviderSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/service-providers/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getName().toString()))
             .body(result);
     }
 
@@ -87,7 +87,7 @@ public class ServiceProviderResource {
         ServiceProvider result = serviceProviderRepository.save(serviceProvider);
         serviceProviderSearchRepository.save(result);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, serviceProvider.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, serviceProvider.getName().toString()))
             .body(result);
     }
 

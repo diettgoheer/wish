@@ -5,6 +5,7 @@ import { JhiEventManager , JhiDataUtils } from 'ng-jhipster';
 
 import { Serv } from './serv.model';
 import { ServService } from './serv.service';
+import {Principal} from '../../shared/auth/principal.service';
 
 @Component({
     selector: 'jhi-serv-detail',
@@ -12,6 +13,7 @@ import { ServService } from './serv.service';
 })
 export class ServDetailComponent implements OnInit, OnDestroy {
 
+    isManager: Boolean;
     serv: Serv;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
@@ -20,7 +22,8 @@ export class ServDetailComponent implements OnInit, OnDestroy {
         private eventManager: JhiEventManager,
         private dataUtils: JhiDataUtils,
         private servService: ServService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private principal: Principal
     ) {
     }
 
@@ -34,6 +37,13 @@ export class ServDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.servService.find(id).subscribe((serv) => {
             this.serv = serv;
+        });
+        this.principal.identity().then((account) => {
+            if (account.login === this.serv.sm.user) {
+                this.isManager = true;
+            } else {
+                this.isManager = false;
+            }
         });
     }
     byteSize(field) {

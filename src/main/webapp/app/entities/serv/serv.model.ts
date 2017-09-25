@@ -1,4 +1,5 @@
 import { BaseEntity } from './../../shared';
+import {Person} from "../person/person.model";
 
 export class Serv implements BaseEntity {
     constructor(
@@ -26,7 +27,7 @@ export class Serv implements BaseEntity {
         public annexd?: any,
         public annexeContentType?: string,
         public annexe?: any,
-        public sm?: BaseEntity,
+        public sm?: Person,
         public father?: BaseEntity,
         public sp?: BaseEntity,
         public ords?: BaseEntity[],

@@ -17,4 +17,6 @@ import java.util.Optional;
 public interface CircleRepository extends JpaRepository<Circle,Long> {
     @Query("select circle from Circle circle where circle.userLogin = ?#{principal.username}")
     List<Circle> findByPersonIsCurrentUser();
+
+    Optional<Circle> findAllByUserLoginAndFriendLogin(String userLogin,String friendLogin);
 }

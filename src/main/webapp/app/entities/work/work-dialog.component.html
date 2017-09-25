@@ -7,11 +7,11 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!work.id">
+   <!--     <div class="form-group" [hidden]="!work.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="work.id" readonly />
-        </div>
+        </div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
@@ -33,8 +33,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="work.description" maxlength="70" />
+            <textarea type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="work.description" maxlength="70" ></textarea>
             <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 70 }">
@@ -79,8 +79,13 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.status" for="field_status">Status</label>
-            <input type="text" class="form-control" name="status" id="field_status"
-                [(ngModel)]="work.status"  />
+            <!--<input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="work.status"  />-->
+            <select class="form-control" name="status" [(ngModel)]="work.status" id="field_status"  required>
+                <option value="待处理" >待处理</option>
+                <option value="处理中" >处理中</option>
+                <option value="已完成" >已完成</option>
+            </select>
         </div>
       <!--  <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.createdTime" for="field_createdTime">Created Time</label>
@@ -130,7 +135,7 @@
         </div>
         <div class="form-group">
             <label jhiTranslate="wishApp.work.project" for="field_project">Project</label>
-            <select class="form-control" id="field_project" multiple name="project" [(ngModel)]="work.projects">
+            <select class="form-control" id="field_project" multiple name="project" [(ngModel)]="work.projects" required>
                 <option [ngValue]="getSelected(work.projects, projectOption)" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.name}}</option>
             </select>
         </div>

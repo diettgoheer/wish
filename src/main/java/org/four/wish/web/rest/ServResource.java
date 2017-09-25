@@ -65,7 +65,7 @@ public class ServResource {
         Serv result = servRepository.save(serv);
         servSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/servs/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getName().toString()))
             .body(result);
     }
 
@@ -88,7 +88,7 @@ public class ServResource {
         Serv result = servRepository.save(serv);
         servSearchRepository.save(result);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, serv.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, serv.getName().toString()))
             .body(result);
     }
 

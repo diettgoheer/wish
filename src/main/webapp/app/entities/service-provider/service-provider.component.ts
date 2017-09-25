@@ -13,7 +13,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     templateUrl: './service-provider.component.html'
 })
 export class ServiceProviderComponent implements OnInit, OnDestroy {
-serviceProviders: ServiceProvider[];
+    serviceProviders: ServiceProvider[];
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;

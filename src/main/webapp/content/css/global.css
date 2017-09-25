@@ -46,12 +46,37 @@ Generic styles
     font-family: Roboto, sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-    border-radius: 2px;
+    border-radius: 1px;
     z-index: 1;
 }
 
 .vivi-card-body{
     padding: 20px;
+}
+
+.vivi-icon {
+    width: 100%;
+    height: 5px;
+}
+
+.vivi-project {
+    background-color: #fff5f5;
+}
+
+.vivi-work {
+    background-color: #fffff5;
+}
+
+.vivi-serv {
+    background-color: #f5fff5;
+}
+
+.vivi-container{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .vivi-img{

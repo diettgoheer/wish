@@ -12,6 +12,7 @@ import {ResponseWrapper} from '../../shared/model/response-wrapper.model';
 import {Work} from '../work/work.model';
 import {Serv} from '../serv/serv.model';
 import {Project} from '../project/project.model';
+import {Principal} from '../../shared/auth/principal.service';
 
 @Component({
     selector: 'jhi-person-detail',
@@ -23,6 +24,11 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
     works: Work[];
     servs: Serv[];
     projects: Project[];
+    hasWorks: Boolean;
+    hasServs: Boolean;
+    hasProjects: Boolean;
+    account: any;
+    isUser: Boolean;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -34,7 +40,8 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
         private workService: WorkService,
         private projectService: ProjectService,
         private servService: ServService,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private principal: Principal
     ) {
     }
 
@@ -48,26 +55,43 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.personService.find(id).subscribe((person) => {
             this.person = person;
-            this.loadAll(person.user);
+            this.loadAll(this.person.user);
         });
     }
 
     loadAll(login) {
+        this.principal.identity().then((account) => {
+            if (account.login === login) {
+                this.isUser = true;
+            } else {
+                this.isUser = false;
+            }
+        });
+
         this.workService.queryByUserLogin(login).subscribe(
             (res: ResponseWrapper) => {
                 this.works = res.json;
+                if (this.works.length > 0) {
+                    this.hasWorks = true;
+                }
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
         this.servService.queryByUserLogin(login).subscribe(
             (res: ResponseWrapper) => {
                 this.servs = res.json;
+                if (this.servs.length > 0) {
+                    this.hasServs = true;
+                }
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
         this.projectService.queryByUserLogin(login).subscribe(
             (res: ResponseWrapper) => {
                 this.projects = res.json;
+                if (this.projects.length > 0) {
+                    this.hasProjects = true;
+                }
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );

@@ -3,9 +3,9 @@
         "person" : {
             "home": {
                 "title": "个人",
-                "createLabel": "Create a new Person",
-                "createOrEditLabel": "Create or edit a Person",
-                "search": "Search for Person"
+                "createLabel": "创建个人名片",
+                "createOrEditLabel": "编辑个人名片",
+                "search": "搜索好友"
             },
             "created": "A new Person is created with identifier {{ param }}",
             "updated": "成功更新名片 {{ param }}",

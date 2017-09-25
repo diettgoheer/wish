@@ -61,7 +61,7 @@ public class PersonResource {
         Person result = personRepository.save(person);
         personSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/people/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getName().toString()))
             .body(result);
     }
 
@@ -84,7 +84,7 @@ public class PersonResource {
         Person result = personRepository.save(person);
         personSearchRepository.save(result);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, person.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, person.getName().toString()))
             .body(result);
     }
 
@@ -100,8 +100,21 @@ public class PersonResource {
         if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
             return personRepository.findAll();
         else
-            return personRepository.findByFriendIsCurrentUser();
+            return personRepository.findAllFriendByCurrentUser();
     }
+
+    /**
+     * GET  /people : get all the people.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of people in body
+     */
+    @GetMapping("/friend")
+    @Timed
+    public List<Person> getAllFriendPeople() {
+        log.debug("REST request to get all People");
+        return personRepository.findByFriendIsCurrentUser();
+    }
+
 
     @GetMapping("/person")
     @Timed

@@ -7,9 +7,11 @@ import org.four.wish.domain.Person;
 import org.four.wish.domain.User;
 import org.four.wish.repository.CircleRepository;
 import org.four.wish.repository.PersonRepository;
+import org.four.wish.repository.UserRepository;
 import org.four.wish.repository.search.CircleSearchRepository;
 import org.four.wish.security.SecurityUtils;
 
+import org.four.wish.service.MailService;
 import org.four.wish.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -45,10 +47,16 @@ public class CircleResource {
 
     private final PersonRepository personRepository;
 
-    public CircleResource(CircleRepository circleRepository, CircleSearchRepository circleSearchRepository, PersonRepository personRepository) {
+    private final UserRepository userRepository;
+
+    private final MailService mailService;
+
+    public CircleResource(MailService mailService, UserRepository userRepository, CircleRepository circleRepository, CircleSearchRepository circleSearchRepository, PersonRepository personRepository) {
         this.circleRepository = circleRepository;
         this.circleSearchRepository = circleSearchRepository;
         this.personRepository = personRepository;
+        this.userRepository = userRepository;
+        this.mailService = mailService;
     }
 
     /**
@@ -66,17 +74,26 @@ public class CircleResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new circle cannot already have an ID")).body(null);
         }
         circle.setUserLogin(SecurityUtils.getCurrentUserLogin());
-        List<Person> persons = personRepository.findByEmail(circle.getFriendLogin());
+        Circle opCircle = new Circle();
+        opCircle.setUserLogin(circle.getFriendLogin());
+        opCircle.setFriendLogin(circle.getUserLogin());
+        /*List<Person> persons = personRepository.findByEmail(circle.getFriendLogin());
         if(!persons.isEmpty())
-            circle.setPerson(persons.get(0));
+            circle.setPerson(persons.get(0));*/
         /*circle.setUser(userService.getUserWithAuthoritiesByLogin(circle.getUserLogin()).get());
         Optional<User> user = userService.getUserWithAuthoritiesByLogin(circle.getFriendLogin());
         if(user.isPresent())
             circle.setFriend(user.get());*/
         Circle result = circleRepository.save(circle);
         circleSearchRepository.save(result);
+        circleRepository.save(opCircle);
+        circleSearchRepository.save(opCircle);
+        if(!userRepository.findOneByLogin(circle.getFriendLogin()).isPresent()) {
+            User user = userRepository.findOneByLogin(circle.getUserLogin()).get();
+            mailService.sendIntroductionEmail(circle,user);
+        }
         return ResponseEntity.created(new URI("/api/circles/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getFriendLogin().toString()))
             .body(result);
     }
 
@@ -100,7 +117,7 @@ public class CircleResource {
         Circle result = circleRepository.save(circle);
         circleSearchRepository.save(result);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, circle.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, circle.getFriendLogin().toString()))
             .body(result);
     }
 

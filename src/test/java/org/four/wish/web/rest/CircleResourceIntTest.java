@@ -5,7 +5,9 @@ import org.four.wish.WishApp;
 import org.four.wish.domain.Circle;
 import org.four.wish.repository.CircleRepository;
 import org.four.wish.repository.PersonRepository;
+import org.four.wish.repository.UserRepository;
 import org.four.wish.repository.search.CircleSearchRepository;
+import org.four.wish.service.MailService;
 import org.four.wish.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -55,6 +57,12 @@ public class CircleResourceIntTest {
     private PersonRepository personRepository;
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private MailService mailService;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -73,7 +81,7 @@ public class CircleResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        CircleResource circleResource = new CircleResource(circleRepository, circleSearchRepository,personRepository);
+        CircleResource circleResource = new CircleResource(mailService, userRepository, circleRepository, circleSearchRepository,personRepository);
         this.restCircleMockMvc = MockMvcBuilders.standaloneSetup(circleResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

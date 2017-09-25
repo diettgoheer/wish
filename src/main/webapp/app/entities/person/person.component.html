@@ -1,19 +1,19 @@
 <div>
-    <h2 *jhiHasAnyAuthority="'ROLE_ADMIN'">
-        <span jhiTranslate="wishApp.person.home.title">People</span>
-        <button  class="btn btn-primary float-right create-person" [routerLink]="['/', { outlets: { popup: ['person-new'] } }]">
+    <h2>
+        <span jhiTranslate="wishApp.circle.home.title">Circles</span>
+        <button class="btn btn-primary float-right create-circle" [routerLink]="['/', { outlets: { popup: ['circle-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="wishApp.person.home.createLabel">
-            Create new Person
+            <span class="hidden-sm-down"  jhiTranslate="wishApp.circle.home.createLabel">
+            Create new Circle
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <div *jhiHasAnyAuthority="'ROLE_ADMIN'"  class="row">
-        <div  class="col-sm-12">
+    <!--<div class="row">
+        <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.person.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'wishApp.circle.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -23,7 +23,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div>-->
    <!-- <br/>-->
     <!--<div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="table-responsive" *ngIf="people">
         <table class="table table-striped">
@@ -117,8 +117,8 @@
             </tbody>
         </table>
     </div>-->
-    <div class="row col-md-4">
-        <div *ngFor="let person of people ;trackBy: trackId"  style="padding: 20px;width:100%">
+    <div class="row ">
+        <div *ngFor="let person of people ;trackBy: trackId" class="col-md-4"  style="padding-top:15px;width:100%">
             <div class="vivi-card">
                 <img *ngIf="person.pic" class="vivi-img" [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="" alt="person image">
                 <div class="vivi-card-body">
@@ -132,13 +132,13 @@
                         <span class="fa fa-eye"></span>
                         <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                     </button>
-                    <button type="submit"
+                    <!--<button type="submit"
                             [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
                             replaceUrl="true"
                             class="btn btn-primary btn-sm">
                         <span class="fa fa-pencil"></span>
                         <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
+                    </button>-->
                 </div>
             </div>
 

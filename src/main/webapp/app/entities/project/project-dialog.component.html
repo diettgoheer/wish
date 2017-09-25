@@ -7,11 +7,11 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" [hidden]="!project.id">
+<!--        <div class="form-group" [hidden]="!project.id">
             <label for="id" jhiTranslate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                    [(ngModel)]="project.id" readonly />
-        </div>
+        </div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
@@ -55,8 +55,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="project.description" maxlength="200" />
+            <textarea type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="project.description" maxlength="200" ></textarea>
             <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 200 }">
@@ -127,8 +127,13 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.status" for="field_status">Status</label>
-            <input type="text" class="form-control" name="status" id="field_status"
-                [(ngModel)]="project.status"  />
+          <!--  <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="project.status"  />-->
+            <select class="form-control" name="status" [(ngModel)]="project.status" id="field_status"  required>
+                <option value="未开始" >未开始</option>
+                <option value="进行中" >进行中</option>
+                <option value="已完成" >已完成</option>
+            </select>
         </div>
        <!-- <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.createdTime" for="field_createdTime">Created Time</label>
@@ -154,7 +159,7 @@
             <input type="text" class="form-control" name="updatedBy" id="field_updatedBy"
                 [(ngModel)]="project.updatedBy"  />
         </div>-->
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.annexa" for="field_annexa">Annexa</label>
             <div>
                 <div *ngIf="project.annexa" class="form-text text-danger clearfix">
@@ -273,7 +278,7 @@
                     This field cannot be more than 500000.
                 </small>
             </div>
-        </div>
+        </div>-->
 
        <!-- <div class="form-group">
             <label jhiTranslate="wishApp.project.pm" for="field_pm">Pm</label>

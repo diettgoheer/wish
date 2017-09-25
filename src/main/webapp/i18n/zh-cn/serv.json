@@ -18,7 +18,7 @@
             },
             "name": "名称",
             "price": "价格",
-            "unit": "单位",
+            "unit": "计价单位",
             "description": "描述",
             "terma": "条款",
             "termb": "附加条款",

@@ -39,7 +39,7 @@ people: Person[];
                 );
             return;
        }
-        this.personService.findHost().subscribe(
+        this.personService.query().subscribe(
             (res: ResponseWrapper) => {
                 this.people = res.json;
                 this.currentSearch = '';

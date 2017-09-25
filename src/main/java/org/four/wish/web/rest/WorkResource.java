@@ -6,6 +6,7 @@ import org.four.wish.domain.Work;
 import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.WorkRepository;
 import org.four.wish.repository.search.WorkSearchRepository;
+import org.four.wish.security.SecurityUtils;
 import org.four.wish.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -65,7 +66,7 @@ public class WorkResource {
         Work result = workRepository.save(work);
         workSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/works/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getName().toString()))
             .body(result);
     }
 
@@ -88,7 +89,7 @@ public class WorkResource {
         Work result = workRepository.save(work);
         workSearchRepository.save(result);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, work.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, work.getName().toString()))
             .body(result);
     }
 
@@ -101,7 +102,10 @@ public class WorkResource {
     @Timed
     public List<Work> getAllWorks() {
         log.debug("REST request to get all Works");
-        return workRepository.findAllWithEagerRelationships();
+        if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
+            return workRepository.findAllWithEagerRelationships();
+        else
+            return workRepository.findAllWithEagerRelationshipsByCurrentUserIsProjectTeam();
     }
 
    /**

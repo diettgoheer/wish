@@ -9,7 +9,7 @@
             },
             "created": "成功新增一个朋友 {{ param }}",
             "updated": "成功新增一个朋友 {{ param }}",
-            "deleted": "成功删除一个朋友{{ param }}",
+            "deleted": "成功删除一个朋友 {{ param }}",
             "delete": {
                 "question": "您确定要删除这个朋友?"
             },

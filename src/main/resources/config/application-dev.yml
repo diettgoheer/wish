@@ -51,16 +51,16 @@ spring:
                     logs: target/elasticsearch/log
                     data: target/elasticsearch/data
     mail:
-        host: smtp.zoho.com
-        port: 587
-        username: livalonee@zoho.com   #Replace this field with your Zoho username.
-        password: iop890*()          #Replace this field with your Zoho password.
-        protocol: smtp
-        tls: true
-        properties.mail.smtp:
-            auth: true
-            starttls.enable: true
-            ssl.trust: smtp.zoho.com
+       host: smtp-mail.outlook.com
+       port: 587
+       username: vivispace@outlook.com  #Replace this field with your Outlook username.
+       password: iop890*()               #Replace this field with your Outlook password.
+       protocol: smtp
+       tls: true
+       properties.mail.smtp:
+           auth: true
+           starttls.enable: true
+           ssl.trust: smtp-mail.outlook.com
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -123,8 +123,8 @@ jhipster:
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: livalonee@zoho.com
-        base-url: http://vivi.link:8443
+        from: vivispace@outlook.com
+        base-url: https://localhost:8443
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite: # Use the "graphite" Maven profile to have the Graphite dependencies

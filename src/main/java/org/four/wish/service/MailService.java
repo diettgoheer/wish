@@ -1,5 +1,6 @@
 package org.four.wish.service;
 
+import org.four.wish.domain.Circle;
 import org.four.wish.domain.User;
 
 import io.github.jhipster.config.JHipsterProperties;
@@ -19,6 +20,8 @@ import org.apache.commons.lang3.StringUtils;
 import javax.mail.internet.MimeMessage;
 import java.util.Locale;
 
+import static org.elasticsearch.common.geo.builders.ShapeBuilder.GeoShapeType.CIRCLE;
+
 /**
  * Service for sending emails.
  * <p>
@@ -32,6 +35,8 @@ public class MailService {
     private static final String USER = "user";
 
     private static final String BASE_URL = "baseUrl";
+
+    private static final String CIRCLE = "circle";
 
     private final JHipsterProperties jHipsterProperties;
 
@@ -114,5 +119,18 @@ public class MailService {
         String content = templateEngine.process("socialRegistrationValidationEmail", context);
         String subject = messageSource.getMessage("email.social.registration.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);
+    }
+
+    public void sendIntroductionEmail(Circle circle,User user){
+        log.debug("Sending password reset email to '{}'", circle.getFriendLogin());
+        Locale locale = Locale.forLanguageTag(user.getLangKey());
+        Context context = new Context(locale);
+        context.setVariable(USER, user);
+        context.setVariable(CIRCLE, circle);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process("introductionEmail", context);
+        String subject = messageSource.getMessage("email.introduction.title", null, locale);
+        sendEmail(circle.getFriendLogin(), subject, content, false, true);
+
     }
 }

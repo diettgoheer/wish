@@ -3,7 +3,7 @@
     <h2><span jhiTranslate="wishApp.project.detail.title">Project</span> {{project.name}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
+    <dl class="row-md col-md-4 jh-entity-details ">
         <dt><span jhiTranslate="wishApp.project.name">Name</span></dt>
         <dd>
             <span>{{project.name}}</span>
@@ -68,7 +68,7 @@
         <dd>
             <span>{{project.updatedBy}}</span>
         </dd>-->
-        <dt><span jhiTranslate="wishApp.project.annexa">Annexa</span></dt>
+        <!--<dt><span jhiTranslate="wishApp.project.annexa">Annexa</span></dt>
         <dd>
             <div *ngIf="project.annexa">
                 <a (click)="openFile(project.annexaContentType, project.annexa)" jhiTranslate="entity.action.open">open</a>
@@ -102,7 +102,7 @@
                 <a (click)="openFile(project.annexeContentType, project.annexe)" jhiTranslate="entity.action.open">open</a>
                 {{project.annexeContentType}}, {{byteSize(project.annexe)}}
             </div>
-        </dd>
+        </dd>-->
         <dt><span jhiTranslate="wishApp.project.pm">Pm</span></dt>
         <dd>
             <div *ngIf="project.pm">

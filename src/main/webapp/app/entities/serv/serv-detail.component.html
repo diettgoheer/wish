@@ -24,14 +24,14 @@
         <dd>
             <span>{{serv.terma}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.termb">Termb</span></dt>
+        <!--<dt><span jhiTranslate="wishApp.serv.termb">Termb</span></dt>
         <dd>
             <span>{{serv.termb}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.serv.termc">Termc</span></dt>
         <dd>
             <span>{{serv.termc}}</span>
-        </dd>
+        </dd>-->
         <dt><span jhiTranslate="wishApp.serv.type">Type</span></dt>
         <dd>
             <span>{{serv.type}}</span>
@@ -56,7 +56,7 @@
         <dd>
             <span>{{serv.updatedBy}}</span>
         </dd>-->
-        <dt><span jhiTranslate="wishApp.serv.annexa">Annexa</span></dt>
+        <!--<dt><span jhiTranslate="wishApp.serv.annexa">Annexa</span></dt>
         <dd>
             <div *ngIf="serv.annexa">
                 <a (click)="openFile(serv.annexaContentType, serv.annexa)" jhiTranslate="entity.action.open">open</a>
@@ -90,7 +90,7 @@
                 <a (click)="openFile(serv.annexeContentType, serv.annexe)" jhiTranslate="entity.action.open">open</a>
                 {{serv.annexeContentType}}, {{byteSize(serv.annexe)}}
             </div>
-        </dd>
+        </dd>-->
         <dt><span jhiTranslate="wishApp.serv.sm">Sm</span></dt>
         <dd>
             <div *ngIf="serv.sm">
@@ -117,7 +117,7 @@
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
+    <button *ngIf="isManager" type="button"
             [routerLink]="['/', { outlets: { popup: 'serv/'+ serv.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">

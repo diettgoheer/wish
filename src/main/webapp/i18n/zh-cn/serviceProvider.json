@@ -2,19 +2,19 @@
     "wishApp": {
         "serviceProvider" : {
             "home": {
-                "title": "服务提供商",
-                "createLabel": "创建一个服务提供商",
-                "createOrEditLabel": "创建或编辑一个服务提供商",
+                "title": "服务商",
+                "createLabel": "创建服务商",
+                "createOrEditLabel": "创建或编辑服务商",
                 "search": "搜索服务供应商"
             },
-            "created": "成功创建服务提供商 {{ param }}",
-            "updated": "成功更新服务提供商 {{ param }}",
-            "deleted": "成功删除服务统营商 {{ param }}",
+            "created": "成功创建服务商 {{ param }}",
+            "updated": "成功更新服务商 {{ param }}",
+            "deleted": "成功删除服务商 {{ param }}",
             "delete": {
-                "question": "您确定要删除服务供应商 {{ id }}?"
+                "question": "您确定要删除服务商 {{ id }}?"
             },
             "detail": {
-                "title": "服务供应商"
+                "title": "服务商"
             },
             "basic": "基本信息",
             "blankAccount": "银行账号信息",

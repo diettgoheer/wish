@@ -15,12 +15,15 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface PersonRepository extends JpaRepository<Person,Long> {
-    @Query("select person from Person person where person.email = :email")
+    @Query("select distinct person from Person person where person.email = :email")
     List<Person> findByEmail(@Param("email") String email);
 
-    @Query("select person from Person person where person.user = ?#{principal.username}")
+    @Query("select distinct person from Person person where person.user = ?#{principal.username}")
     List<Person> findByPersonIsCurrentUser();
 
-    @Query("select person from Person person left join Circle circle on circle.person.id = person.id where circle.userLogin = ?#{principal.username}")
+    @Query("select distinct person from Person person left join Circle circle on circle.person.id = person.id where circle.userLogin = ?#{principal.username}")
     List<Person> findByFriendIsCurrentUser();
+
+    @Query("select distinct person from Person person left join Circle circle on circle.friendLogin = person.user where circle.userLogin = ?#{principal.username}")
+    List<Person> findAllFriendByCurrentUser();
 }
