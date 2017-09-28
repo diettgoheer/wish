@@ -4,26 +4,28 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md col-md-4 jh-entity-details">
-        <dt><span jhiTranslate="wishApp.serv.name">Name</span></dt>
         <dd>
             <span>{{serv.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.price">Price</span></dt>
+        <dt><span jhiTranslate="wishApp.serv.name">Name</span></dt>
         <dd>
             <span>{{serv.price}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.unit">Unit</span></dt>
+        <dt><span jhiTranslate="wishApp.serv.price">Price</span></dt>
         <dd>
             <span>{{serv.unit}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.serv.unit">Unit</span></dt>
         <dt><span jhiTranslate="wishApp.serv.description">Description</span></dt>
         <dd>
             <span>{{serv.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.terma">Terma</span></dt>
+
         <dd>
             <span>{{serv.terma}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.serv.terma">Terma</span></dt>
+
         <!--<dt><span jhiTranslate="wishApp.serv.termb">Termb</span></dt>
         <dd>
             <span>{{serv.termb}}</span>
@@ -32,14 +34,16 @@
         <dd>
             <span>{{serv.termc}}</span>
         </dd>-->
-        <dt><span jhiTranslate="wishApp.serv.type">Type</span></dt>
         <dd>
             <span>{{serv.type}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.status">Status</span></dt>
+        <dt><span jhiTranslate="wishApp.serv.type">Type</span></dt>
+
         <dd>
             <span>{{serv.status}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.serv.status">Status</span></dt>
+
       <!--  <dt><span jhiTranslate="wishApp.serv.createdTime">Created Time</span></dt>
         <dd>
             <span>{{serv.createdTime | date:'medium'}}</span>
@@ -91,24 +95,25 @@
                 {{serv.annexeContentType}}, {{byteSize(serv.annexe)}}
             </div>
         </dd>-->
-        <dt><span jhiTranslate="wishApp.serv.sm">Sm</span></dt>
         <dd>
             <div *ngIf="serv.sm">
                 <a [routerLink]="['/person', serv.sm?.id]">{{serv.sm?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.father">Father</span></dt>
-        <dd>
+        <dt><span jhiTranslate="wishApp.serv.sm">Sm</span></dt>
+<!--        <dd>
             <div *ngIf="serv.father">
                 <a [routerLink]="['/serv', serv.father?.id]">{{serv.father?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.serv.sp">Sp</span></dt>
+        <dt><span jhiTranslate="wishApp.serv.father">Father</span></dt>-->
+
+<!--        <dt><span jhiTranslate="wishApp.serv.sp">Sp</span></dt>
         <dd>
             <div *ngIf="serv.sp">
                 <a [routerLink]="['/service-provider', serv.sp?.id]">{{serv.sp?.name}}</a>
             </div>
-        </dd>
+        </dd>-->
     </dl>
 
     <button type="submit"

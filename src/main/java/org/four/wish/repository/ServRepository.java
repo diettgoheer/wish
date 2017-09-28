@@ -14,9 +14,12 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface ServRepository extends JpaRepository<Serv,Long> {
-    @Query("select serv from Serv serv where serv.sm.user = ?#{principal.username}")
+    @Query("select distinct serv from Serv serv where serv.sm.user = ?#{principal.username}")
     List<Serv> findAllByCurrentUser();
 
-    @Query("select serv from Serv serv where serv.sm.user = :login")
+    @Query("select distinct serv from Serv serv where serv.sm.user = :login")
     List<Serv> findAllByPersonLogin(@Param("login") String login);
+
+    @Query("select distinct serv from Serv serv left join Circle circle on serv.sm.user = circle.friendLogin where circle.userLogin = ?#{principal.username}")
+    List<Serv> findAllByFriendIsCurrentUser();
 }

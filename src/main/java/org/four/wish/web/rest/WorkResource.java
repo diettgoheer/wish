@@ -1,9 +1,11 @@
 package org.four.wish.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.four.wish.domain.Transaction;
 import org.four.wish.domain.Work;
 
 import org.four.wish.repository.PersonRepository;
+import org.four.wish.repository.TransactionRepository;
 import org.four.wish.repository.WorkRepository;
 import org.four.wish.repository.search.WorkSearchRepository;
 import org.four.wish.security.SecurityUtils;
@@ -18,6 +20,7 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,7 +45,10 @@ public class WorkResource {
 
     private final PersonRepository personRepository;
 
-    public WorkResource(PersonRepository personRepository, WorkRepository workRepository, WorkSearchRepository workSearchRepository) {
+    private final TransactionResource transactionResource;
+
+    public WorkResource( TransactionResource transactionResource, PersonRepository personRepository, WorkRepository workRepository, WorkSearchRepository workSearchRepository) {
+        this.transactionResource = transactionResource;
         this.workRepository = workRepository;
         this.workSearchRepository = workSearchRepository;
         this.personRepository = personRepository;
@@ -86,6 +92,40 @@ public class WorkResource {
         if (work.getId() == null) {
             return createWork(work);
         }
+        if(work.getStatus() == "ss"){
+            Transaction transaction = new Transaction();
+            transaction.setFromUser(work.getWs().getUser());
+            transaction.setToUser(work.getBuyServ().getSm().getUser());
+            transaction.setAmount(work.getTotalPrice());
+            transaction.setName("事务交易");
+            transaction.setWork(work);
+            transactionResource.createTransaction(transaction);
+        }
+
+        Work result = workRepository.save(work);
+        workSearchRepository.save(result);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, work.getName().toString()))
+            .body(result);
+    }
+
+    @PostMapping("/works/transaction")
+    @Timed
+    public ResponseEntity<Work> finishWork(@Valid @RequestBody Work work) throws URISyntaxException {
+        log.debug("REST request to finish Work : {}", work);
+        if (work.getId() == null) {
+            return createWork(work);
+        }
+
+        Transaction transaction = new Transaction();
+        transaction.setFromPerson(work.getWs());
+        transaction.setToPerson(work.getBuyServ().getSm());
+        transaction.setAmount(work.getTotalPrice());
+        transaction.setName("事务交易");
+        transaction.setWork(work);
+        transactionResource.createTransaction(transaction);
+
+        work.setEndDate(LocalDate.now());
         Work result = workRepository.save(work);
         workSearchRepository.save(result);
         return ResponseEntity.ok()

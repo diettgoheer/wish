@@ -6,6 +6,7 @@ import org.four.wish.domain.ServiceProvider;
 import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.ServiceProviderRepository;
 import org.four.wish.repository.search.ServiceProviderSearchRepository;
+import org.four.wish.security.SecurityUtils;
 import org.four.wish.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -61,6 +62,7 @@ public class ServiceProviderResource {
         if (serviceProvider.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new serviceProvider cannot already have an ID")).body(null);
         }
+        serviceProvider.setContactEmail(SecurityUtils.getCurrentUserLogin());
         ServiceProvider result = serviceProviderRepository.save(serviceProvider);
         serviceProviderSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/service-providers/" + result.getId()))
@@ -100,7 +102,10 @@ public class ServiceProviderResource {
     @Timed
     public List<ServiceProvider> getAllServiceProviders() {
         log.debug("REST request to get all ServiceProviders");
-        return serviceProviderRepository.findAll();
+        if (SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
+            return serviceProviderRepository.findAll();
+        else
+            return serviceProviderRepository.findAllByFriendIsCurrentUser();
     }
 
     /**

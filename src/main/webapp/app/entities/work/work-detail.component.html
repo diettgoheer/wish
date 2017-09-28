@@ -4,38 +4,41 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md col-md-4 jh-entity-details">
-        <dt><span jhiTranslate="wishApp.work.name">Name</span></dt>
         <dd>
             <span>{{work.name}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.work.name">Name</span></dt>
+
         <dt><span jhiTranslate="wishApp.work.description">Description</span></dt>
         <dd>
             <span>{{work.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.budget">Budget</span></dt>
-        <dd>
+        <!--<dd>
             <span>{{work.budget}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.totalPrice">Total Price</span></dt>
+        <dt><span jhiTranslate="wishApp.work.budget">Budget</span></dt>-->
+
         <dd>
             <span>{{work.totalPrice}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.startDate">Start Date</span></dt>
+        <dt><span jhiTranslate="wishApp.work.totalPrice">Total Price</span></dt>
         <dd>
             <span>{{work.startDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.endDate">End Date</span></dt>
+        <dt><span jhiTranslate="wishApp.work.startDate">Start Date</span></dt>
         <dd>
             <span>{{work.endDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.type">Type</span></dt>
+        <dt><span jhiTranslate="wishApp.work.endDate">End Date</span></dt>
         <dd>
             <span>{{work.type}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.status">Status</span></dt>
+        <dt><span jhiTranslate="wishApp.work.type">Type</span></dt>
         <dd>
             <span>{{work.status}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.work.status">Status</span></dt>
+
  <!--       <dt><span jhiTranslate="wishApp.work.createdTime">Created Time</span></dt>
         <dd>
             <span>{{work.createdTime | date:'medium'}}</span>
@@ -52,36 +55,41 @@
         <dd>
             <span>{{work.updatedBy}}</span>
         </dd>-->
-        <dt><span jhiTranslate="wishApp.work.wm">Wm</span></dt>
         <dd>
             <div *ngIf="work.wm">
                 <a [routerLink]="['/person', work.wm?.id]">{{work.wm?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.ws">Ws</span></dt>
+        <dt><span jhiTranslate="wishApp.work.wm">Wm</span></dt>
         <dd>
             <div *ngIf="work.ws">
                 <a [routerLink]="['/person', work.ws?.id]">{{work.ws?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.wf">Wf</span></dt>
-        <dd>
+        <dt><span jhiTranslate="wishApp.work.ws">Ws</span></dt>
+        <!--<dd>
             <div *ngIf="work.wf">
                 <a [routerLink]="['/person', work.wf?.id]">{{work.wf?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.project">Project</span></dt>
+        <dt><span jhiTranslate="wishApp.work.wf">Wf</span></dt>-->
         <dd>
             <span *ngFor="let project of work.projects; let last = last">
                 <a [routerLink]="['/project', project?.id ]">{{project.name}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.serv">Serv</span></dt>
+        <dt><span jhiTranslate="wishApp.work.project">Project</span></dt>
         <dd>
-            <span *ngFor="let serv of work.servs; let last = last">
+            <!--<span *ngFor="let serv of work.servs; let last = last">
                 <a [routerLink]="['/serv', serv?.id ]">{{serv.name}}</a>{{last ? '' : ', '}}
-            </span>
+            </span>-->
+            <div *ngIf="work.buyServ">
+                <a [routerLink]="['/serv', work.buyServ?.id ]">{{work.buyServ?.name}}</a>
+            </div>
+
         </dd>
+        <dt><span jhiTranslate="wishApp.work.serv">Serv</span></dt>
+
     </dl>
 
     <button type="submit"
@@ -90,10 +98,25 @@
         <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
     </button>
 
-    <button type="button"
+    <button *ngIf="isStarted" type="button"
             [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
             replaceUrl="true"
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+    <button *ngIf="isStarted" type="button"
+            (click)="setStatus('处理中')"
+            class="btn btn-danger">
+        <span class="fa fa-pencil"></span>&nbsp;<span> 开始 </span>
+    </button>
+    <button *ngIf="isInProgress" type="button"
+            (click)="setStatus('已完成')"
+            class="btn btn-danger">
+        <span class="fa fa-pencil"></span>&nbsp;<span> 完成 </span>
+    </button>
+    <button *ngIf="isFinished" type="button"
+            (click)="setStatus('已完成(已结账)')"
+            class="btn btn-danger">
+        <span class="fa fa-pencil"></span>&nbsp;<span > 结账 </span>
     </button>
 </div>

@@ -34,6 +34,12 @@
             "otherEntityName": "serv",
             "otherEntityField": "name",
             "ownerSide": true
+        },
+        {
+            "relationshipName": "buyServ",
+            "otherEntityName": "serv",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
         }
     ],
     "fields": [
@@ -98,8 +104,8 @@
         }
     ],
     "changelogDate": "20170913025359",
-    "entityTableName": "work",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "work",
+    "pagination": "no"
 }

@@ -7,7 +7,7 @@
         Added the constraints for entity Work.
     -->
     <changeSet id="20170913025359-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="wm_id"
                                  baseTableName="work"
                                  constraintName="fk_work_wm_id"
@@ -36,7 +36,7 @@
                                  constraintName="fk_work_project_projects_id"
                                  referencedColumnNames="id"
                                  referencedTableName="project"/>
-        
+
         <addForeignKeyConstraint baseColumnNames="works_id"
                                  baseTableName="work_serv"
                                  constraintName="fk_work_serv_works_id"
@@ -47,6 +47,8 @@
                                  constraintName="fk_work_serv_servs_id"
                                  referencedColumnNames="id"
                                  referencedTableName="serv"/>
-        
+
+
+
     </changeSet>
 </databaseChangeLog>

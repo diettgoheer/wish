@@ -101,7 +101,7 @@ jhipster:
         default-include-pattern: /api/.*
         title: wish API
         description: wish API documentation
-        version: 0.0.1
+        version: 0.0.7
         terms-of-service-url:
         contact-name:
         contact-url:

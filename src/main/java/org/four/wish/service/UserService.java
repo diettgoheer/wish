@@ -1,14 +1,8 @@
 package org.four.wish.service;
 
-import org.four.wish.domain.Authority;
-import org.four.wish.domain.Circle;
-import org.four.wish.domain.Person;
-import org.four.wish.domain.User;
-import org.four.wish.repository.AuthorityRepository;
+import org.four.wish.domain.*;
+import org.four.wish.repository.*;
 import org.four.wish.config.Constants;
-import org.four.wish.repository.CircleRepository;
-import org.four.wish.repository.PersonRepository;
-import org.four.wish.repository.UserRepository;
 import org.four.wish.repository.search.UserSearchRepository;
 import org.four.wish.security.AuthoritiesConstants;
 import org.four.wish.security.SecurityUtils;
@@ -53,7 +47,10 @@ public class UserService {
 
     private final CircleRepository circleRepository;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository,PersonRepository personRepository,CircleRepository circleRepository) {
+    private final BillingCardRepository billingCardRepository;
+
+    public UserService(BillingCardRepository billingCardRepository, UserRepository userRepository, PasswordEncoder passwordEncoder, SocialService socialService, UserSearchRepository userSearchRepository, AuthorityRepository authorityRepository,PersonRepository personRepository,CircleRepository circleRepository) {
+        this.billingCardRepository = billingCardRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.socialService = socialService;
@@ -136,6 +133,11 @@ public class UserService {
         newCircle.setUserLogin(login);
         newCircle.setFriendLogin(login);
         circleRepository.save(newCircle);
+        // new billing card by user
+        BillingCard newBillingCard = new BillingCard();
+        newBillingCard.setUser(login);
+        newBillingCard.setAb(0.);
+        billingCardRepository.save(newBillingCard);
         log.debug("Created Information for Person: {}", newPerson);
         return newUser;
     }

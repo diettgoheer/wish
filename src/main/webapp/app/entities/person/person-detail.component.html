@@ -11,94 +11,104 @@
                     <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-width: 100%;" alt="person image"/>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.person.name">Name</span></dt>
+
         <dd>
             <span>{{person.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.person.email">Email</span></dt>
+        <dt><span jhiTranslate="wishApp.person.name">Name</span></dt>
+
         <dd>
             <span>{{person.email}}</span>
         </dd>
-        <dt *ngIf="person.telephone"><span jhiTranslate="wishApp.person.telephone">Telephone</span></dt>
+        <dt><span jhiTranslate="wishApp.person.email">Email</span></dt>
+
         <dd *ngIf="person.telephone">
             <span>{{person.telephone}}</span>
         </dd>
-        <dt *ngIf="person.description"><span jhiTranslate="wishApp.person.description">Description</span></dt>
-        <dd *ngIf="person.description">
+        <dt *ngIf="person.telephone"><span jhiTranslate="wishApp.person.telephone">Telephone</span></dt>
+       <dd *ngIf="person.description">
             <span>{{person.description}}</span>
         </dd>
-        <dt *ngIf="person.homePage"><span jhiTranslate="wishApp.person.homePage">Home Page</span></dt>
-        <dd *ngIf="person.homePage">
+        <dt *ngIf="person.description"><span jhiTranslate="wishApp.person.description">Description</span></dt>
+
+         <dd *ngIf="person.homePage">
             <span><a href="{{person.homePage}}" target="_blank">{{person.homePage}}</a></span>
         </dd>
-<!--        <dt><span jhiTranslate="wishApp.person.saa">Saa</span></dt>
-        <dd>
-            <span>{{person.saa}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.sab">Sab</span></dt>
-        <dd>
-            <span>{{person.sab}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.mac">Mac</span></dt>
-        <dd>
-            <span>{{person.mac}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.mad">Mad</span></dt>
-        <dd>
-            <span>{{person.mad}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.lae">Lae</span></dt>
-        <dd>
-            <span>{{person.lae}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.laf">Laf</span></dt>
-        <dd>
-            <span>{{person.laf}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.lag">Lag</span></dt>
-        <dd>
-            <span>{{person.lag}}</span>
-        </dd>-->
-        <dt *ngIf="person.xlah"><span jhiTranslate="wishApp.person.xlah">Xlah</span></dt>
+        <dt *ngIf="person.homePage"><span jhiTranslate="wishApp.person.homePage">Home Page</span></dt>
+
+        <!--        <dt><span jhiTranslate="wishApp.person.saa">Saa</span></dt>
+                <dd>
+                    <span>{{person.saa}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.sab">Sab</span></dt>
+                <dd>
+                    <span>{{person.sab}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.mac">Mac</span></dt>
+                <dd>
+                    <span>{{person.mac}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.mad">Mad</span></dt>
+                <dd>
+                    <span>{{person.mad}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.lae">Lae</span></dt>
+                <dd>
+                    <span>{{person.lae}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.laf">Laf</span></dt>
+                <dd>
+                    <span>{{person.laf}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.lag">Lag</span></dt>
+                <dd>
+                    <span>{{person.lag}}</span>
+                </dd>-->
         <dd *ngIf="person.xlah">
             <span>{{person.xlah}}</span>
         </dd>
-        <dt *ngIf="person.xlai"><span jhiTranslate="wishApp.person.xlai">Xlai</span></dt>
+        <dt *ngIf="person.xlah"><span jhiTranslate="wishApp.person.xlah">Xlah</span></dt>
+
         <dd *ngIf="person.xlai">
             <span>{{person.xlai}}</span>
         </dd>
-        <dt *ngIf="person.xlaj"><span jhiTranslate="wishApp.person.xlaj">Xlaj</span></dt>
-        <dd *ngIf="person.xlaj">
+        <dt *ngIf="person.xlai"><span jhiTranslate="wishApp.person.xlai">Xlai</span></dt>
+
+         <dd *ngIf="person.xlaj">
             <span>{{person.xlaj}}</span>
         </dd>
-<!--        <dt><span jhiTranslate="wishApp.person.ba">Ba</span></dt>
-        <dd>
-            <span>{{person.ba | date:'medium'}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.bb">Bb</span></dt>
-        <dd>
-            <span>{{person.bb | date:'medium'}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.bc">Bc</span></dt>
-        <dd>
-            <span>{{person.bc | date:'medium'}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.bd">Bd</span></dt>
-        <dd>
-            <span>{{person.bd | date:'medium'}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.person.be">Be</span></dt>
-        <dd>
-            <span>{{person.be | date:'medium'}}</span>
-        </dd>-->
-        <dt *ngIf="person.type"><span jhiTranslate="wishApp.person.type">Type</span></dt>
+        <dt *ngIf="person.xlaj"><span jhiTranslate="wishApp.person.xlaj">Xlaj</span></dt>
+
+        <!--        <dt><span jhiTranslate="wishApp.person.ba">Ba</span></dt>
+                <dd>
+                    <span>{{person.ba | date:'medium'}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.bb">Bb</span></dt>
+                <dd>
+                    <span>{{person.bb | date:'medium'}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.bc">Bc</span></dt>
+                <dd>
+                    <span>{{person.bc | date:'medium'}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.bd">Bd</span></dt>
+                <dd>
+                    <span>{{person.bd | date:'medium'}}</span>
+                </dd>
+                <dt><span jhiTranslate="wishApp.person.be">Be</span></dt>
+                <dd>
+                    <span>{{person.be | date:'medium'}}</span>
+                </dd>-->
         <dd *ngIf="person.type">
             <span>{{person.type}}</span>
         </dd>
-        <dt *ngIf="person.status"><span jhiTranslate="wishApp.person.status">Status</span></dt>
+        <dt *ngIf="person.type"><span jhiTranslate="wishApp.person.type">Type</span></dt>
+
         <dd *ngIf="person.status">
             <span>{{person.status}}</span>
         </dd>
+        <dt *ngIf="person.status"><span jhiTranslate="wishApp.person.status">Status</span></dt>
+
     </dl>
 
     <button type="submit"
@@ -115,8 +125,9 @@
     </button>
 
     <hr>
+    <h3 style="margin-left: 15px;">项目</h3>
     <div class="row" *ngIf="hasProjects" >
-        <h3 style="margin-left: 15px;">项目</h3>
+
         <div *ngFor="let project of projects ;trackBy: trackId"  class="col-md-4" style="padding-top: 20px;width:100%">
             <div class="vivi-card vivi-project">
                 <div class="btn-warning  vivi-icon"  *ngIf="project.status==='未开始'" ></div>
@@ -148,8 +159,9 @@
         </div>
     </div>
     <br>
+    <h3 style="margin-left: 15px;">服务</h3>
     <div class="row" *ngIf="hasServs" >
-        <h3 style="margin-left: 15px;">服务</h3>
+
         <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4"  style="padding-top: 20px;width:100%">
             <div class="vivi-card vivi-serv">
                 <div class="btn-warning  vivi-icon"  *ngIf="serv.status==='准备中'" ></div>
@@ -179,8 +191,9 @@
         </div>
     </div>
 <br>
+    <h3 style="margin-left: 15px;">事务</h3>
     <div class="row" *ngIf="hasWorks" >
-        <h3 style="margin-left: 15px;">事务</h3>
+
         <div *ngFor="let work of works ;trackBy: trackId"  class="col-md-4" style="padding-top: 20px;width:100%">
             <div class="vivi-card vivi-work">
                 <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>

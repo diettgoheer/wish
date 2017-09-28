@@ -1,0 +1,63 @@
+
+<div *ngIf="transaction">
+    <h2><span jhiTranslate="wishApp.transaction.detail.title">Transaction</span> {{transaction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wishApp.transaction.name">Name</span></dt>
+        <dd>
+            <span>{{transaction.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.fromUser">From User</span></dt>
+        <dd>
+            <span>{{transaction.fromUser}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.toUser">To User</span></dt>
+        <dd>
+            <span>{{transaction.toUser}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.amount">Amount</span></dt>
+        <dd>
+            <span>{{transaction.amount}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.time">Time</span></dt>
+        <dd>
+            <span>{{transaction.time | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.remark">Remark</span></dt>
+        <dd>
+            <span>{{transaction.remark}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.work">Work</span></dt>
+        <dd>
+            <div *ngIf="transaction.work">
+                <a [routerLink]="['/work', transaction.work?.id]">{{transaction.work?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.fromPerson">From Person</span></dt>
+        <dd>
+            <div *ngIf="transaction.fromPerson">
+                <a [routerLink]="['/person', transaction.fromPerson?.id]">{{transaction.fromPerson?.name}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="wishApp.transaction.toPerson">To Person</span></dt>
+        <dd>
+            <div *ngIf="transaction.toPerson">
+                <a [routerLink]="['/person', transaction.toPerson?.id]">{{transaction.toPerson?.name}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'transaction/'+ transaction.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

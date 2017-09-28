@@ -72,7 +72,7 @@ public class Serv implements Serializable {
     private String status;
 
     @CreatedDate
-    @Column(name = "created_time")
+    @Column(name = "created_time", nullable = false, length = 50, updatable = false)
     private Instant createdTime = Instant.now();
 
     @CreatedBy

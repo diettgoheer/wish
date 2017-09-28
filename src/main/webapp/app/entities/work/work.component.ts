@@ -38,10 +38,11 @@ works: Work[];
                 );
             return;
        }
-        this.workService.query().subscribe(
+        this.workService.query({ sort : 'id,desc'}).subscribe(
             (res: ResponseWrapper) => {
                 this.works = res.json;
                 this.currentSearch = '';
+
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );

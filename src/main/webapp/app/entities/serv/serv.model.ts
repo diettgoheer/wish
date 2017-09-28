@@ -1,5 +1,5 @@
 import { BaseEntity } from './../../shared';
-import {Person} from "../person/person.model";
+import {Person} from '../person/person.model';
 
 export class Serv implements BaseEntity {
     constructor(

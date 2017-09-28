@@ -1,0 +1,36 @@
+entity BillingCard{
+	user String required,
+	ab Double required,
+    maxab Double,
+    remark String maxlength(200),
+    name String required,
+    description String maxlength(200),
+    createdBy String,
+    createdDate Instant,
+    updatedBy String,
+    updatedDate Instant,
+    type String,
+    status String
+}
+
+entity Transaction{
+	name String required,
+    fromUser String required,
+    toUser String required,
+    amount Double required,
+    time ZonedDateTime required,
+    remark String maxlength(200)
+}
+
+relationship ManyToOne{
+	Transaction{work(name)} to Work
+}
+
+
+// Set pagination options
+
+//dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl
+// Set an angular suffix

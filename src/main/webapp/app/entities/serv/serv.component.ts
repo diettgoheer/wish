@@ -33,13 +33,14 @@ servs: Serv[];
         if (this.currentSearch) {
             this.servService.search({
                 query: this.currentSearch,
+                sort : 'id,desc'
                 }).subscribe(
                     (res: ResponseWrapper) => this.servs = res.json,
                     (res: ResponseWrapper) => this.onError(res.json)
                 );
             return;
        }
-        this.servService.query().subscribe(
+        this.servService.query( {sort : 'id,desc'}).subscribe(
             (res: ResponseWrapper) => {
                 this.servs = res.json;
                 this.currentSearch = '';

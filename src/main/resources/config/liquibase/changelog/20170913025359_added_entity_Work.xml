@@ -82,11 +82,12 @@
                 <constraints nullable="true" />
             </column>
 
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="work" columnName="created_time" columnDataType="datetime"/>
         <dropDefaultValue tableName="work" columnName="updated_time" columnDataType="datetime"/>
-        
+
         <createTable tableName="work_project">
             <column name="projects_id" type="bigint">
                 <constraints nullable="false"/>
@@ -97,7 +98,7 @@
         </createTable>
 
         <addPrimaryKey columnNames="works_id, projects_id" tableName="work_project"/>
-        
+
         <createTable tableName="work_serv">
             <column name="servs_id" type="bigint">
                 <constraints nullable="false"/>
@@ -108,6 +109,6 @@
         </createTable>
 
         <addPrimaryKey columnNames="works_id, servs_id" tableName="work_serv"/>
-        
+
     </changeSet>
 </databaseChangeLog>

@@ -4,54 +4,56 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md col-md-4 jh-entity-details ">
-        <dt><span jhiTranslate="wishApp.project.name">Name</span></dt>
         <dd>
             <span>{{project.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.simpleName">Simple Name</span></dt>
+        <dt><span jhiTranslate="wishApp.project.name">Name</span></dt>
         <dd>
             <span>{{project.simpleName}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.code">Code</span></dt>
+        <dt><span jhiTranslate="wishApp.project.simpleName">Simple Name</span></dt>
         <dd>
             <span>{{project.code}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.project.code">Code</span></dt>
         <dt><span jhiTranslate="wishApp.project.description">Description</span></dt>
         <dd>
             <span>{{project.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.sponsor">Sponsor</span></dt>
+
         <dd>
             <span>{{project.sponsor}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.scienceField">Science Field</span></dt>
+        <dt><span jhiTranslate="wishApp.project.sponsor">Sponsor</span></dt>
         <dd>
             <span>{{project.scienceField}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.budget">Budget</span></dt>
+        <dt><span jhiTranslate="wishApp.project.scienceField">Science Field</span></dt>
         <dd>
             <span>{{project.budget}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.source">Source</span></dt>
+        <dt><span jhiTranslate="wishApp.project.budget">Budget</span></dt>
         <dd>
             <span>{{project.source}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.startDate">Start Date</span></dt>
+        <dt><span jhiTranslate="wishApp.project.source">Source</span></dt>
         <dd>
             <span>{{project.startDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.endDate">End Date</span></dt>
+        <dt><span jhiTranslate="wishApp.project.startDate">Start Date</span></dt>
         <dd>
             <span>{{project.endDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.type">Type</span></dt>
+        <dt><span jhiTranslate="wishApp.project.endDate">End Date</span></dt>
         <dd>
             <span>{{project.type}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.status">Status</span></dt>
+        <dt><span jhiTranslate="wishApp.project.type">Type</span></dt>
         <dd>
             <span>{{project.status}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.project.status">Status</span></dt>
+
 <!--        <dt><span jhiTranslate="wishApp.project.createdTime">Created Time</span></dt>
         <dd>
             <span>{{project.createdTime | date:'medium'}}</span>
@@ -103,30 +105,32 @@
                 {{project.annexeContentType}}, {{byteSize(project.annexe)}}
             </div>
         </dd>-->
-        <dt><span jhiTranslate="wishApp.project.pm">Pm</span></dt>
         <dd>
             <div *ngIf="project.pm">
                 <a [routerLink]="['/person', project.pm?.id]">{{project.pm?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.father">Father</span></dt>
+        <dt><span jhiTranslate="wishApp.project.pm">Pm</span></dt>
         <dd>
             <div *ngIf="project.father">
                 <a [routerLink]="['/project', project.father?.id]">{{project.father?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.team">Team</span></dt>
+        <dt><span jhiTranslate="wishApp.project.father">Father</span></dt>
         <dd>
             <span *ngFor="let team of project.teams; let last = last">
                 <a [routerLink]="['/person', team?.id ]">{{team.name}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
+        <dt><span jhiTranslate="wishApp.project.team">Team</span></dt>
         <dt><span jhiTranslate="wishApp.project.ord">Ord</span></dt>
         <dd>
             <span *ngFor="let ord of ords; let last = last">
                 <a [routerLink]="['/work', ord?.id ]">{{ord.name}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
+
+
     </dl>
 
 

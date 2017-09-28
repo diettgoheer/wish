@@ -37,14 +37,15 @@ export class ServDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.servService.find(id).subscribe((serv) => {
             this.serv = serv;
+            this.principal.identity().then((account) => {
+                if (account.login === this.serv.sm.user) {
+                    this.isManager = true;
+                } else {
+                    this.isManager = false;
+                }
+            });
         });
-        this.principal.identity().then((account) => {
-            if (account.login === this.serv.sm.user) {
-                this.isManager = true;
-            } else {
-                this.isManager = false;
-            }
-        });
+
     }
     byteSize(field) {
         return this.dataUtils.byteSize(field);

@@ -2,14 +2,9 @@ package org.four.wish.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -27,8 +22,6 @@ import java.util.Objects;
 @Table(name = "work")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Document(indexName = "work")
-/*@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
-@EntityListeners(AuditingEntityListener.class)*/
 public class Work implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +45,8 @@ public class Work implements Serializable {
     @Column(name = "total_price")
     private Double totalPrice;
 
-    @Column(name = "start_date")
-    private LocalDate startDate;
+    @Column(name = "start_date", updatable = false)
+    private LocalDate startDate = LocalDate.now();
 
     @Column(name = "end_date")
     private LocalDate endDate;
@@ -62,21 +55,19 @@ public class Work implements Serializable {
     private String type;
 
     @Column(name = "status")
-    private String status;
+    private String status = "待处理";
 
-    @CreatedDate
-    @Column(name = "created_time")
+    @Column(name = "created_time", updatable = false)
     private Instant createdTime = Instant.now();
 
     @CreatedBy
     @Column(name = "created_by")
     private String createdBy;
 
-    @LastModifiedDate
     @Column(name = "updated_time")
     private Instant updatedTime = Instant.now();
 
-    @LastModifiedBy
+    @CreatedDate
     @Column(name = "updated_by")
     private String updatedBy;
 
@@ -102,6 +93,9 @@ public class Work implements Serializable {
                joinColumns = @JoinColumn(name="works_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="servs_id", referencedColumnName="id"))
     private Set<Serv> servs = new HashSet<>();
+
+    @ManyToOne
+    private Serv buyServ;
 
     public Long getId() {
         return id;
@@ -354,6 +348,19 @@ public class Work implements Serializable {
 
     public void setServs(Set<Serv> servs) {
         this.servs = servs;
+    }
+
+    public Serv getBuyServ() {
+        return buyServ;
+    }
+
+    public Work buyServ(Serv serv) {
+        this.buyServ = serv;
+        return this;
+    }
+
+    public void setBuyServ(Serv serv) {
+        this.buyServ = serv;
     }
 
     @Override

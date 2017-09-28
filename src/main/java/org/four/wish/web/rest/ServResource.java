@@ -6,6 +6,7 @@ import org.four.wish.domain.Serv;
 import org.four.wish.repository.PersonRepository;
 import org.four.wish.repository.ServRepository;
 import org.four.wish.repository.search.ServSearchRepository;
+import org.four.wish.security.SecurityUtils;
 import org.four.wish.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -101,7 +102,10 @@ public class ServResource {
     @Timed
     public List<Serv> getAllServs() {
         log.debug("REST request to get all Servs");
-        return servRepository.findAll();
+        if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
+            return servRepository.findAll();
+        else
+            return servRepository.findAllByFriendIsCurrentUser();
     }
 
     /**

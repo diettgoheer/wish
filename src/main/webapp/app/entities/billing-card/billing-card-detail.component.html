@@ -1,0 +1,69 @@
+
+<div *ngIf="billingCard">
+    <h2><span jhiTranslate="wishApp.billingCard.detail.title">Billing Card</span> {{billingCard.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="wishApp.billingCard.user">User</span></dt>
+        <dd>
+            <span>{{billingCard.user}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.ab">Ab</span></dt>
+        <dd>
+            <span>{{billingCard.ab}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.maxab">Maxab</span></dt>
+        <dd>
+            <span>{{billingCard.maxab}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.remark">Remark</span></dt>
+        <dd>
+            <span>{{billingCard.remark}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.name">Name</span></dt>
+        <dd>
+            <span>{{billingCard.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.description">Description</span></dt>
+        <dd>
+            <span>{{billingCard.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{billingCard.createdBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.createdDate">Created Date</span></dt>
+        <dd>
+            <span>{{billingCard.createdDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.updatedBy">Updated By</span></dt>
+        <dd>
+            <span>{{billingCard.updatedBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.updatedDate">Updated Date</span></dt>
+        <dd>
+            <span>{{billingCard.updatedDate | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.type">Type</span></dt>
+        <dd>
+            <span>{{billingCard.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.billingCard.status">Status</span></dt>
+        <dd>
+            <span>{{billingCard.status}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'billing-card/'+ billingCard.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

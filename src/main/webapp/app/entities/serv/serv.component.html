@@ -24,7 +24,7 @@
             </form>
         </div>
     </div>
-    <br/>
+    <!--<br/>-->
 <!--    <div class="table-responsive" *ngIf="servs">
         <table class="table table-striped">
             <thead>
@@ -135,16 +135,20 @@
     </div>-->
     <div class="row">
         <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
-            <div class="vivi-card vivi-serv">
+            <div [routerLink]="['../serv', serv.id ]" class="vivi-card vivi-serv">
                 <div class="btn-warning  vivi-icon"  *ngIf="serv.status==='准备中'" ></div>
                 <div class="btn-success  vivi-icon" *ngIf="serv.status==='已上线'" ></div>
                 <div class="btn-primary  vivi-icon"  *ngIf="serv.status==='啊哈'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="serv.status==='已下线'" ></div>
                 <div class="vivi-card-body">
-                    <h2 class="card-title">{{serv.name}}</h2>
-                    <h4 class="card-text">￥{{serv.price}}{{serv.unit}}</h4>
-                    <p class="card-title">{{serv.description}}</p>
-                    <button type="submit"
+                    <div class="vivi-card-type float-right">{{serv.type}}</div>
+                    <div class="vivi-card-title">{{serv.name}}</div>
+                    <div class="vivi-card-subtitle">
+                        <span>￥{{serv.price}}{{serv.unit}}</span>
+                        <span>{{serv.sm.name}}</span>
+                    </div>
+                    <div class="vivi-card-content">{{serv.description}}</div>
+                    <!--<button type="submit"
                             [routerLink]="['../serv', serv.id ]"
                             class="btn btn-info btn-sm">
                         <span class="fa fa-eye"></span>
@@ -156,7 +160,7 @@
                             class="btn btn-primary btn-sm">
                         <span class="fa fa-pencil"></span>
                         <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
+                    </button>-->
                 </div>
             </div>
 

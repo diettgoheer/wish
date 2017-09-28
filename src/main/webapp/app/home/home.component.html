@@ -1,14 +1,15 @@
 <div class="row">
+    <!--<img style="width: 100%;height: 100%" src="../../content/images/back.png" />-->
 <!--    <div class="col-md-3">
         <span class="hipster img-fluid img-rounded"></span>
     </div>-->
-    <div class="col-md-12">
-        <h3 jhiTranslate="home.title">Welcome, Java Hipster!</h3>
+<!--    <div class="col-md-12">
+        <h3 jhiTranslate="home.title">Welcome, Java Hipster!</h3>-->
 <!--
         <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
 -->
 
-        <div [ngSwitch]="isAuthenticated()">
+<!--        <div [ngSwitch]="isAuthenticated()">
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span *ngIf="account" jhiTranslate="home.logged.message"
                       translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
@@ -22,21 +23,21 @@
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
-        </div>
-        <div class="row">
+        </div>-->
+
             <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
-                <div class="vivi-card vivi-work">
+                <div [routerLink]="['../work', work.id ]" class="vivi-card vivi-work">
                     <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
                     <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
                     <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
                     <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
                     <div class="vivi-card-body">
-                        <h2 class="card-title">{{work.name}}</h2>
-                        <h4 class="card-text">{{work.wm?.name}}</h4>
-                        <h5 class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</h5>
-                        <h4 class="card-text">{{work.type}}</h4>
+                        <h5 class="card-text float-right">{{work.type}}</h5>
+                        <h4 class="card-title">{{work.name}}</h4>
+                        <h5 class="card-text">{{work.wm?.name}}</h5>
+                        <p class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</p>
                         <p class="card-text">{{work.description}}</p>
-                        <button type="submit"
+                        <!--<button type="submit"
                                 [routerLink]="['../work', work.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
@@ -48,11 +49,11 @@
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
+                        </button>-->
                     </div>
                 </div>
 
             </div>
         </div>
-    </div>
+
 </div>

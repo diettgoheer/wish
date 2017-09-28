@@ -10,6 +10,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class WorkService {
 
     private resourceUrl = 'api/works';
+    private resourceUrlFinishWork = 'api/works/transaction';
     private resourceSearchUrl = 'api/_search/works';
     private resourceUserUrl = 'api/users';
     private works = 'works';
@@ -28,6 +29,15 @@ export class WorkService {
     update(work: Work): Observable<Work> {
         const copy = this.convert(work);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
+            return jsonResponse;
+        });
+    }
+
+    finish(work: Work): Observable<Work> {
+        const copy = this.convert(work);
+        return this.http.post(this.resourceUrlFinishWork, copy).map((res: Response) => {
             const jsonResponse = res.json();
             this.convertItemFromServer(jsonResponse);
             return jsonResponse;

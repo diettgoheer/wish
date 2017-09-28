@@ -11,10 +11,14 @@
     <include file="classpath:config/liquibase/changelog/20170913025359_added_entity_Work.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913025400_added_entity_Serv.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913025401_added_entity_ServiceProvider.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170925084212_added_entity_BillingCard.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170925085245_added_entity_Transaction.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20170912063201_added_entity_constraints_Circle.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913025358_added_entity_constraints_Project.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913025359_added_entity_constraints_Work.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20170913025400_added_entity_constraints_Serv.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20170925085245_added_entity_constraints_Transaction.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20170927145700_added_entity_buyServ_Work.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

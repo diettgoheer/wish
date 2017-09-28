@@ -1,4 +1,6 @@
 import { BaseEntity } from './../../shared';
+import {Person} from '../person/person.model';
+import {Serv} from '../serv/serv.model';
 
 export class Work implements BaseEntity {
     constructor(
@@ -15,11 +17,12 @@ export class Work implements BaseEntity {
         public createdBy?: string,
         public updatedTime?: any,
         public updatedBy?: string,
-        public wm?: BaseEntity,
-        public ws?: BaseEntity,
-        public wf?: BaseEntity,
+        public wm?: Person,
+        public ws?: Person,
+        public wf?: Person,
         public projects?: BaseEntity[],
         public servs?: BaseEntity[],
+        public buyServ?: Serv
     ) {
     }
 }

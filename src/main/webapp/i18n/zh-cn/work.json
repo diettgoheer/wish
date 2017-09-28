@@ -19,7 +19,7 @@
             "name": "名称",
             "description": "详细描述",
             "budget": "预算",
-            "totalPrice": "实际支出",
+            "totalPrice": "费用",
             "startDate": "开始时间",
             "endDate": "结束时间",
             "type": "类型",

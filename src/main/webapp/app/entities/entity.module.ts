@@ -6,6 +6,8 @@ import { WishProjectModule } from './project/project.module';
 import { WishWorkModule } from './work/work.module';
 import { WishServModule } from './serv/serv.module';
 import { WishServiceProviderModule } from './service-provider/service-provider.module';
+import { WishBillingCardModule } from './billing-card/billing-card.module';
+import { WishTransactionModule } from './transaction/transaction.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -16,6 +18,8 @@ import { WishServiceProviderModule } from './service-provider/service-provider.m
         WishWorkModule,
         WishServModule,
         WishServiceProviderModule,
+        WishBillingCardModule,
+        WishTransactionModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

@@ -32,13 +32,14 @@ circles: Circle[];
         if (this.currentSearch) {
             this.circleService.search({
                 query: this.currentSearch,
+                sort : 'id,desc'
                 }).subscribe(
                     (res: ResponseWrapper) => this.circles = res.json,
                     (res: ResponseWrapper) => this.onError(res.json)
                 );
             return;
        }
-        this.circleService.query().subscribe(
+        this.circleService.query({sort : 'id,desc'}).subscribe(
             (res: ResponseWrapper) => {
                 this.circles = res.json;
                 this.currentSearch = '';

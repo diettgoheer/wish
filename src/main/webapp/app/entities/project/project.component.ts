@@ -39,7 +39,7 @@ projects: Project[];
                 );
             return;
        }
-        this.projectService.query().subscribe(
+        this.projectService.query({ sort : 'id,desc'}).subscribe(
             (res: ResponseWrapper) => {
                 this.projects = res.json;
                 this.currentSearch = '';

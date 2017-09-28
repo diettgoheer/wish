@@ -6,6 +6,10 @@ body, h1, h2, h3, h4 {
     font-weight: 300;
 }
 
+h2 {
+    font-size: 1.6rem;
+}
+
 /* ==========================================================================
 Browser Upgrade Prompt
 ========================================================================== */
@@ -33,7 +37,7 @@ Generic styles
 
 .jh-card {
     padding: 1.5%;
-    margin-top: 20px;
+/*    margin-top: 20px;*/
     border: none;
 }
 
@@ -50,8 +54,34 @@ Generic styles
     z-index: 1;
 }
 
+dd{
+    margin-left: 0;
+    float: right!important;
+    margin-bottom: 0;
+}
+
 .vivi-card-body{
-    padding: 20px;
+    padding: 10px;
+}
+
+.vivi-card-title{
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 700;
+}
+
+.vivi-card-subtitle{
+    color: #737373;
+}
+
+.vivi-card-content{
+    /*margin: 0 0 8px;*/
+    font-size: 13px;
+    line-height: 24px;
+}
+
+.vivi-card-type{
+    font-style: italic;
 }
 
 .vivi-icon {

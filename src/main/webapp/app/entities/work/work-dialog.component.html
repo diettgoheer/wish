@@ -42,15 +42,15 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.budget" for="field_budget">Budget</label>
             <input type="number" class="form-control" name="budget" id="field_budget"
                 [(ngModel)]="work.budget"  />
-        </div>
+        </div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.totalPrice" for="field_totalPrice">Total Price</label>
             <input type="number" class="form-control" name="totalPrice" id="field_totalPrice"
-                [(ngModel)]="work.totalPrice"  />
+                [(ngModel)]="work.totalPrice"  required/>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.startDate" for="field_startDate">Start Date</label>
@@ -74,19 +74,24 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.type" for="field_type">Type</label>
-            <input type="text" class="form-control" name="type" id="field_type"
-                [(ngModel)]="work.type"  />
+            <!--<input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="work.type"  />-->
+            <select class="form-control" name="status" [(ngModel)]="work.type" id="field_type"  required>
+                <option value="科研" >科研</option>
+                <option value="其他" >其他</option>
+                <!--<option value="已完成" >已完成</option>-->
+            </select>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.status" for="field_status">Status</label>
-            <!--<input type="text" class="form-control" name="status" id="field_status"
-                [(ngModel)]="work.status"  />-->
+            &lt;!&ndash;<input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="work.status"  />&ndash;&gt;
             <select class="form-control" name="status" [(ngModel)]="work.status" id="field_status"  required>
                 <option value="待处理" >待处理</option>
                 <option value="处理中" >处理中</option>
                 <option value="已完成" >已完成</option>
             </select>
-        </div>
+        </div>-->
       <!--  <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.createdTime" for="field_createdTime">Created Time</label>
             <div class="d-flex">
@@ -121,28 +126,34 @@
         </div>-->
         <div class="form-group">
             <label jhiTranslate="wishApp.work.ws" for="field_ws">Ws</label>
-            <select class="form-control" id="field_ws" name="ws" [(ngModel)]="work.ws" >
+            <select class="form-control" id="field_ws" name="ws" [(ngModel)]="work.ws" required>
                 <option [ngValue]="null"></option>
                 <option [ngValue]="personOption.id === work.ws?.id ? work.ws : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label jhiTranslate="wishApp.work.wf" for="field_wf">Wf</label>
-            <select class="form-control" id="field_wf" name="wf" [(ngModel)]="work.wf" >
-                <option [ngValue]="null"></option>
+            <select class="form-control" id="field_wf" name="wf" [(ngModel)]="work.wf" required>
                 <option [ngValue]="personOption.id === work.wf?.id ? work.wf : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group">
             <label jhiTranslate="wishApp.work.project" for="field_project">Project</label>
             <select class="form-control" id="field_project" multiple name="project" [(ngModel)]="work.projects" required>
                 <option [ngValue]="getSelected(work.projects, projectOption)" *ngFor="let projectOption of projects; trackBy: trackProjectById">{{projectOption.name}}</option>
             </select>
         </div>
-        <div class="form-group">
+<!--        <div class="form-group">
             <label jhiTranslate="wishApp.work.serv" for="field_serv">Serv</label>
             <select class="form-control" id="field_serv" multiple name="serv" [(ngModel)]="work.servs">
                 <option [ngValue]="getSelected(work.servs, servOption)" *ngFor="let servOption of servs; trackBy: trackServById">{{servOption.name}}</option>
+            </select>
+        </div>-->
+        <div class="form-group">
+            <label jhiTranslate="wishApp.work.serv" for="field_buy_serv">serv</label>
+            <select class="form-control" id="field_buy_serv" name="buy_serv" [(ngModel)]="work.buyServ" required>
+               <!-- <option [ngValue]="null"></option>-->
+                <option [ngValue]="servOption.id === work.buyServ?.id ? work.buyServ : servOption" *ngFor="let servOption of servs; trackBy: trackServById">{{servOption.name}}</option>
             </select>
         </div>
     </div>

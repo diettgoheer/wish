@@ -54,6 +54,8 @@ public class CacheConfiguration {
             cm.createCache(org.four.wish.domain.Serv.class.getName() + ".ords", jcacheConfiguration);
             cm.createCache(org.four.wish.domain.ServiceProvider.class.getName(), jcacheConfiguration);
             cm.createCache(org.four.wish.domain.ServiceProvider.class.getName() + ".servs", jcacheConfiguration);
+            cm.createCache(org.four.wish.domain.BillingCard.class.getName(), jcacheConfiguration);
+            cm.createCache(org.four.wish.domain.Transaction.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

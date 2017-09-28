@@ -24,7 +24,6 @@
             </form>
         </div>
     </div>
-    <br/>
 <!--    <div class="table-responsive" *ngIf="works">
         <table class="table table-striped">
             <thead>
@@ -118,7 +117,38 @@
             </tbody>
         </table>
     </div>-->
-    <div class="row ">
+    <div class="row">
+        <div *ngFor="let work of works   ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
+            <div [routerLink]="['../work', work.id ]" class="vivi-card vivi-work">
+                <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
+                <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
+                <div class="btn-danger  vivi-icon"  *ngIf="work.status==='已完成'" ></div>
+                <div class="btn-success  vivi-icon" *ngIf="work.status==='已完成(已结账)'" ></div>
+                <div class="vivi-card-body">
+                    <h5 class="card-text float-right">{{work.type}}</h5>
+                    <h4 class="card-title">{{work.name}}</h4>
+                    <h5 class="card-text">{{work.wm?.name}}</h5>
+                    <p class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</p>
+                    <p class="card-text">{{work.description}}</p>
+                    <!--<button type="submit"
+                            [routerLink]="['../work', work.id ]"
+                            class="btn btn-info btn-sm">
+                        <span class="fa fa-eye"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                    </button>
+                    <button type="submit"
+                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+                            replaceUrl="true"
+                            class="btn btn-primary btn-sm">
+                        <span class="fa fa-pencil"></span>
+                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                    </button>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="row ">
         <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
             <div class="vivi-card vivi-work">
                 <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
@@ -157,5 +187,5 @@
             </div>
 
         </div>
-    </div>
+    </div>-->
 </div>
