@@ -98,7 +98,7 @@ export class ProjectDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'wishApp.project.created'
             : 'wishApp.project.updated',
-            { param : result.id }, null);
+            { param : result.name }, null);
 
         this.eventManager.broadcast({ name: 'projectListModification', content: 'OK'});
         this.isSaving = false;

@@ -7,9 +7,7 @@
         Added the constraints for entity Work.
     -->
     <changeSet id="20170927145700-2" author="jhipster">
-        <addColumn catalogName="cat"
-                   schemaName="public"
-                   tableName="work">
+        <addColumn tableName="work">
             <column name="buy_serv_id" type="bigint"/>
         </addColumn>
         <addForeignKeyConstraint baseColumnNames="buy_serv_id"

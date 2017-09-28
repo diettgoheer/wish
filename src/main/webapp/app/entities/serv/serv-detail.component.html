@@ -128,4 +128,18 @@
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
+
+    <button *ngIf="!isManager" class="btn btn-primary float-right create-work" [routerLink]="['/', { outlets: { popup: ['work-new'] } }]">
+        <span class="fa fa-plus"></span>
+        <span class=""  jhiTranslate="wishApp.work.home.createLabel">
+            Create new Work
+            </span>
+    </button>
+
+    <button *ngIf="!isManager" type="button"
+            (click)="becomeAnAgent()"
+            class="btn btn-primary">
+        <span class="fa fa-building"></span>&nbsp;<span > 代理该服务</span>
+    </button>
+
 </div>

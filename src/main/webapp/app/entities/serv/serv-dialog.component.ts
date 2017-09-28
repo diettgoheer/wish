@@ -102,7 +102,7 @@ export class ServDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'wishApp.serv.created'
             : 'wishApp.serv.updated',
-            { param : result.id }, null);
+            { param : result.name }, null);
 
         this.eventManager.broadcast({ name: 'servListModification', content: 'OK'});
         this.isSaving = false;

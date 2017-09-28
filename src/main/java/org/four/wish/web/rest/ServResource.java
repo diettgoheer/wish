@@ -70,6 +70,17 @@ public class ServResource {
             .body(result);
     }
 
+    @PostMapping("/servs/agent")
+    @Timed
+    public ResponseEntity<Serv> createAgent(@Valid @RequestBody Serv serv) throws URISyntaxException {
+        log.debug("REST request to save Agent : {}", serv);
+        serv.setFather(new Serv());
+        serv.getFather().setId(serv.getId());
+        serv.setId(null);
+        serv.setStatus("准备中");
+        return createServ(serv);
+    }
+
     /**
      * PUT  /servs : Updates an existing serv.
      *

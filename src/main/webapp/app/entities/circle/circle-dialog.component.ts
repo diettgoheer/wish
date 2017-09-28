@@ -64,7 +64,7 @@ export class CircleDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'wishApp.circle.created'
             : 'wishApp.circle.updated',
-            { param : result.id }, null);
+            { param : result.friendLogin }, null);
 
         this.eventManager.broadcast({ name: 'circleListModification', content: 'OK'});
         this.isSaving = false;

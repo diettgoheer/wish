@@ -153,7 +153,7 @@
             <label jhiTranslate="wishApp.work.serv" for="field_buy_serv">serv</label>
             <select class="form-control" id="field_buy_serv" name="buy_serv" [(ngModel)]="work.buyServ" required>
                <!-- <option [ngValue]="null"></option>-->
-                <option [ngValue]="servOption.id === work.buyServ?.id ? work.buyServ : servOption" *ngFor="let servOption of servs; trackBy: trackServById">{{servOption.name}}</option>
+                <option [ngValue]="servOption.id === work.buyServ?.id ? work.buyServ : servOption" *ngFor="let servOption of servs | filter: {status:'已上线'} ; trackBy: trackServById">{{servOption.name}}</option>
             </select>
         </div>
     </div>

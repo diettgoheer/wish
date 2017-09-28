@@ -78,7 +78,7 @@ export class WorkDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'wishApp.work.created'
             : 'wishApp.work.updated',
-            { param : result.id }, null);
+            { param : result.name }, null);
 
         this.eventManager.broadcast({ name: 'workListModification', content: 'OK'});
         this.isSaving = false;

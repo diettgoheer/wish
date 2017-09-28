@@ -32,11 +32,13 @@
                     <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
                     <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
                     <div class="vivi-card-body">
-                        <h5 class="card-text float-right">{{work.type}}</h5>
-                        <h4 class="card-title">{{work.name}}</h4>
-                        <h5 class="card-text">{{work.wm?.name}}</h5>
-                        <p class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</p>
-                        <p class="card-text">{{work.description}}</p>
+                        <div class="vivi-card-type float-right">{{work.type}}</div>
+                        <div class="vivi-card-title">{{work.name}}</div>
+                        <div class="vivi-card-subtitle">
+                            <span >{{work.wm?.name}}</span>
+                            <span >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
+                        </div>
+                         <div class="vivi-card-content">{{work.description}}</div>
                         <!--<button type="submit"
                                 [routerLink]="['../work', work.id ]"
                                 class="btn btn-info btn-sm">

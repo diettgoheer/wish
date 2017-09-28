@@ -129,18 +129,20 @@
     <div class="row" *ngIf="hasProjects" >
 
         <div *ngFor="let project of projects ;trackBy: trackId"  class="col-md-4" style="padding-top: 20px;width:100%">
-            <div class="vivi-card vivi-project">
+            <div [routerLink]="['/project', project.id ]" class="vivi-card vivi-project">
                 <div class="btn-warning  vivi-icon"  *ngIf="project.status==='未开始'" ></div>
                 <div class="btn-primary  vivi-icon" *ngIf="project.status==='进行中'" ></div>
                 <div class="btn-success  vivi-icon"  *ngIf="project.status==='已完成'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="project.status==='失败'" ></div>
                 <div class="vivi-card-body">
-                    <h2 class="card-title">{{project.name}}</h2>
-                    <h4 class="card-text">{{project.pm?.name}}</h4>
-                    <h5 class="card-text">{{project.startDate | date:'yyyy/MM/dd'}}-{{project.endDate | date:'yyyy/MM/dd'}}</h5>
-                    <h4 class="card-text">{{project.type}}</h4>
-                    <p class="card-text">{{project.description}}</p>
-                    <button type="submit"
+                    <div class="vivi-card-type float-right">{{project.type}}</div>
+                    <div class="vivi-card-title">{{project.name}}</div>
+                    <div class="vivi-card-subtitle">
+                        <span >{{project.pm?.name}}</span>
+                        <span *ngIf="project.startDate" >{{project.startDate | date:'yyyy/MM/dd'}}-{{project.endDate | date:'yyyy/MM/dd'}}</span>
+                    </div>
+                    <div class="vivi-card-content">{{project.description}}</div>
+                   <!-- <button type="submit"
                             [routerLink]="['/project', project.id ]"
                             class="btn btn-info btn-sm">
                         <span class="fa fa-eye"></span>
@@ -152,7 +154,7 @@
                             class="btn btn-primary btn-sm">
                         <span class="fa fa-pencil"></span>
                         <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
+                    </button>-->
                 </div>
             </div>
 
@@ -163,16 +165,20 @@
     <div class="row" *ngIf="hasServs" >
 
         <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4"  style="padding-top: 20px;width:100%">
-            <div class="vivi-card vivi-serv">
+            <div [routerLink]="['/serv', serv.id ]" class="vivi-card vivi-serv">
                 <div class="btn-warning  vivi-icon"  *ngIf="serv.status==='准备中'" ></div>
                 <div class="btn-success  vivi-icon" *ngIf="serv.status==='已上线'" ></div>
                 <div class="btn-primary  vivi-icon"  *ngIf="serv.status==='啊哈'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="serv.status==='已下线'" ></div>
                 <div class="vivi-card-body">
-                    <h2 class="card-title">{{serv.name}}</h2>
-                    <h4 class="card-text">￥{{serv.price}}</h4>
-                    <p class="card-title">{{serv.description}}</p>
-                    <button type="submit"
+                    <div class="vivi-card-type float-right">{{serv.type}}</div>
+                    <div class="vivi-card-title">{{serv.name}}</div>
+                    <div class="vivi-card-subtitle">
+                        <span>￥{{serv.price}}{{serv.unit}}</span>
+                        <span>{{serv.sm.name}}</span>
+                    </div>
+                    <div class="vivi-card-content">{{serv.description}}</div>
+                    <!--<button type="submit"
                             [routerLink]="['/serv', serv.id ]"
                             class="btn btn-info btn-sm">
                         <span class="fa fa-eye"></span>
@@ -184,7 +190,7 @@
                             class="btn btn-primary btn-sm">
                         <span class="fa fa-pencil"></span>
                         <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
+                    </button>-->
                 </div>
             </div>
 
@@ -195,18 +201,20 @@
     <div class="row" *ngIf="hasWorks" >
 
         <div *ngFor="let work of works ;trackBy: trackId"  class="col-md-4" style="padding-top: 20px;width:100%">
-            <div class="vivi-card vivi-work">
+            <div [routerLink]="['/work', work.id ]" class="vivi-card vivi-work">
                 <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
                 <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
                 <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
                 <div class="vivi-card-body">
-                    <h2 class="card-title">{{work.name}}</h2>
-                    <h4 class="card-text">{{work.wm?.name}}</h4>
-                    <h5 class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</h5>
-                    <h4 class="card-text">{{work.type}}</h4>
-                    <p class="card-text">{{work.description}}</p>
-                    <button type="submit"
+                    <div class="vivi-card-type float-right">{{work.type}}</div>
+                    <div class="vivi-card-title">{{work.name}}</div>
+                    <div class="vivi-card-subtitle">
+                        <span >{{work.wm?.name}}</span>
+                        <span *ngIf="work.startDate" >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
+                    </div>
+                    <div class="vivi-card-content">{{work.description}}</div>
+                 <!--   <button type="submit"
                             [routerLink]="['/work', work.id ]"
                             class="btn btn-info btn-sm">
                         <span class="fa fa-eye"></span>
@@ -218,7 +226,7 @@
                             class="btn btn-primary btn-sm">
                         <span class="fa fa-pencil"></span>
                         <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
+                    </button>-->
                 </div>
             </div>
         </div>

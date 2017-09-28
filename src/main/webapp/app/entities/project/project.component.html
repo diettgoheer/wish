@@ -146,11 +146,14 @@
                 <div class="btn-success  vivi-icon"  *ngIf="project.status==='已完成'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="project.status==='失败'" ></div>
                 <div class="vivi-card-body">
-                    <h5 class="card-text float-right">{{project.type}}</h5>
-                    <h4 class="card-title">{{project.name}}</h4>
-                    <h5 class="card-text">{{project.pm?.name}}</h5>
-                    <p class="card-text">{{project.startDate | date:'yyyy/MM/dd'}}-{{project.endDate | date:'yyyy/MM/dd'}}</p>
-                    <p class="card-text">{{project.description}}</p>
+                    <div class="vivi-card-type float-right">{{project.type}}</div>
+                    <div class="vivi-card-title">{{project.name}}</div>
+                    <div class="vivi-card-subtitle">
+                        <span >{{project.pm?.name}}</span>
+                        <span *ngIf="project.startDate" >{{project.startDate | date:'yyyy/MM/dd'}}-{{project.endDate | date:'yyyy/MM/dd'}}</span>
+
+                    </div>
+                    <div class="vivi-card-content">{{project.description}}</div>
                    <!-- <button type="submit"
                             [routerLink]="['../project', project.id ]"
                             class="btn btn-info btn-sm">

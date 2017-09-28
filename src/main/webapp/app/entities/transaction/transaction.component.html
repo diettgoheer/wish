@@ -38,7 +38,7 @@
                 <th><span jhiTranslate="wishApp.transaction.toPerson">To Person</span></th>
             <th><span jhiTranslate="wishApp.transaction.amount">Amount</span></th>
             <th><span jhiTranslate="wishApp.transaction.time">Time</span></th>
-            <th><span jhiTranslate="wishApp.transaction.remark">Remark</span></th>
+            <!--<th><span jhiTranslate="wishApp.transaction.remark">Remark</span></th>-->
             <th><span jhiTranslate="wishApp.transaction.work">Work</span></th>
 
             <th></th>
@@ -62,7 +62,7 @@
                 </td>
                 <td>{{transaction.amount}}</td>
                 <td>{{transaction.time | date:'MM/dd HH:mm'}}</td>
-                <td>{{transaction.remark}}</td>
+                <!--<td>{{transaction.remark}}</td>-->
                 <td>
                     <div *ngIf="transaction.work">
                         <a [routerLink]="['../work', transaction.work?.id ]" >{{transaction.work?.name}}</a>

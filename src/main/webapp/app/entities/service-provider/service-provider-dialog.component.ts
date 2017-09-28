@@ -81,7 +81,7 @@ export class ServiceProviderDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'wishApp.serviceProvider.created'
             : 'wishApp.serviceProvider.updated',
-            { param : result.id }, null);
+            { param : result.name }, null);
 
         this.eventManager.broadcast({ name: 'serviceProviderListModification', content: 'OK'});
         this.isSaving = false;

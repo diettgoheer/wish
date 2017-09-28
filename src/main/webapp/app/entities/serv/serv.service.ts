@@ -10,6 +10,7 @@ import { ResponseWrapper, createRequestOption } from '../../shared';
 export class ServService {
 
     private resourceUrl = 'api/servs';
+    private resourceUrlAgent = 'api/servs/agent';
     private resourceSearchUrl = 'api/_search/servs';
     private resourceUserUrl = 'api/users';
     private servs = 'servs';
@@ -34,6 +35,14 @@ export class ServService {
         });
     }
 
+    createAgent(serv: Serv): Observable<Serv> {
+        const copy = this.convert(serv);
+        return this.http.post(this.resourceUrlAgent, copy).map((res: Response) => {
+            const jsonResponse = res.json();
+            this.convertItemFromServer(jsonResponse);
+            return jsonResponse;
+        });
+    }
     find(id: number): Observable<Serv> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             const jsonResponse = res.json();

@@ -91,7 +91,7 @@ export class PersonDialogComponent implements OnInit {
         this.alertService.success(
             isCreated ? 'wishApp.person.created'
             : 'wishApp.person.updated',
-            { param : result.id }, null);
+            { param : result.name }, null);
 
         this.eventManager.broadcast({ name: 'personListModification', content: 'OK'});
         this.isSaving = false;
