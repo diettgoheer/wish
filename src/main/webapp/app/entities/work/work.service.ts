@@ -82,10 +82,10 @@ export class WorkService {
     }
 
     private convertItemFromServer(entity: any) {
-        entity.startDate = this.dateUtils
+        /*entity.startDate = this.dateUtils
             .convertLocalDateFromServer(entity.startDate);
         entity.endDate = this.dateUtils
-            .convertLocalDateFromServer(entity.endDate);
+            .convertLocalDateFromServer(entity.endDate);*/
         entity.createdTime = this.dateUtils
             .convertDateTimeFromServer(entity.createdTime);
         entity.updatedTime = this.dateUtils
@@ -94,10 +94,10 @@ export class WorkService {
 
     private convert(work: Work): Work {
         const copy: Work = Object.assign({}, work);
-        copy.startDate = this.dateUtils
+       /* copy.startDate = this.dateUtils
             .convertLocalDateToServer(work.startDate);
         copy.endDate = this.dateUtils
-            .convertLocalDateToServer(work.endDate);
+            .convertLocalDateToServer(work.endDate);*/
 
         copy.createdTime = this.dateUtils.toDate(work.createdTime);
 

@@ -21,6 +21,7 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
     isFinished: boolean;
     isManager: boolean;
     isSponsor: boolean;
+    isSaving: boolean;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -42,6 +43,7 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
     load(id) {
         this.workService.find(id).subscribe((work) => {
             this.work = work;
+            this.isSaving = false;
             this.principal.identity().then((account) => {
                 if (account.login === this.work.wm.user) {
                     this.isManager = true;
@@ -80,8 +82,9 @@ export class WorkDetailComponent implements OnInit, OnDestroy {
     }
 
     setStatus(status) {
+        this.isSaving = true;
         this.work.status = status;
-        if (status === '已完成(已结账)') {
+        if (status === '已结账') {
             this.workService.finish(this.work).subscribe((work) => {
                 this.load(work.id);
             });

@@ -17,6 +17,7 @@ works: Work[];
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
+    statusFliter: any;
 
     constructor(
         private workService: WorkService,
@@ -29,6 +30,7 @@ works: Work[];
     }
 
     loadAll() {
+        this.statusFliter = {'status': '待处理'};
         if (this.currentSearch) {
             this.workService.search({
                 query: this.currentSearch,
@@ -42,7 +44,6 @@ works: Work[];
             (res: ResponseWrapper) => {
                 this.works = res.json;
                 this.currentSearch = '';
-
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );

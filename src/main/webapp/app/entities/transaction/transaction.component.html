@@ -1,6 +1,6 @@
 <div>
     <h2>
-        <span jhiTranslate="wishApp.transaction.home.title">Transactions</span>
+        <span >账户余额</span>
         <span *ngIf="billingCard">{{billingCard.ab}}</span>
         <button class="btn btn-primary float-right create-transaction" [routerLink]="['/', { outlets: { popup: ['transaction-new'] } }]">
             <span class="fa fa-plus"></span>

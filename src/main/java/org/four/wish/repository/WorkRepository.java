@@ -17,7 +17,7 @@ public interface WorkRepository extends JpaRepository<Work,Long> {
     @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs")
     List<Work> findAllWithEagerRelationships();
 
-    @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs where work.wm.user = ?#{principal.username}")
+    @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs where work.wm.user = ?#{principal.username} order by work.startDate desc")
     List<Work> findAllWithEagerRelationshipsByCurrentUser();
 
     @Query("select distinct work from Work work left join fetch work.projects left join fetch work.servs where work.wm.user = :login")

@@ -39,8 +39,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="serviceProvider.description" required maxlength="200" />
+            <textarea type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="serviceProvider.description" required maxlength="200" ></textarea>
             <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.description?.errors?.required" jhiTranslate="entity.validation.required">
@@ -53,6 +53,61 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.organizationCode" for="field_organizationCode">Organization Code</label>
+            <input type="text" class="form-control" name="organizationCode" id="field_organizationCode"
+                   [(ngModel)]="serviceProvider.organizationCode" required />
+            <div [hidden]="!(editForm.controls.organizationCode?.dirty && editForm.controls.organizationCode?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.organizationCode?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.organizationCode" for="field_organizationCode">Organization Code</label>
+            <input type="text" class="form-control" name="organizationCode" id="field_organizationCode"
+                   [(ngModel)]="serviceProvider.organizationCode" required />
+            <div [hidden]="!(editForm.controls.organizationCode?.dirty && editForm.controls.organizationCode?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.organizationCode?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessLicenseNumber" for="field_businessLicenseNumber">Business License Number</label>
+            <input type="text" class="form-control" name="businessLicenseNumber" id="field_businessLicenseNumber"
+                   [(ngModel)]="serviceProvider.businessLicenseNumber" required />
+            <div [hidden]="!(editForm.controls.businessLicenseNumber?.dirty && editForm.controls.businessLicenseNumber?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.businessLicenseNumber?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.legalRepresentative" for="field_legalRepresentative">Legal Representative</label>
+            <input type="text" class="form-control" name="legalRepresentative" id="field_legalRepresentative"
+                   [(ngModel)]="serviceProvider.legalRepresentative" required />
+            <div [hidden]="!(editForm.controls.legalRepresentative?.dirty && editForm.controls.legalRepresentative?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.legalRepresentative?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.generalManager" for="field_generalManager">General Manager</label>
+            <input type="text" class="form-control" name="generalManager" id="field_generalManager"
+                   [(ngModel)]="serviceProvider.generalManager" required />
+            <div [hidden]="!(editForm.controls.generalManager?.dirty && editForm.controls.generalManager?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.generalManager?.errors?.required" jhiTranslate="entity.validation.required">
+                    This field is required.
+                </small>
+            </div>
+        </div>
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.contactPerson" for="field_contactPerson">Contact Person</label>
             <input type="text" class="form-control" name="contactPerson" id="field_contactPerson"
                 [(ngModel)]="serviceProvider.contactPerson"  />
@@ -77,50 +132,7 @@
             <input type="text" class="form-control" name="zipCode" id="field_zipCode"
                 [(ngModel)]="serviceProvider.zipCode"  />
         </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.organizationCode" for="field_organizationCode">Organization Code</label>
-            <input type="text" class="form-control" name="organizationCode" id="field_organizationCode"
-                [(ngModel)]="serviceProvider.organizationCode" required />
-            <div [hidden]="!(editForm.controls.organizationCode?.dirty && editForm.controls.organizationCode?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.organizationCode?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.businessLicenseNumber" for="field_businessLicenseNumber">Business License Number</label>
-            <input type="text" class="form-control" name="businessLicenseNumber" id="field_businessLicenseNumber"
-                [(ngModel)]="serviceProvider.businessLicenseNumber" required />
-            <div [hidden]="!(editForm.controls.businessLicenseNumber?.dirty && editForm.controls.businessLicenseNumber?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.businessLicenseNumber?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.legalRepresentative" for="field_legalRepresentative">Legal Representative</label>
-            <input type="text" class="form-control" name="legalRepresentative" id="field_legalRepresentative"
-                [(ngModel)]="serviceProvider.legalRepresentative" required />
-            <div [hidden]="!(editForm.controls.legalRepresentative?.dirty && editForm.controls.legalRepresentative?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.legalRepresentative?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.generalManager" for="field_generalManager">General Manager</label>
-            <input type="text" class="form-control" name="generalManager" id="field_generalManager"
-                [(ngModel)]="serviceProvider.generalManager" required />
-            <div [hidden]="!(editForm.controls.generalManager?.dirty && editForm.controls.generalManager?.invalid)">
-                <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.generalManager?.errors?.required" jhiTranslate="entity.validation.required">
-                   This field is required.
-                </small>
-            </div>
-        </div>
+
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.technicalManager" for="field_technicalManager">Technical Manager</label>
             <input type="text" class="form-control" name="technicalManager" id="field_technicalManager"
@@ -293,7 +305,7 @@
             <label class="form-control-label" jhiTranslate="wishApp.serviceProvider.type" for="field_type">Type</label>
             <input type="text" class="form-control" name="type" id="field_type"
                 [(ngModel)]="serviceProvider.type"  />
-        </div>
+        </div>-->
 
     </div>
     <div class="modal-footer">

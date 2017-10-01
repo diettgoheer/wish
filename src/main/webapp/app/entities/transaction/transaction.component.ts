@@ -15,8 +15,8 @@ import {BillingCardService} from '../billing-card/billing-card.service';
     templateUrl: './transaction.component.html'
 })
 export class TransactionComponent implements OnInit, OnDestroy {
-transactions: Transaction[];
-billingCard: BillingCard;
+    transactions: Transaction[];
+    billingCard: BillingCard;
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;

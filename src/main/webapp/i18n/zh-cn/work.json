@@ -30,7 +30,7 @@
             "updatedBy": "Updated By",
             "wm": "事务负责人",
             "ws": "事务发起人",
-            "wf": "事务审批人",
+            "wf": "事务担保人",
             "project": "项目",
             "serv": "服务"
         }

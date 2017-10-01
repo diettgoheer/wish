@@ -25,7 +25,7 @@
             </div>
         </div>-->
 
-            <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
+            <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-bottom: 15px;width:100%">
                 <div [routerLink]="['../work', work.id ]" class="vivi-card vivi-work">
                     <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
                     <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>

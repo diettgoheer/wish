@@ -2,7 +2,7 @@
     "wishApp": {
         "transaction" : {
             "home": {
-                "title": "账户余额:",
+                "title": "账单",
                 "createLabel": "转账",
                 "createOrEditLabel": "转账",
                 "search": "搜索交易"
@@ -16,15 +16,15 @@
             "detail": {
                 "title": "交易"
             },
-            "name": "名称",
+            "name": "转款名目",
             "fromUser": "From User",
             "toUser": "To User",
             "amount": "数额",
             "time": "时间",
             "remark": "备注",
             "work": "相关事务",
-            "fromPerson": "从",
-            "toPerson": "至"
+            "fromPerson": "付款人",
+            "toPerson": "收款人"
         }
     }
 }

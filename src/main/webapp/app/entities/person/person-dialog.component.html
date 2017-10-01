@@ -13,6 +13,29 @@
                    [(ngModel)]="person.id" readonly />
         </div>-->
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.person.pic" for="field_pic">Pic</label>
+            <div>
+                <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-height: 100px;" *ngIf="person.pic" alt="person image"/>
+                <div *ngIf="person.pic" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{person.picContentType}}, {{byteSize(person.pic)}}, 注意：不得大于500k！</span>
+                    <button type="button" (click)="clearInputImage('pic', 'picContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="fileImage" (change)="setFileData($event, person, 'pic', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="pic" id="field_pic"
+                   [(ngModel)]="person.pic" maxbytes="500000" />
+            <input type="hidden" class="form-control" name="picContentType" id="field_picContentType"
+                   [(ngModel)]="person.picContentType" />
+            <div [hidden]="!(editForm.controls.pic?.dirty && editForm.controls.pic?.invalid)">
+                <small class="form-text text-danger"
+                       [hidden]="!editForm.controls.pic?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
+                    This field cannot be more than 500000.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.name" for="field_name">Name</label>
             <input type="text" class="form-control" name="name" id="field_name"
                 [(ngModel)]="person.name" required minlength="1" maxlength="50" />
@@ -53,55 +76,33 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
+        <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.description" for="field_description">Description</label>
-            <input type="text" class="form-control" name="description" id="field_description"
-                [(ngModel)]="person.description" maxlength="70" />
+            <textarea type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="person.description" maxlength="70" ></textarea>
             <div [hidden]="!(editForm.controls.description?.dirty && editForm.controls.description?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.description?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 70 }">
                    This field cannot be longer than 70 characters.
                 </small>
             </div>
-        </div>
+        </div>-->
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.person.homePage" for="field_homePage">Home Page</label>
-            <input type="text" class="form-control" name="homePage" id="field_homePage"
-                [(ngModel)]="person.homePage" minlength="3" maxlength="20" />
-            <div [hidden]="!(editForm.controls.homePage?.dirty && editForm.controls.homePage?.invalid)">
+            <label class="form-control-label" jhiTranslate="wishApp.person.saa" for="field_saa">Home Page</label>
+            <input type="text" class="form-control" name="saa" id="field_saa"
+                [(ngModel)]="person.saa" minlength="0" maxlength="70" />
+            <div [hidden]="!(editForm.controls.saa?.dirty && editForm.controls.saa?.invalid)">
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.homePage?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
-                   This field is required to be at least 3 characters.
+                   [hidden]="!editForm.controls.saa?.errors?.minlength" jhiTranslate="entity.validation.minlength" translateValues="{ min: 3 }">
+                   This field is required to be at least 0 characters.
                 </small>
                 <small class="form-text text-danger"
-                   [hidden]="!editForm.controls.homePage?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
-                   This field cannot be longer than 20 characters.
-                </small>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.person.pic" for="field_pic">Pic</label>
-            <div>
-                <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-height: 100px;" *ngIf="person.pic" alt="person image"/>
-                <div *ngIf="person.pic" class="form-text text-danger clearfix">
-                    <span class="pull-left">{{person.picContentType}}, {{byteSize(person.pic)}}</span>
-                    <button type="button" (click)="clearInputImage('pic', 'picContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
-                        <span class="fa fa-times"></span>
-                    </button>
-                </div>
-                <input type="file" id="fileImage" (change)="setFileData($event, person, 'pic', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
-            </div>
-            <input type="hidden" class="form-control" name="pic" id="field_pic"
-                [(ngModel)]="person.pic" maxbytes="500000" />
-            <input type="hidden" class="form-control" name="picContentType" id="field_picContentType"
-                [(ngModel)]="person.picContentType" />
-            <div [hidden]="!(editForm.controls.pic?.dirty && editForm.controls.pic?.invalid)">
-                <small class="form-text text-danger"
-                    [hidden]="!editForm.controls.pic?.errors?.maxbytes" jhiTranslate="entity.validation.maxbytes" translateValues="{ max: 500000 }">
-                    This field cannot be more than 500000.
+                   [hidden]="!editForm.controls.saa?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 20 }">
+                   This field cannot be longer than 70 characters.
                 </small>
             </div>
         </div>
+
 <!--        <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.saa" for="field_saa">Saa</label>
             <input type="text" class="form-control" name="saa" id="field_saa"
@@ -192,8 +193,8 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.xlai" for="field_xlai">Xlai</label>
-            <textarea type="text" class="form-control" name="xlai" id="field_xlai"
-                      [(ngModel)]="person.xlai" maxlength="1000" ></textarea>
+            <input type="text" class="form-control" name="xlai" id="field_xlai"
+                      [(ngModel)]="person.xlai" maxlength="1000" />
             <div [hidden]="!(editForm.controls.xlai?.dirty && editForm.controls.xlai?.invalid)">
                 <small class="form-text text-danger"
                    [hidden]="!editForm.controls.xlai?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 1000 }">
@@ -201,7 +202,7 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
+       <!-- <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.xlaj" for="field_xlaj">Xlaj</label>
             <textarea type="text" class="form-control" name="xlaj" id="field_xlaj"
                 [(ngModel)]="person.xlaj" maxlength="1000" ></textarea>
@@ -211,7 +212,7 @@
                    This field cannot be longer than 1000 characters.
                 </small>
             </div>
-        </div>
+        </div>-->
 <!--        <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.ba" for="field_ba">Ba</label>
             <div class="d-flex">
@@ -247,11 +248,11 @@
                   />
             </div>
         </div>-->
-        <div class="form-group">
+       <!-- <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.type" for="field_type">Type</label>
             <input type="text" class="form-control" name="type" id="field_type"
                 [(ngModel)]="person.type"  />
-        </div>
+        </div>-->
 <!--        <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.person.status" for="field_status">Status</label>
             <input type="text" class="form-control" name="status" id="field_status"

@@ -24,106 +24,38 @@
             </form>
         </div>
     </div>
-<!--    <div class="table-responsive" *ngIf="works">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="wishApp.work.name">Name</span></th>
-            <th><span jhiTranslate="wishApp.work.description">Description</span></th>
-            <th><span jhiTranslate="wishApp.work.budget">Budget</span></th>
-            <th><span jhiTranslate="wishApp.work.totalPrice">Total Price</span></th>
-            <th><span jhiTranslate="wishApp.work.startDate">Start Date</span></th>
-            <th><span jhiTranslate="wishApp.work.endDate">End Date</span></th>
-            <th><span jhiTranslate="wishApp.work.type">Type</span></th>
-            <th><span jhiTranslate="wishApp.work.status">Status</span></th>
-            <th><span jhiTranslate="wishApp.work.createdTime">Created Time</span></th>
-            <th><span jhiTranslate="wishApp.work.createdBy">Created By</span></th>
-            <th><span jhiTranslate="wishApp.work.updatedTime">Updated Time</span></th>
-            <th><span jhiTranslate="wishApp.work.updatedBy">Updated By</span></th>
-            <th><span jhiTranslate="wishApp.work.wm">Wm</span></th>
-            <th><span jhiTranslate="wishApp.work.ws">Ws</span></th>
-            <th><span jhiTranslate="wishApp.work.wf">Wf</span></th>
-            <th><span jhiTranslate="wishApp.work.project">Project</span></th>
-            <th><span jhiTranslate="wishApp.work.serv">Serv</span></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let work of works ;trackBy: trackId">
-                <td><a [routerLink]="['../work', work.id ]">{{work.id}}</a></td>
-                <td>{{work.name}}</td>
-                <td>{{work.description}}</td>
-                <td>{{work.budget}}</td>
-                <td>{{work.totalPrice}}</td>
-                <td>{{work.startDate | date:'mediumDate'}}</td>
-                <td>{{work.endDate | date:'mediumDate'}}</td>
-                <td>{{work.type}}</td>
-                <td>{{work.status}}</td>
-                <td>{{work.createdTime | date:'medium'}}</td>
-                <td>{{work.createdBy}}</td>
-                <td>{{work.updatedTime | date:'medium'}}</td>
-                <td>{{work.updatedBy}}</td>
-                <td>
-                    <div *ngIf="work.wm">
-                        <a [routerLink]="['../person', work.wm?.id ]" >{{work.wm?.name}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="work.ws">
-                        <a [routerLink]="['../person', work.ws?.id ]" >{{work.ws?.name}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="work.wf">
-                        <a [routerLink]="['../person', work.wf?.id ]" >{{work.wf?.name}}</a>
-                    </div>
-                </td>
-                <td>
-                    <span *ngFor="let project of work.projects; let last = last">
-                            <a class="form-control-static" [routerLink]="['../project', project?.id ]">{{project.name}}</a>{{last ? '' : ', '}}
-                        </span>
-                </td>
-                <td>
-                    <span *ngFor="let serv of work.servs; let last = last">
-                            <a class="form-control-static" [routerLink]="['../serv', serv?.id ]">{{serv.name}}</a>{{last ? '' : ', '}}
-                        </span>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                                [routerLink]="['../work', work.id ]"
-                                class="btn btn-info btn-sm">
-                            <span class="fa fa-eye"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
-                                replaceUrl="true"
-                                class="btn btn-primary btn-sm">
-                            <span class="fa fa-pencil"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/delete'} }]"
-                                replaceUrl="true"
-                                class="btn btn-danger btn-sm">
-                            <span class="fa fa-remove"></span>
-                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+   <!-- <div>
+        <ul class="nav nav-pills nav-fill" >
+            <li  class="nav-item active">
+                <a class="nav-link" (click)="search('待处理')">
+                    <span >待处理</span>
+                </a>
+            </li>
+
+            <li  class="nav-item"  >
+                <a class="nav-link" (click)="search('处理中')">
+                    <span >处理中</span>
+                </a>
+            </li>
+            <li  class="nav-item"  >
+                <a class="nav-link"  (click)="search('已完成')">
+                    <span >已完成</span>
+                </a>
+            </li>
+            <li  class="nav-item"  >
+                <a class="nav-link" (click)="search('已结账')" >
+                    <span >已结账</span>
+                </a>
+            </li>
+        </ul>
     </div>-->
     <div class="row">
-        <div *ngFor="let work of works   ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
+        <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
             <div [routerLink]="['../work', work.id ]" class="vivi-card vivi-work">
                 <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
                 <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
                 <div class="btn-danger  vivi-icon"  *ngIf="work.status==='已完成'" ></div>
-                <div class="btn-success  vivi-icon" *ngIf="work.status==='已完成(已结账)'" ></div>
+                <div class="btn-success  vivi-icon" *ngIf="work.status==='已结账'" ></div>
                 <div class="vivi-card-body">
                     <div class="vivi-card-type float-right">{{work.type}}</div>
                     <div class="vivi-card-title">{{work.name}}</div>

@@ -45,17 +45,15 @@
                 </small>
             </div>
         </div>-->
-        <div class="form-group">
+        <!--<div class="form-group">
             <label jhiTranslate="wishApp.transaction.fromPerson" for="field_fromPerson">From Person</label>
             <select class="form-control" id="field_fromPerson" name="fromPerson" [(ngModel)]="transaction.fromPerson" required >
-                <option [ngValue]="null"></option>
                 <option [ngValue]="personOption.id === transaction.fromPerson?.id ? transaction.fromPerson : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
-        </div>
+        </div>-->
         <div class="form-group">
             <label jhiTranslate="wishApp.transaction.toPerson" for="field_toPerson">To Person</label>
             <select class="form-control" id="field_toPerson" name="toPerson" [(ngModel)]="transaction.toPerson" required >
-                <option [ngValue]="null"></option>
                 <option [ngValue]="personOption.id === transaction.toPerson?.id ? transaction.toPerson : personOption" *ngFor="let personOption of people; trackBy: trackPersonById">{{personOption.name}}</option>
             </select>
         </div>

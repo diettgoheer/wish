@@ -4,31 +4,53 @@
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="wishApp.serviceProvider.name">Name</span></dt>
         <dd>
             <span>{{serviceProvider.name}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.enterpriseCreatedTime">Enterprise Created Time</span></dt>
+        <dt><span jhiTranslate="wishApp.serviceProvider.name">Name</span></dt>
         <dd>
             <span>{{serviceProvider.enterpriseCreatedTime | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.enterpriseCreatedTime">Enterprise Created Time</span></dt>
+
         <dt><span jhiTranslate="wishApp.serviceProvider.description">Description</span></dt>
         <dd>
             <span>{{serviceProvider.description}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.contactPerson">Contact Person</span></dt>
+        <dd>
+            <span>{{serviceProvider.organizationCode}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.organizationCode">Organization Code</span></dt>
+
+     <!--   <dt><span jhiTranslate="wishApp.serviceProvider.contactPerson">Contact Person</span></dt>
         <dd>
             <span>{{serviceProvider.contactPerson}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.serviceProvider.contactNumber">Contact Number</span></dt>
         <dd>
             <span>{{serviceProvider.contactNumber}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.contactEmail">Contact Email</span></dt>
+        </dd>-->
         <dd>
             <span>{{serviceProvider.contactEmail}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.address">Address</span></dt>
+        <dt><span jhiTranslate="wishApp.serviceProvider.contactEmail">Contact Email</span></dt>
+
+         <dd>
+            <span>{{serviceProvider.businessLicenseNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.businessLicenseNumber">Business License Number</span></dt>
+
+        <dd>
+            <span>{{serviceProvider.legalRepresentative}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.legalRepresentative">Legal Representative</span></dt>
+
+        <dd>
+            <span>{{serviceProvider.generalManager}}</span>
+        </dd>
+        <dt><span jhiTranslate="wishApp.serviceProvider.generalManager">General Manager</span></dt>
+
+        <!--<dt><span jhiTranslate="wishApp.serviceProvider.address">Address</span></dt>
         <dd>
             <span>{{serviceProvider.address}}</span>
         </dd>
@@ -36,22 +58,8 @@
         <dd>
             <span>{{serviceProvider.zipCode}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.organizationCode">Organization Code</span></dt>
-        <dd>
-            <span>{{serviceProvider.organizationCode}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.businessLicenseNumber">Business License Number</span></dt>
-        <dd>
-            <span>{{serviceProvider.businessLicenseNumber}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.legalRepresentative">Legal Representative</span></dt>
-        <dd>
-            <span>{{serviceProvider.legalRepresentative}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.serviceProvider.generalManager">General Manager</span></dt>
-        <dd>
-            <span>{{serviceProvider.generalManager}}</span>
-        </dd>
+
+
         <dt><span jhiTranslate="wishApp.serviceProvider.technicalManager">Technical Manager</span></dt>
         <dd>
             <span>{{serviceProvider.technicalManager}}</span>
@@ -178,7 +186,7 @@
         <dt><span jhiTranslate="wishApp.serviceProvider.type">Type</span></dt>
         <dd>
             <span>{{serviceProvider.type}}</span>
-        </dd>
+        </dd>-->
     </dl>
 
     <button type="submit"

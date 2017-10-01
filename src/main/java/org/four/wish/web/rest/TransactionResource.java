@@ -7,6 +7,7 @@ import org.four.wish.domain.Transaction;
 import org.four.wish.repository.BillingCardRepository;
 import org.four.wish.repository.TransactionRepository;
 import org.four.wish.repository.search.TransactionSearchRepository;
+import org.four.wish.security.SecurityUtils;
 import org.four.wish.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -65,7 +66,10 @@ public class TransactionResource {
         }
 
         //set fromUser
-        transaction.setFromUser(transaction.getFromPerson().getUser());
+        if(transaction.getFromPerson()==null&&transaction.getFromUser()==null)
+            transaction.setFromUser(SecurityUtils.getCurrentUserLogin());
+        else
+            transaction.setFromUser(transaction.getFromPerson().getUser());
         //set toUser
         transaction.setToUser(transaction.getToPerson().getUser());
         //set time
@@ -136,7 +140,10 @@ public class TransactionResource {
     @Timed
     public List<Transaction> getAllTransactions() {
         log.debug("REST request to get all Transactions");
-        return transactionRepository.findAll();
+        if(SecurityUtils.isCurrentUserInRole("ROLE_ADMIN"))
+            return transactionRepository.findAll();
+        else
+            return transactionRepository.findAllByCurrentUser();
     }
 
     /**

@@ -18,6 +18,7 @@ import {
     SettingsComponent,
     SocialRegisterComponent,
     SocialAuthComponent,
+    MineComponent,
     accountState
 } from './';
 
@@ -35,7 +36,8 @@ import {
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
-        SettingsComponent
+        SettingsComponent,
+        MineComponent
     ],
     providers: [
         Register,

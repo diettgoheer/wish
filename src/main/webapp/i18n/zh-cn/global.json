@@ -12,12 +12,12 @@
                 "project": "项目",
                 "work": "事务",
                 "serv": "服务",
-                "serviceProvider": "服务商",
+                "serviceProvider": "机构",
                 "transaction": "账户",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
-                "main": "账号",
+                "main": "我",
                 "settings": "设置",
                 "password": "密码",
                 "sessions": "会话",
@@ -141,5 +141,5 @@
         "idexists": "新建的 {{entityName}} 不能包含ID"
     },
 
-    "footer": "©2013-2017 Team@vivispace"
+    "footer": "©2013-2017 Team-fg@vivispace"
 }

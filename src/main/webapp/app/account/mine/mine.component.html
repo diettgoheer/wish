@@ -1,0 +1,15 @@
+<div>
+    <div class="row ">
+        <div *ngFor="let person of people ;trackBy: trackId" class="col-md-4"  style="padding-top:15px;width:100%">
+            <div [routerLink]="['../person', person.id ]" class="vivi-card">
+                <img *ngIf="person.pic" class="vivi-img" [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="" alt="person image">
+                <div class="vivi-card-body">
+                    <h2 class="vivi-card-title">{{person.name}}</h2>
+                    <h4 class="vivi-card-content">{{person.email}}</h4>
+                    <h4 class="vivi-card-content">{{person.telephone}}</h4>
+                    <p class="vivi-card-content">{{person.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

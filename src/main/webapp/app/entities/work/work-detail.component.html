@@ -67,12 +67,12 @@
             </div>
         </dd>
         <dt><span jhiTranslate="wishApp.work.ws">Ws</span></dt>
-        <!--<dd>
+        <dd>
             <div *ngIf="work.wf">
                 <a [routerLink]="['/person', work.wf?.id]">{{work.wf?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.wf">Wf</span></dt>-->
+        <dt><span jhiTranslate="wishApp.work.wf">Wf</span></dt>
         <dd>
             <span *ngFor="let project of work.projects; let last = last">
                 <a [routerLink]="['/project', project?.id ]">{{project.name}}</a>{{last ? '' : ', '}}
@@ -104,18 +104,18 @@
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
-    <button *ngIf="isStarted" type="button"
+    <button *ngIf="isStarted" [disabled] = "isSaving" type="button"
             (click)="setStatus('处理中')"
             class="btn btn-danger">
         <span class="fa fa-pencil"></span>&nbsp;<span> 开始 </span>
     </button>
-    <button *ngIf="isInProgress" type="button"
+    <button *ngIf="isInProgress" [disabled] = "isSaving" type="button"
             (click)="setStatus('已完成')"
             class="btn btn-danger">
         <span class="fa fa-pencil"></span>&nbsp;<span> 完成 </span>
     </button>
-    <button *ngIf="isFinished" type="button"
-            (click)="setStatus('已完成(已结账)')"
+    <button *ngIf="isFinished" [disabled] = "isSaving" type="button"
+            (click)="setStatus('已结账')"
             class="btn btn-danger">
         <span class="fa fa-pencil"></span>&nbsp;<span > 结账 </span>
     </button>

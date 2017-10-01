@@ -1,6 +1,7 @@
 package org.four.wish.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import org.four.wish.domain.Serv;
 import org.four.wish.domain.Transaction;
 import org.four.wish.domain.Work;
 
@@ -21,6 +22,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -69,6 +71,7 @@ public class WorkResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new work cannot already have an ID")).body(null);
         }
         work.setWm(personRepository.findByPersonIsCurrentUser().get(0));
+        work.setStartDate(LocalDate.now());
         Work result = workRepository.save(work);
         workSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/works/" + result.getId()))
@@ -117,13 +120,39 @@ public class WorkResource {
             return createWork(work);
         }
 
-        Transaction transaction = new Transaction();
-        transaction.setFromPerson(work.getWs());
-        transaction.setToPerson(work.getBuyServ().getSm());
-        transaction.setAmount(work.getTotalPrice());
-        transaction.setName("事务交易");
-        transaction.setWork(work);
-        transactionResource.createTransaction(transaction);
+        Double amount = work.getTotalPrice();
+        Double sAmount = amount;
+        int i = 0;
+        List<Serv> servs = new ArrayList<>();
+        Serv serv = work.getBuyServ();
+        servs.add(serv);
+        while (serv.getFather()!=null) {
+            serv = serv.getFather();
+            servs.add(serv);
+            i++;
+        }
+        int j = i;
+        while(i>=0){
+            Double mAmount = 0.;
+            if(i==0){
+                mAmount = sAmount;
+            } else {
+                mAmount = amount * Math.exp(Math.log(0.618) * (i * 2 + 1));
+                sAmount = sAmount - mAmount;
+            }
+            Transaction transaction = new Transaction();
+            transaction.setFromPerson(work.getWs());
+            if (i==0)
+                transaction.setToPerson(servs.get(j).getSm());
+            else
+                transaction.setToPerson(servs.get(i-1).getSm());
+            transaction.setAmount(mAmount);
+            transaction.setName("事务交易");
+            transaction.setWork(work);
+            transactionResource.createTransaction(transaction);
+            i--;
+        }
+
 
         work.setEndDate(LocalDate.now());
         Work result = workRepository.save(work);
