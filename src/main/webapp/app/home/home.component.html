@@ -1,4 +1,15 @@
+<h2>
+    <span>首页</span>
+    <!--<button class="btn btn-primary float-right create-work" [routerLink]="['/', { outlets: { popup: ['work-new'] } }]">
+        <span class="fa fa-plus"></span>
+        <span class="hidden-sm-down"  jhiTranslate="wishApp.work.home.createLabel">
+            Create new Work
+            </span>
+    </button>-->
+</h2>
+<jhi-alert></jhi-alert>
 <div class="row">
+
     <!--<img style="width: 100%;height: 100%" src="../../content/images/back.png" />-->
 <!--    <div class="col-md-3">
         <span class="hipster img-fluid img-rounded"></span>
@@ -32,11 +43,11 @@
                     <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
                     <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
                     <div class="vivi-card-body">
-                        <div class="vivi-card-type float-right">{{work.type}}</div>
+                        <div class="vivi-card-type float-right">{{work.status}}</div>
                         <div class="vivi-card-title">{{work.name}}</div>
                         <div class="vivi-card-subtitle">
                             <span >{{work.wm?.name}}</span>
-                            <span >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
+                            <span *ngIf="work.startDate" >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
                         </div>
                          <div class="vivi-card-content">{{work.description}}</div>
                         <!--<button type="submit"

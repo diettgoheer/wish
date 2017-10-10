@@ -1,4 +1,54 @@
-<nav class="navbar navbar-fixed-top navbar-inverse navbar-toggleable-md jh-navbar">
+<nav class="navbar navbar-fixed-bottom navbar-inverse vivi-navbar jh-navbar">
+   <!-- <div class="jh-logo-container float-left">
+        <a class="jh-navbar-toggler hidden-lg-up float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="navbar-brand logo float-left" routerLink="/" (click)="collapseNavbar()">
+            <span class="logo-img"></span>
+            <span jhiTranslate="global.title" class="navbar-title">Wish</span> <span class="navbar-version">{{version}}</span>
+        </a>
+    </div>-->
+    <div class="" id="navbarResponsive"  [ngSwitch]="isAuthenticated()" style="width: 100%">
+        <ul  class="navbar-nav nav-fill" >
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                    <div class="fa fa-home vivi-i" aria-hidden="true"></div>
+                    <div class="vivi-span" jhiTranslate="global.menu.home">Home</div>
+                </a>
+            </li>
+
+            <li  class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="work" (click)="collapseNavbar()">
+                    <div class="fa fa-sticky-note vivi-i" aria-hidden="true"></div>
+                    <div class="vivi-span" jhiTranslate="global.menu.entities.work">work</div>
+                </a>
+            </li>
+
+            <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="serv" (click)="collapseNavbar()">
+                    <div class="fa fa-tint vivi-i" aria-hidden="true"></div>
+                    <div class="vivi-span" jhiTranslate="global.menu.entities.serv">Serv</div>
+                </a>
+            </li>
+
+            <li  class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <a class="nav-link" routerLink="project" (click)="collapseNavbar()">
+                    <div class="fa fa-group vivi-i" aria-hidden="true"></div>
+                    <div class="vivi-span" jhiTranslate="global.menu.entities.circle">Person</div>
+                </a>
+            </li>
+
+            <li  class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" routerLink="mine" (click)="collapseNavbar()">
+                    <div class="fa fa-child vivi-i" aria-hidden="true"></div>
+                    <div class="vivi-span" jhiTranslate="global.menu.account.main">mine</div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!--<nav  class="navbar navbar-fixed-top navbar-inverse navbar-toggleable-md jh-navbar">
     <div class="jh-logo-container float-left">
         <a class="jh-navbar-toggler hidden-lg-up float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
             <i class="fa fa-bars"></i>
@@ -16,49 +66,49 @@
                     <span jhiTranslate="global.menu.home">Home</span>
                 </a>
             </li>
-            <!--work-->
+            &lt;!&ndash;work&ndash;&gt;
             <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="work" (click)="collapseNavbar()">
                     <i class="fa fa-tasks" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.entities.work">Work</span>
                 </a>
             </li>
-            <!--project-->
+            &lt;!&ndash;project&ndash;&gt;
             <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="project" (click)="collapseNavbar()">
                     <i class="fa fa-flask" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.entities.project">Project</span>
                 </a>
             </li>
-            <!--serv-->
+            &lt;!&ndash;serv&ndash;&gt;
             <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="serv" (click)="collapseNavbar()">
                     <i class="fa fa-tint" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.entities.serv">Serv</span>
                 </a>
             </li>
-            <!--sp-->
-            <!--<li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
-                <!--<a class="nav-link" routerLink="service-provider" (click)="collapseNavbar()">-->
-                    <!--<i class="fa fa-building" aria-hidden="true"></i>-->
-                    <!--<span jhiTranslate="global.menu.entities.serviceProvider">serviceProvider</span>-->
-                <!--</a>-->
-            <!--</li>-->
-            <!--circle-->
-            <!--<li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            &lt;!&ndash;sp&ndash;&gt;
+            &lt;!&ndash;<li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">&ndash;&gt;
+                &lt;!&ndash;<a class="nav-link" routerLink="service-provider" (click)="collapseNavbar()">&ndash;&gt;
+                    &lt;!&ndash;<i class="fa fa-building" aria-hidden="true"></i>&ndash;&gt;
+                    &lt;!&ndash;<span jhiTranslate="global.menu.entities.serviceProvider">serviceProvider</span>&ndash;&gt;
+                &lt;!&ndash;</a>&ndash;&gt;
+            &lt;!&ndash;</li>&ndash;&gt;
+            &lt;!&ndash;circle&ndash;&gt;
+            &lt;!&ndash;<li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="circle" (click)="collapseNavbar()">
                     <i class="fa fa-group" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.entities.circle">circle</span>
                 </a>
-            </li>-->
-            <!--person-->
+            </li>&ndash;&gt;
+            &lt;!&ndash;person&ndash;&gt;
             <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="person" (click)="collapseNavbar()">
                     <i class="fa fa-group" aria-hidden="true"></i>
                     <span jhiTranslate="global.menu.entities.circle">Person</span>
                 </a>
             </li>
-            <!--transaction-->
+            &lt;!&ndash;transaction&ndash;&gt;
             <li *ngSwitchCase="true" class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="transaction" (click)="collapseNavbar()">
                     <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
@@ -66,7 +116,7 @@
                 </a>
             </li>
 
-            <!--mine-->
+            &lt;!&ndash;mine&ndash;&gt;
             <li *ngSwitchCase="true" class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a class="nav-link" routerLink="mine" (click)="collapseNavbar()">
                     <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
@@ -75,7 +125,7 @@
             </li>
 
 
-            <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+            &lt;!&ndash; jhipster-needle-add-element-to-menu - JHipster will add new menu items here &ndash;&gt;
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
                     <span>
@@ -135,7 +185,7 @@
                             <span jhiTranslate="global.menu.entities.transaction">Transaction</span>
                         </a>
                     </li>
-                    <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+                    &lt;!&ndash; jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here &ndash;&gt;
                 </ul>
             </li>
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
@@ -189,7 +239,7 @@
                             <span jhiTranslate="global.menu.admin.apidocs">API</span>
                         </a>
                     </li>
-                    <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
+                    &lt;!&ndash; jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here &ndash;&gt;
                     <li *ngIf="!inProduction">
                         <a class="dropdown-item" href='./h2-console' target="_tab" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-hdd-o" aria-hidden="true"></i>
@@ -225,7 +275,7 @@
                       <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
                   </span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+                <ul *ngSwitchCase="false" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
                     <li *ngSwitchCase="true">
                         <a class="dropdown-item" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                             <i class="fa fa-fw fa-wrench" aria-hidden="true"></i>
@@ -260,42 +310,8 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav>-->
 
-<!--<ul class="vivi-nav nav nav-pills nav-fill " id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
-    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
-            <i class="fa fa-home" aria-hidden="true"></i>
-            <span jhiTranslate="global.menu.home">Home</span>
-        </a>
-    </li>
 
-    &lt;!&ndash;project&ndash;&gt;
-    <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="project" (click)="collapseNavbar()">
-            <i class="fa fa-flask" aria-hidden="true"></i>
-            <span jhiTranslate="global.menu.entities.project">Project</span>
-        </a>
-    </li>
-    &lt;!&ndash;serv&ndash;&gt;
-    <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="serv" (click)="collapseNavbar()">
-            <i class="fa fa-tint" aria-hidden="true"></i>
-            <span jhiTranslate="global.menu.entities.serv">Serv</span>
-        </a>
-    </li>
-    &lt;!&ndash;person&ndash;&gt;
-    <li *ngSwitchCase="true" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="person" (click)="collapseNavbar()">
-            <i class="fa fa-group" aria-hidden="true"></i>
-            <span jhiTranslate="global.menu.entities.circle">Person</span>
-        </a>
-    </li>
-    &lt;!&ndash;transaction&ndash;&gt;
-    <li *ngSwitchCase="true" class="nav-item"  routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <a class="nav-link" routerLink="transaction" (click)="collapseNavbar()">
-            <i class="fa fa-fw fa-asterisk" aria-hidden="true"></i>
-            <span jhiTranslate="global.menu.entities.transaction">Transaction</span>
-        </a>
-    </li>
-</ul>-->
+
+

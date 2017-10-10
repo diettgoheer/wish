@@ -52,7 +52,7 @@
                    This field cannot be longer than 20 characters.
                 </small>
             </div>
-        </div>
+        </div>-->
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.description" for="field_description">Description</label>
             <textarea type="text" class="form-control" name="description" id="field_description"
@@ -64,7 +64,7 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
+     <!--   <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.sponsor" for="field_sponsor">Sponsor</label>
             <input type="text" class="form-control" name="sponsor" id="field_sponsor"
                 [(ngModel)]="project.sponsor" required maxlength="10" />
@@ -120,21 +120,21 @@
                 </span>
             </div>
         </div>-->
-        <div class="form-group">
+       <!-- <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.type" for="field_type">Type</label>
             <input type="text" class="form-control" name="type" id="field_type"
                 [(ngModel)]="project.type"  />
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.status" for="field_status">Status</label>
-          <!--  <input type="text" class="form-control" name="status" id="field_status"
-                [(ngModel)]="project.status"  />-->
+          &lt;!&ndash;  <input type="text" class="form-control" name="status" id="field_status"
+                [(ngModel)]="project.status"  />&ndash;&gt;
             <select class="form-control" name="status" [(ngModel)]="project.status" id="field_status"  required>
                 <option value="未开始" >未开始</option>
                 <option value="进行中" >进行中</option>
                 <option value="已完成" >已完成</option>
             </select>
-        </div>
+        </div>-->
        <!-- <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.project.createdTime" for="field_createdTime">Created Time</label>
             <div class="d-flex">

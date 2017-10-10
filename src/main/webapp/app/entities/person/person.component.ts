@@ -13,7 +13,7 @@ import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
     templateUrl: './person.component.html'
 })
 export class PersonComponent implements OnInit, OnDestroy {
-people: Person[];
+    people: Person[];
     currentAccount: any;
     eventSubscriber: Subscription;
     currentSearch: string;
@@ -60,6 +60,7 @@ people: Person[];
         this.currentSearch = '';
         this.loadAll();
     }
+
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {

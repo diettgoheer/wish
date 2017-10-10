@@ -16,13 +16,13 @@
             "detail": {
                 "title": "交易"
             },
-            "name": "转款名目",
+            "name": "名目",
             "fromUser": "From User",
             "toUser": "To User",
             "amount": "数额",
             "time": "时间",
             "remark": "备注",
-            "work": "相关事务",
+            "work": "相关合约",
             "fromPerson": "付款人",
             "toPerson": "收款人"
         }

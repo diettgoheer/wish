@@ -1,8 +1,13 @@
 <div>
     <h2>
+        <button type="submit"
+                (click)="previousState()"
+                class="btn vivi-btn">
+            <span class="fa fa-angle-left"></span>
+        </button>
         <span >账户余额</span>
-        <span *ngIf="billingCard">{{billingCard.ab}}</span>
-        <button class="btn btn-primary float-right create-transaction" [routerLink]="['/', { outlets: { popup: ['transaction-new'] } }]">
+        <span *ngIf="billingCard">{{billingCard.ab | currency:'CNY':'symbol-narrow':'1.2-2'}}</span>
+        <button class="btn vivi-btn float-right create-transaction" [routerLink]="['/', { outlets: { popup: ['transaction-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="wishApp.transaction.home.createLabel">
             Create new Transaction
@@ -60,7 +65,7 @@
                         <a [routerLink]="['../person', transaction.toPerson?.id ]" >{{transaction.toPerson?.name}}</a>
                     </div>
                 </td>
-                <td>{{transaction.amount}}</td>
+                <td>{{transaction.amount | number:'1.2-2'}}</td>
                 <td>{{transaction.time | date:'MM/dd HH:mm'}}</td>
                 <!--<td>{{transaction.remark}}</td>-->
                 <td>

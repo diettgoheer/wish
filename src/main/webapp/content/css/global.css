@@ -41,15 +41,41 @@ Generic styles
     border: none;
 }
 
+.vivi-bb {
+    border-bottom-style: ridge;
+}
+
+.vivi-title {
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 60px;
+    z-index: 1030;
+    border-bottom-color: #dadada;
+    border-bottom-style: solid;
+}
+
+.vivi-nav {
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    border-top-color: #dadada;
+    border-top-style: solid;
+}
+
 .vivi-card {
     color: rgba(0, 0, 0, 0.87);
-    margin: -5px;
+    /*margin: -5px;*/
     background-color: rgb(255, 255, 255);
     transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
     box-sizing: border-box;
-    font-family: Roboto, sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    box-shadow: rgba(0, 0, 0, 0.12) 5px 5px 6px, rgba(0, 0, 0, 0.2) 3px 3px 4px;
     border-radius: 1px;
     z-index: 1;
 }
@@ -72,6 +98,7 @@ dd{
 
 .vivi-card-subtitle{
     color: #737373;
+    font-size: 16px;
 }
 
 .vivi-card-content{
@@ -120,40 +147,82 @@ dd{
 .vivi-icon {
     width: 100%;
     height: 5px;
+    border-radius: 50%;
+    background-color: white;
 }
 
 .vivi-project {
-    background-color: #fff5f5;
+    /*background-color: #fff5f5;*/
 }
 
 .vivi-work {
-    background-color: #fffff5;
+    /*background-color: #fffff5;*/
 }
 
 .vivi-serv {
-    background-color: #f5fff5;
+    /*background-color: #f5fff5;*/
 }
 
-.vivi-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
+.vivi-i {
+    font-size: 24px;
+}
+
+.vivi-span {
+    font-size: 12px;
 }
 
 .vivi-container{
     position: relative;
     margin-left: auto;
     margin-right: auto;
-    padding-right: 5px;
-    padding-left: 5px;
+    margin-bottom: 80px;
+    /*padding-right: 5px;
+    padding-left: 5px;*/
 }
 
 .vivi-img{
     max-width: 100%;
     width: 100%;
     height:100%;
+}
+
+
+.vivi-btn {
+    color: #373737;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+.vivi-btn:hover {
+    color: #fff;
+    background-color: #a8a8a8;
+    border-color: #a8a8a8;
+}
+
+.vivi-btn:focus, .btn-danger.focus {
+    -webkit-box-shadow: 0 0 0 2px rgba(216, 216, 216, 0.5);
+    box-shadow: 0 0 0 2px rgba(208, 208, 208, 0.5);
+}
+
+.vivi-btn.disabled, .vivi-btn:disabled {
+    background-color: #d9d9d9;
+    border-color: #d9d9d9;
+}
+
+.vivi-circle {
+    background-color: #777777;color:#ffffff;border-radius: 50%;
+}
+
+.vivi-btn:active, .vivi-btn.active,
+.show > .btn-danger.dropdown-toggle {
+    color: #fff;
+    background-color: #c8c8c8;
+    background-image: none;
+    border-color: #c1c1c1;
+}
+
+.vivi-middle {
+    vertical-align: middle;
 }
 
 .error {

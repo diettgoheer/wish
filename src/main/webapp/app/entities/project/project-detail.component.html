@@ -1,14 +1,38 @@
 
 <div *ngIf="project">
-    <h2><span jhiTranslate="wishApp.project.detail.title">Project</span> {{project.name}}</h2>
+    <h2>
+        <button type="submit"
+                (click)="previousState()"
+                class="btn vivi-btn">
+            <span class="fa fa-angle-left"></span>
+        </button>
+        <span class="vivi-middle" jhiTranslate="wishApp.project.detail.title">Project</span>
+        <button type="button"
+                [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
+                replaceUrl="true"
+                class="btn vivi-btn float-right">
+            <span class="fa fa-pencil"></span>
+        </button>
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md col-md-4 jh-entity-details ">
+    <div class="row-md col-md-4  jh-entity-details">
+        <div class="vivi-detail-title">
+            <span>{{project.name}}</span>
+        </div>
+        <div class="vivi-detail-author" *ngIf="project.pm">
+            <a [routerLink]="['/person', project.pm?.id]">{{project.pm?.name}}</a>
+        </div>
+        <div class="vivi-detail-content" *ngIf="project.description">
+            <span>{{project.description}}</span>
+        </div>
+    </div>
+   <!-- <dl class="row-md col-md-4 jh-entity-details ">
         <dd>
             <span>{{project.name}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.project.name">Name</span></dt>
-       <!-- <dd>
+       &lt;!&ndash; <dd>
             <span>{{project.simpleName}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.project.simpleName">Simple Name</span></dt>
@@ -24,16 +48,16 @@
         <dd>
             <span>{{project.sponsor}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.sponsor">Sponsor</span></dt>-->
-       <!-- <dd>
+        <dt><span jhiTranslate="wishApp.project.sponsor">Sponsor</span></dt>&ndash;&gt;
+       &lt;!&ndash; <dd>
             <span>{{project.scienceField}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.project.scienceField">Science Field</span></dt>
         <dd>
             <span>{{project.budget}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.budget">Budget</span></dt>-->
-       <!-- <dd>
+        <dt><span jhiTranslate="wishApp.project.budget">Budget</span></dt>&ndash;&gt;
+       &lt;!&ndash; <dd>
         <span>{{project.source}}</span>
     </dd>
         <dt><span jhiTranslate="wishApp.project.source">Source</span></dt>
@@ -44,7 +68,7 @@
         <dd>
             <span>{{project.endDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.endDate">End Date</span></dt>-->
+        <dt><span jhiTranslate="wishApp.project.endDate">End Date</span></dt>&ndash;&gt;
         <dd>
             <span>{{project.type}}</span>
         </dd>
@@ -54,7 +78,7 @@
         </dd>
         <dt><span jhiTranslate="wishApp.project.status">Status</span></dt>
 
-<!--        <dt><span jhiTranslate="wishApp.project.createdTime">Created Time</span></dt>
+&lt;!&ndash;        <dt><span jhiTranslate="wishApp.project.createdTime">Created Time</span></dt>
         <dd>
             <span>{{project.createdTime | date:'medium'}}</span>
         </dd>
@@ -69,8 +93,8 @@
         <dt><span jhiTranslate="wishApp.project.updatedBy">Updated By</span></dt>
         <dd>
             <span>{{project.updatedBy}}</span>
-        </dd>-->
-        <!--<dt><span jhiTranslate="wishApp.project.annexa">Annexa</span></dt>
+        </dd>&ndash;&gt;
+        &lt;!&ndash;<dt><span jhiTranslate="wishApp.project.annexa">Annexa</span></dt>
         <dd>
             <div *ngIf="project.annexa">
                 <a (click)="openFile(project.annexaContentType, project.annexa)" jhiTranslate="entity.action.open">open</a>
@@ -104,20 +128,20 @@
                 <a (click)="openFile(project.annexeContentType, project.annexe)" jhiTranslate="entity.action.open">open</a>
                 {{project.annexeContentType}}, {{byteSize(project.annexe)}}
             </div>
-        </dd>-->
+        </dd>&ndash;&gt;
         <dd>
             <div *ngIf="project.pm">
                 <a [routerLink]="['/person', project.pm?.id]">{{project.pm?.name}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="wishApp.project.pm">Pm</span></dt>
-        <!--<dd>
+        &lt;!&ndash;<dd>
             <div *ngIf="project.father">
                 <a [routerLink]="['/project', project.father?.id]">{{project.father?.name}}</a>
             </div>
         </dd>
-        <dt><span jhiTranslate="wishApp.project.father">Father</span></dt>-->
-        <dd>
+        <dt><span jhiTranslate="wishApp.project.father">Father</span></dt>&ndash;&gt;
+        &lt;!&ndash;<dd>
             <span *ngFor="let team of project.teams; let last = last">
                 <a [routerLink]="['/person', team?.id ]">{{team.name}}</a>{{last ? '' : ', '}}
             </span>
@@ -128,25 +152,43 @@
             <span *ngFor="let ord of ords; let last = last">
                 <a [routerLink]="['/work', ord?.id ]">{{ord.name}}</a>{{last ? '' : ', '}}
             </span>
-        </dd>
+        </dd>&ndash;&gt;
+    </dl>-->
+<hr>
+    <h5  style="margin-left: 15px;">成员</h5>
+    <div class="row"  >
+        <div *ngFor="let person of project.teams; let last = last"  class="col-md-4" style="padding-top: 15px;width:100%">
+            <div [routerLink]="['/person', person.id ]" class="vivi-card">
+                <img *ngIf="person.pic" class="vivi-img" [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="" alt="person image">
+                <div class="vivi-card-body">
+                    <h2 class="vivi-card-title">{{person.name}}</h2>
+                    <h4 class="vivi-card-content">{{person.email}}</h4>
+                    <h4 class="vivi-card-content">{{person.telephone}}</h4>
 
-
-    </dl>
-
-
-
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
-
-    <button type="button"
-            [routerLink]="['/', { outlets: { popup: 'project/'+ project.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
-
-
+                    <p class="vivi-card-content">{{person.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+<br>
+    <h5  style="margin-left: 15px;">合约</h5>
+    <div class="row"  >
+        <div *ngFor="let work of ords ;trackBy: trackId"  class="col-md-4" style="padding-top: 15px;width:100%">
+            <div [routerLink]="['/work', work.id ]" class="vivi-card vivi-work">
+                <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
+                <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
+                <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
+                <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
+                <div class="vivi-card-body">
+                    <div class="vivi-card-type float-right">{{work.type}}</div>
+                    <div class="vivi-card-title">{{work.name}}</div>
+                    <div class="vivi-card-subtitle">
+                        <span >{{work.wm?.name}}</span>
+                        <span *ngIf="work.startDate" >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
+                    </div>
+                    <div class="vivi-card-content">{{work.description}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -55,7 +55,6 @@ public class Project implements Serializable {
     @Column(name = "description", length = 200)
     private String description;
 
-    @NotNull
     @Size(max = 10)
     @Column(name = "sponsor", length = 10, nullable = false)
     private String sponsor;

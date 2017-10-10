@@ -43,4 +43,8 @@ export class PasswordComponent implements OnInit {
             });
         }
     }
+
+    previousState() {
+        window.history.back();
+    }
 }

@@ -2,19 +2,19 @@
     "wishApp": {
         "work" : {
             "home": {
-                "title": "事务",
-                "createLabel": "创建事务",
-                "createOrEditLabel": "创建或编辑事务",
-                "search": "搜索事务"
+                "title": "合约",
+                "createLabel": "创建合约",
+                "createOrEditLabel": "创建或编辑合约",
+                "search": "搜索'合约"
             },
-            "created": "成功创建事务 {{ param }}",
-            "updated": "成功更新事务 {{ param }}",
-            "deleted": "成功删除事务 {{ param }}",
+            "created": "成功创建合约 {{ param }}",
+            "updated": "成功更新合约 {{ param }}",
+            "deleted": "成功删除合约 {{ param }}",
             "delete": {
-                "question": "您确定要删除事务 {{ id }}?"
+                "question": "您确定要删除合约 {{ id }}?"
             },
             "detail": {
-                "title": "事务"
+                "title": "合约"
             },
             "name": "名称",
             "description": "详细描述",
@@ -28,11 +28,11 @@
             "createdBy": "Created By",
             "updatedTime": "Updated Time",
             "updatedBy": "Updated By",
-            "wm": "事务负责人",
-            "ws": "事务发起人",
-            "wf": "事务担保人",
-            "project": "项目",
-            "serv": "服务"
+            "wm": "合约负责人",
+            "ws": "合约发起人",
+            "wf": "合约担保人",
+            "project": "圈子",
+            "serv": "使用服务"
         }
     }
 }

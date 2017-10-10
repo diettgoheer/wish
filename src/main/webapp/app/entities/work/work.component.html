@@ -1,7 +1,7 @@
 <div>
     <h2>
-        <span jhiTranslate="wishApp.work.home.title">Works</span>
-        <button class="btn btn-primary float-right create-work" [routerLink]="['/', { outlets: { popup: ['work-new'] } }]">
+        <span class="vivi-middle" jhiTranslate="wishApp.work.home.title">Works</span>
+        <button class="btn vivi-btn float-right create-work" [routerLink]="['/', { outlets: { popup: ['work-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="wishApp.work.home.createLabel">
             Create new Work
@@ -24,31 +24,6 @@
             </form>
         </div>
     </div>
-   <!-- <div>
-        <ul class="nav nav-pills nav-fill" >
-            <li  class="nav-item active">
-                <a class="nav-link" (click)="search('待处理')">
-                    <span >待处理</span>
-                </a>
-            </li>
-
-            <li  class="nav-item"  >
-                <a class="nav-link" (click)="search('处理中')">
-                    <span >处理中</span>
-                </a>
-            </li>
-            <li  class="nav-item"  >
-                <a class="nav-link"  (click)="search('已完成')">
-                    <span >已完成</span>
-                </a>
-            </li>
-            <li  class="nav-item"  >
-                <a class="nav-link" (click)="search('已结账')" >
-                    <span >已结账</span>
-                </a>
-            </li>
-        </ul>
-    </div>-->
     <div class="row">
         <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
             <div [routerLink]="['../work', work.id ]" class="vivi-card vivi-work">
@@ -57,69 +32,16 @@
                 <div class="btn-danger  vivi-icon"  *ngIf="work.status==='已完成'" ></div>
                 <div class="btn-success  vivi-icon" *ngIf="work.status==='已结账'" ></div>
                 <div class="vivi-card-body">
-                    <div class="vivi-card-type float-right">{{work.type}}</div>
+                    <div class="vivi-card-type float-right">{{work.status}}</div>
                     <div class="vivi-card-title">{{work.name}}</div>
                     <div class="vivi-card-subtitle">
                         <span >{{work.wm?.name}}</span>
                         <span *ngIf="work.startDate" >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
                     </div>
                     <div class="vivi-card-content">{{work.description}}</div>
-                    <!--<button type="submit"
-                            [routerLink]="['../work', work.id ]"
-                            class="btn btn-info btn-sm">
-                        <span class="fa fa-eye"></span>
-                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
-                    </button>
-                    <button type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
-                            replaceUrl="true"
-                            class="btn btn-primary btn-sm">
-                        <span class="fa fa-pencil"></span>
-                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>-->
                 </div>
             </div>
 
         </div>
     </div>
-    <!--<div class="row ">
-        <div *ngFor="let work of works ;trackBy: trackId" class="col-md-4" style="padding-top: 15px;width:100%">
-            <div class="vivi-card vivi-work">
-                <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
-                <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
-                <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
-                <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
-                <div class="vivi-card-body">
-                    <h2 class="card-title">{{work.name}}</h2>
-                    <h4 class="card-text">{{work.wm?.name}}</h4>
-                    <h5 class="card-text">{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</h5>
-                    <h4 class="card-text">{{work.type}}</h4>
-                    <p class="card-text">{{work.description}}</p>
-
-                    <button type="submit"
-                            [routerLink]="['../work', work.id ]"
-                            class="btn btn-info btn-sm">
-                        <span class="fa fa-eye"></span>
-                        <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
-                    </button>
-                    <button type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
-                            replaceUrl="true"
-                            class="btn btn-primary btn-sm">
-                        <span class="fa fa-pencil"></span>
-                        <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>
-                    <button type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/delete'} }]"
-                            replaceUrl="true"
-                            class="btn btn-danger btn-sm">
-                        <span class="fa fa-remove"></span>
-                        <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
-                    </button>
-
-                </div>
-            </div>
-
-        </div>
-    </div>-->
 </div>

@@ -10,14 +10,14 @@
                 "circle": "圈子",
                 "person": "个人",
                 "project": "项目",
-                "work": "事务",
+                "work": "合约",
                 "serv": "服务",
                 "serviceProvider": "机构",
                 "transaction": "账户",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
-                "main": "我",
+                "main": "我的",
                 "settings": "设置",
                 "password": "密码",
                 "sessions": "会话",

@@ -2,7 +2,7 @@
     "wishApp": {
         "circle" : {
             "home": {
-                "title": "圈子",
+                "title": "朋友",
                 "createLabel": "添加朋友",
                 "createOrEditLabel": "添加朋友",
                 "search": "搜索朋友"

@@ -1,45 +1,76 @@
 
 <div *ngIf="work">
-    <h2><span jhiTranslate="wishApp.work.detail.title">Work</span> {{work.name}}</h2>
+    <h2>
+        <button type="submit"
+                (click)="previousState()"
+                class="btn vivi-btn">
+            <span class="fa fa-angle-left"></span>
+        </button>
+        <span class="vivi-middle" jhiTranslate="wishApp.work.home.title">Works</span>
+
+
+        <button *ngIf="isStarted" type="button"
+                [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
+                replaceUrl="true"
+                class="btn vivi-btn float-right">
+            <span class="fa fa-pencil"></span>
+        </button>
+        <button *ngIf="isStarted" [disabled] = "isSaving" type="button"
+                (click)="setStatus('处理中')"
+                class="btn vivi-btn float-right">
+            <span class="fa fa-play"></span>
+        </button>
+        <button *ngIf="isInProgress" [disabled] = "isSaving" type="button"
+                (click)="setStatus('已完成')"
+                class="btn vivi-btn float-right">
+            <span class="fa fa-check-square-o"></span>
+        </button>
+        <button *ngIf="isFinished" [disabled] = "isSaving" type="button"
+                (click)="setStatus('已结账')"
+                class="btn vivi-btn float-right">
+            <span class="fa fa-credit-card"></span>
+        </button>
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md col-md-4 jh-entity-details">
+<!--    <dl class="row-md col-md-4 jh-entity-details">
         <dd>
             <span>{{work.name}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.work.name">Name</span></dt>
-
-        <dt><span jhiTranslate="wishApp.work.description">Description</span></dt>
         <dd>
-            <span>{{work.description}}</span>
+            <span>{{work.startDate | date:'shortDate'}}</span>
         </dd>
-        <!--<dd>
-            <span>{{work.budget}}</span>
+        <dt><span jhiTranslate="wishApp.work.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{work.endDate | date:'shortDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.budget">Budget</span></dt>-->
+        <dt><span jhiTranslate="wishApp.work.endDate">End Date</span></dt>
+        <dd>
+            &lt;!&ndash;<span *ngFor="let serv of work.servs; let last = last">
+                <a [routerLink]="['/serv', serv?.id ]">{{serv.name}}</a>{{last ? '' : ', '}}
+            </span>&ndash;&gt;
+            <div *ngIf="work.buyServ">
+                <a [routerLink]="['/serv', work.buyServ?.id ]">{{work.buyServ?.name}}</a>
+            </div>
+
+        </dd>
+        <dt><span jhiTranslate="wishApp.work.serv">Serv</span></dt>
 
         <dd>
             <span>{{work.totalPrice}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.work.totalPrice">Total Price</span></dt>
-        <dd>
-            <span>{{work.startDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.work.startDate">Start Date</span></dt>
-        <dd>
-            <span>{{work.endDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="wishApp.work.endDate">End Date</span></dt>
-        <dd>
+       &lt;!&ndash; <dd>
             <span>{{work.type}}</span>
         </dd>
-        <dt><span jhiTranslate="wishApp.work.type">Type</span></dt>
+        <dt><span jhiTranslate="wishApp.work.type">Type</span></dt>&ndash;&gt;
         <dd>
             <span>{{work.status}}</span>
         </dd>
         <dt><span jhiTranslate="wishApp.work.status">Status</span></dt>
 
- <!--       <dt><span jhiTranslate="wishApp.work.createdTime">Created Time</span></dt>
+ &lt;!&ndash;       <dt><span jhiTranslate="wishApp.work.createdTime">Created Time</span></dt>
         <dd>
             <span>{{work.createdTime | date:'medium'}}</span>
         </dd>
@@ -54,7 +85,7 @@
         <dt><span jhiTranslate="wishApp.work.updatedBy">Updated By</span></dt>
         <dd>
             <span>{{work.updatedBy}}</span>
-        </dd>-->
+        </dd>&ndash;&gt;
         <dd>
             <div *ngIf="work.wm">
                 <a [routerLink]="['/person', work.wm?.id]">{{work.wm?.name}}</a>
@@ -79,44 +110,41 @@
             </span>
         </dd>
         <dt><span jhiTranslate="wishApp.work.project">Project</span></dt>
-        <dd>
-            <!--<span *ngFor="let serv of work.servs; let last = last">
-                <a [routerLink]="['/serv', serv?.id ]">{{serv.name}}</a>{{last ? '' : ', '}}
-            </span>-->
-            <div *ngIf="work.buyServ">
-                <a [routerLink]="['/serv', work.buyServ?.id ]">{{work.buyServ?.name}}</a>
-            </div>
 
-        </dd>
-        <dt><span jhiTranslate="wishApp.work.serv">Serv</span></dt>
+    </dl>-->
 
-    </dl>
+    <div class="row-md col-md-4  jh-entity-details">
+        <div class="vivi-card-type float-right">{{work.status}}</div>
+        <div class="vivi-detail-title">
+            <span>{{work.name}}</span>
+        </div>
+        <div class="vivi-detail-author">
+            <span >{{work.wm?.name}}</span>
+            <span *ngIf="work.startDate" >{{work.startDate | date:'yyyy/MM/dd'}}-{{work.endDate | date:'yyyy/MM/dd'}}</span>
+        </div>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
+        <div class="vivi-detail-content" *ngIf="work.buyServ">
+            <span >购买服务：</span><a [routerLink]="['/serv', work.buyServ?.id ]">{{work.buyServ?.name}}</a>
+            <span >-</span><a [routerLink]="['/person', work.buyServ?.sm.id ]">{{work.buyServ?.sm.name}}</a>
+        </div>
+        <div class="vivi-detail-content" *ngIf="work.ws">
+            <span >费用：{{work.totalPrice}}</span>
+        </div>
+        <div class="vivi-detail-content" *ngIf="work.ws">
+            <span >负责人：</span><a [routerLink]="['/person', work.ws?.id]">{{work.ws?.name}}</a>
+        </div>
+        <div class="vivi-detail-content" *ngIf="work.wf">
+            <span >担保人：</span><a [routerLink]="['/person', work.wf?.id]">{{work.wf?.name}}</a>
+        </div>
+        <div class="vivi-detail-content" *ngIf="work.description">
+            <span >购买服务：</span><span>{{work.description}}</span>
+        </div>
+        <div class="vivi-detail-content" *ngIf="work.projects">
+            <span >所属圈子：</span><span *ngFor="let project of work.projects; let last = last">
+                <a [routerLink]="['/project', project?.id ]">{{project.name}}</a>{{last ? '' : ', '}}
+            </span>
+        </div>
 
-    <button *ngIf="isStarted" type="button"
-            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
-    <button *ngIf="isStarted" [disabled] = "isSaving" type="button"
-            (click)="setStatus('处理中')"
-            class="btn btn-danger">
-        <span class="fa fa-pencil"></span>&nbsp;<span> 开始 </span>
-    </button>
-    <button *ngIf="isInProgress" [disabled] = "isSaving" type="button"
-            (click)="setStatus('已完成')"
-            class="btn btn-danger">
-        <span class="fa fa-pencil"></span>&nbsp;<span> 完成 </span>
-    </button>
-    <button *ngIf="isFinished" [disabled] = "isSaving" type="button"
-            (click)="setStatus('已结账')"
-            class="btn btn-danger">
-        <span class="fa fa-pencil"></span>&nbsp;<span > 结账 </span>
-    </button>
+    </div>
+
 </div>

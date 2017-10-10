@@ -78,6 +78,10 @@ export class TransactionComponent implements OnInit, OnDestroy {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
+    previousState() {
+        window.history.back();
+    }
+
     trackId(index: number, item: Transaction) {
         return item.id;
     }

@@ -2,24 +2,24 @@
     "wishApp": {
         "project" : {
             "home": {
-                "title": "项目",
-                "createLabel": "创建项目",
-                "createOrEditLabel": "创建或编辑项目",
-                "search": "搜索项目"
+                "title": "圈子",
+                "createLabel": "创建圈子",
+                "createOrEditLabel": "创建或编辑圈子",
+                "search": "搜索圈子"
             },
-            "created": "成功创建项目 {{ param }}",
-            "updated": "成功更新项目 {{ param }}",
-            "deleted": "成功删除项目 {{ param }}",
+            "created": "成功创建圈子 {{ param }}",
+            "updated": "成功更新圈子 {{ param }}",
+            "deleted": "成功删除圈子 {{ param }}",
             "delete": {
-                "question": "您确定要删除项目{{ id }}?"
+                "question": "您确定要删除圈子{{ id }}?"
             },
             "detail": {
-                "title": "项目"
+                "title": "圈子"
             },
             "name": "名称",
             "simpleName": "简称",
             "code": "编号",
-            "description": "描述",
+            "description": "公告",
             "sponsor": "发起人",
             "scienceField": "领域",
             "budget": "预算",
@@ -37,10 +37,10 @@
             "annexc": "附件3",
             "annexd": "附件4",
             "annexe": "附件5",
-            "pm": "项目经理",
-            "father": "上级项目",
-            "team": "团队",
-            "ord": "相关事务"
+            "pm": "群主",
+            "father": "上级圈子",
+            "team": "成员",
+            "ord": "相关合约"
         }
     }
 }

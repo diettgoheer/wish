@@ -5,6 +5,10 @@ import {Principal} from '../../shared/auth/principal.service';
 import {Person} from '../../entities/person/person.model';
 import {Subscription} from 'rxjs/Subscription';
 import {ResponseWrapper} from '../../shared/model/response-wrapper.model';
+import {Router} from '@angular/router';
+import {ProfileService} from '../../layouts/profiles/profile.service';
+import {LoginModalService} from '../../shared/login/login-modal.service';
+import {LoginService} from '../../shared/login/login.service';
 
 @Component({
     selector: 'jhi-mine',
@@ -17,9 +21,12 @@ export class MineComponent implements OnInit, OnDestroy {
 
     constructor(
         private personService: PersonService,
+        private loginService: LoginService,
         private alertService: JhiAlertService,
         private eventManager: JhiEventManager,
-        private principal: Principal
+        private loginModalService: LoginModalService,
+        private profileService: ProfileService,
+        private router: Router
     ) {
     }
 
@@ -47,5 +54,15 @@ export class MineComponent implements OnInit, OnDestroy {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackId(index: number, item: Person) {
+        return item.id;
+    }
+
+    logout() {
+       // this.collapseNavbar();
+        this.loginService.logout();
+        this.router.navigate(['']);
     }
 }

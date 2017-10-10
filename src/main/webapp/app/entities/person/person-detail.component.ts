@@ -13,6 +13,9 @@ import {Work} from '../work/work.model';
 import {Serv} from '../serv/serv.model';
 import {Project} from '../project/project.model';
 import {Principal} from '../../shared/auth/principal.service';
+import {CircleService} from '../circle/circle.service';
+import {Circle} from '../circle/circle.model';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'jhi-person-detail',
@@ -21,6 +24,8 @@ import {Principal} from '../../shared/auth/principal.service';
 export class PersonDetailComponent implements OnInit, OnDestroy {
 
     person: Person;
+    circle: Circle;
+    people: Person[];
     works: Work[];
     servs: Serv[];
     projects: Project[];
@@ -29,6 +34,8 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
     hasProjects: Boolean;
     account: any;
     isUser: Boolean;
+    isFriend: Boolean;
+    isSaving: Boolean;
     private subscription: Subscription;
     private eventSubscriber: Subscription;
 
@@ -40,6 +47,7 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
         private workService: WorkService,
         private projectService: ProjectService,
         private servService: ServService,
+        private circleService: CircleService,
         private route: ActivatedRoute,
         private principal: Principal
     ) {
@@ -95,6 +103,19 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
+
+        this.isFriend = false;
+        this.personService.query().subscribe(
+            (res: ResponseWrapper) => {
+                this.people = res.json;
+                for (let i = 0; i < this.people.length; i++) {
+                    if (this.people.pop().user === login) {
+                        this.isFriend = true;
+                    }
+                }
+            },
+            (res: ResponseWrapper) => this.onError(res.json)
+        );
     }
 
     byteSize(field) {
@@ -118,6 +139,39 @@ export class PersonDetailComponent implements OnInit, OnDestroy {
             'personListModification',
             (response) => this.load(this.person.id)
         );
+    }
+
+    addFriend() {
+        this.isSaving = true;
+        this.circle = new Circle;
+        this.circle.friendLogin = this.person.user;
+        this.subscribeToSaveResponse(
+            this.circleService.create(this.circle), true);
+    }
+
+    private subscribeToSaveResponse(result: Observable<Circle>, isCreated: boolean) {
+        result.subscribe((res: Circle) =>
+            this.onSaveSuccess(res, isCreated), (res: Response) => this.onSaveError(res));
+    }
+
+    private onSaveSuccess(result: Circle, isCreated: boolean) {
+        this.alertService.success(
+            isCreated ? 'wishApp.circle.created'
+                : 'wishApp.circle.updated',
+            { param : result.friendLogin }, null);
+
+        this.eventManager.broadcast({ name: 'circleListModification', content: 'OK'});
+        this.isSaving = false;
+    }
+
+    private onSaveError(error) {
+        try {
+            error.json();
+        } catch (exception) {
+            error.message = error.text();
+        }
+        this.isSaving = false;
+        this.onError(error);
     }
 
     private onError(error) {

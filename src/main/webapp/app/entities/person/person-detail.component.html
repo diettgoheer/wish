@@ -1,156 +1,91 @@
 
 <div *ngIf="person">
+    <h2>
+        <button type="submit"
+                (click)="previousState()"
+                class="btn vivi-btn">
+            <span class="fa fa-angle-left"></span>
+        </button>
+        <span class="vivi-middle" jhiTranslate="wishApp.person.detail.title">Person</span>
+        <button *ngIf=isUser type="button"
+                [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+                replaceUrl="true"
+                class="btn vivi-btn float-right">
+            <span  class="fa fa-pencil"></span>
+        </button>
 
-    <h2><span jhiTranslate="wishApp.person.detail.title">Person</span> {{person.name}}</h2>
+        <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
+                replaceUrl="true"
+                class="btn vivi-btn float-right">
+            <span  class="fa fa-pencil"></span>
+        </button>
+        <button *ngIf="!isFriend" [disabled] = "isSaving" type="button"
+                (click)="addFriend()"
+                class="btn vivi-btn float-right">
+            <span class="fa fa-credit-card"></span>
+        </button>
+    </h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <div class="row-md col-md-4  jh-entity-details">
-        <!--<dt><span jhiTranslate="wishApp.person.pic">Pic</span></dt>-->
         <div>
             <div *ngIf="person.pic">
                     <img [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="max-width: 100%;" alt="person image"/>
             </div>
         </div>
-
         <div class="vivi-detail-title">
             <span>{{person.name}}</span>
         </div>
-       <!-- <dt><span jhiTranslate="wishApp.person.name">Name</span></dt>
--->
         <div class="vivi-detail-author">
             <span>{{person.email}}</span>
         </div>
-      <!--  <dt><span jhiTranslate="wishApp.person.email">Email</span></dt>
--->
         <div class="vivi-detail-author" *ngIf="person.telephone">
             <span>{{person.telephone}}</span>
         </div>
-     <!--   <dt *ngIf="person.telephone"><span jhiTranslate="wishApp.person.telephone">Telephone</span></dt>
-        <dt *ngIf="person.description"><span jhiTranslate="wishApp.person.description">Description</span></dt>
-   -->
-
          <div class="vivi-detail-author" *ngIf="person.saa">
             <span><a href="{{person.saa}}" target="_blank">{{person.saa}}</a></span>
         </div>
         <div class="vivi-detail-content" *ngIf="person.description">
             <span>{{person.description}}</span>
         </div>
-      <!--  <dt *ngIf="person.saa"><span jhiTranslate="wishApp.person.saa">Home Page</span></dt>
--->
-        <!--        <dt><span jhiTranslate="wishApp.person.saa">Saa</span></dt>
-                <div>
-                    <span>{{person.saa}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.sab">Sab</span></dt>
-                <div>
-                    <span>{{person.sab}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.mac">Mac</span></dt>
-                <div>
-                    <span>{{person.mac}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.mad">Mad</span></dt>
-                <div>
-                    <span>{{person.mad}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.lae">Lae</span></dt>
-                <div>
-                    <span>{{person.lae}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.laf">Laf</span></dt>
-                <div>
-                    <span>{{person.laf}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.lag">Lag</span></dt>
-                <div>
-                    <span>{{person.lag}}</span>
-                </div>-->
-     <!--   <dt *ngIf="person.xlah"><span jhiTranslate="wishApp.person.xlah">Xlah</span></dt>
--->
         <div class="vivi-detail-content" *ngIf="person.xlah">
             <span>{{person.xlah}}</span>
         </div>
-
         <div class="vivi-detail-content" *ngIf="person.xlai">
             <span>{{person.xlai}}</span>
         </div>
-      <!--  <dt *ngIf="person.xlai"><span jhiTranslate="wishApp.person.xlai">Xlai</span></dt>
--->
          <div class="vivi-detail-content" *ngIf="person.xlaj">
             <span>{{person.xlaj}}</span>
         </div>
-      <!--  <dt *ngIf="person.xlaj"><span jhiTranslate="wishApp.person.xlaj">Xlaj</span></dt>
--->
-        <!--        <dt><span jhiTranslate="wishApp.person.ba">Ba</span></dt>
-                <div>
-                    <span>{{person.ba | date:'medium'}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.bb">Bb</span></dt>
-                <div>
-                    <span>{{person.bb | date:'medium'}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.bc">Bc</span></dt>
-                <div>
-                    <span>{{person.bc | date:'medium'}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.bd">Bd</span></dt>
-                <div>
-                    <span>{{person.bd | date:'medium'}}</span>
-                </div>
-                <dt><span jhiTranslate="wishApp.person.be">Be</span></dt>
-                <div>
-                    <span>{{person.be | date:'medium'}}</span>
-                </div>-->
         <div *ngIf="person.type">
             <span>{{person.type}}</span>
         </div>
-      <!--  <dt *ngIf="person.type"><span jhiTranslate="wishApp.person.type">Type</span></dt>
--->
         <div *ngIf="person.status">
             <span>{{person.status}}</span>
         </div>
-      <!--  <dt *ngIf="person.status"><span jhiTranslate="wishApp.person.status">Status</span></dt>
--->
     </div>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-    </button>
 
-    <button *ngIf=isUser type="button"
-            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span  class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
-
-    <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
-            [routerLink]="['/', { outlets: { popup: 'person/'+ person.id + '/edit'} }]"
-            replaceUrl="true"
-            class="btn btn-primary">
-        <span  class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-    </button>
 
     <hr>
-    <h3 style="margin-left: 15px;">项目</h3>
+    <h5 *ngIf="hasProjects" style="margin-left: 15px;">项目</h5>
     <div class="row" *ngIf="hasProjects" >
 
-        <div *ngFor="let project of projects ;trackBy: trackId"  class="col-md-4" style="padiving-top: 20px;width:100%">
-            <div [routerLink]="['/project', project.id ]" class="vivi-detail vivi-project">
+        <div *ngFor="let project of projects ;trackBy: trackId"  class="col-md-4" style="padding-top: 15px;width:100%">
+            <div [routerLink]="['/project', project.id ]" class="vivi-card vivi-project">
                 <div class="btn-warning  vivi-icon"  *ngIf="project.status==='未开始'" ></div>
                 <div class="btn-primary  vivi-icon" *ngIf="project.status==='进行中'" ></div>
                 <div class="btn-success  vivi-icon"  *ngIf="project.status==='已完成'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="project.status==='失败'" ></div>
-                <div class="vivi-detail-body">
-                    <div class="vivi-detail-type float-right">{{project.type}}</div>
-                    <div class="vivi-detail-title">{{project.name}}</div>
-                    <div class="vivi-detail-subtitle">
+                <div class="vivi-card-body">
+                    <div class="vivi-card-type float-right">{{project.type}}</div>
+                    <div class="vivi-card-title">{{project.name}}</div>
+                    <div class="vivi-card-subtitle">
                         <span >{{project.pm?.name}}</span>
                         <span *ngIf="project.startDate" >{{project.startDate | date:'yyyy/MM/div'}}-{{project.endivate | date:'yyyy/MM/div'}}</span>
                     </div>
-                    <div class="vivi-detail-content">{{project.description}}</div>
+                    <div class="vivi-card-content">{{project.description}}</div>
                    <!-- <button type="submit"
                             [routerLink]="['/project', project.id ]"
                             class="btn btn-info btn-sm">
@@ -170,23 +105,22 @@
         </div>
     </div>
     <br>
-    <h3 style="margin-left: 15px;">服务</h3>
+    <h5 *ngIf="hasServs"  style="margin-left: 15px;">服务</h5>
     <div class="row" *ngIf="hasServs" >
-
-        <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4"  style="padiving-top: 20px;width:100%">
-            <div [routerLink]="['/serv', serv.id ]" class="vivi-detail vivi-serv">
+        <div *ngFor="let serv of servs ;trackBy: trackId" class="col-md-4"  style="padding-top: 15px;width:100%">
+            <div [routerLink]="['/serv', serv.id ]" class="vivi-card vivi-serv">
                 <div class="btn-warning  vivi-icon"  *ngIf="serv.status==='准备中'" ></div>
                 <div class="btn-success  vivi-icon" *ngIf="serv.status==='已上线'" ></div>
                 <div class="btn-primary  vivi-icon"  *ngIf="serv.status==='啊哈'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="serv.status==='已下线'" ></div>
-                <div class="vivi-detail-body">
-                    <div class="vivi-detail-type float-right">{{serv.type}}</div>
-                    <div class="vivi-detail-title">{{serv.name}}</div>
-                    <div class="vivi-detail-subtitle">
+                <div class="vivi-card-body">
+                    <div class="vivi-card-type float-right">{{serv.type}}</div>
+                    <div class="vivi-card-title">{{serv.name}}</div>
+                    <div class="vivi-card-subtitle">
                         <span>￥{{serv.price}}{{serv.unit}}</span>
                         <span>{{serv.sm.name}}</span>
                     </div>
-                    <div class="vivi-detail-content">{{serv.description}}</div>
+                    <div class="vivi-card-content">{{serv.description}}</div>
                     <!--<button type="submit"
                             [routerLink]="['/serv', serv.id ]"
                             class="btn btn-info btn-sm">
@@ -206,36 +140,22 @@
         </div>
     </div>
 <br>
-    <h3 style="margin-left: 15px;">事务</h3>
+    <h5 *ngIf="hasWorks" style="margin-left: 15px;">合约</h5>
     <div class="row" *ngIf="hasWorks" >
-
-        <div *ngFor="let work of works ;trackBy: trackId"  class="col-md-4" style="padiving-top: 20px;width:100%">
-            <div [routerLink]="['/work', work.id ]" class="vivi-detail vivi-work">
+        <div *ngFor="let work of works ;trackBy: trackId"  class="col-md-4" style="padding-top: 15px;width:100%">
+            <div [routerLink]="['/work', work.id ]" class="vivi-card vivi-work">
                 <div class="btn-warning  vivi-icon"  *ngIf="work.status==='待处理'" ></div>
                 <div class="btn-primary  vivi-icon" *ngIf="work.status==='处理中'" ></div>
                 <div class="btn-success vivi-icon"  *ngIf="work.status==='已完成'" ></div>
                 <div class="btn-danger  vivi-icon" *ngIf="work.status==='失败'" ></div>
-                <div class="vivi-detail-body">
-                    <div class="vivi-detail-type float-right">{{work.type}}</div>
-                    <div class="vivi-detail-title">{{work.name}}</div>
-                    <div class="vivi-detail-subtitle">
+                <div class="vivi-card-body">
+                    <div class="vivi-card-type float-right">{{work.type}}</div>
+                    <div class="vivi-card-title">{{work.name}}</div>
+                    <div class="vivi-card-subtitle">
                         <span >{{work.wm?.name}}</span>
                         <span *ngIf="work.startDate" >{{work.startDate | date:'yyyy/MM/div'}}-{{work.endivate | date:'yyyy/MM/div'}}</span>
                     </div>
-                    <div class="vivi-detail-content">{{work.description}}</div>
-                 <!--   <button type="submit"
-                            [routerLink]="['/work', work.id ]"
-                            class="btn btn-info btn-sm">
-                        <span class="fa fa-eye"></span>
-                        <span class="hidiven-md-down" jhiTranslate="entity.action.view">View</span>
-                    </button>
-                    <button *ngIf=isUser type="submit"
-                            [routerLink]="['/', { outlets: { popup: 'work/'+ work.id + '/edit'} }]"
-                            replaceUrl="true"
-                            class="btn btn-primary btn-sm">
-                        <span class="fa fa-pencil"></span>
-                        <span class="hidiven-md-down" jhiTranslate="entity.action.edit">Edit</span>
-                    </button>-->
+                    <div class="vivi-card-content">{{work.description}}</div>
                 </div>
             </div>
         </div>

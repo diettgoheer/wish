@@ -1,9 +1,13 @@
 <div>
+    <h2>
+        <span >我的</span>
+    </h2>
+    <jhi-alert></jhi-alert>
     <div class="row ">
-        <div *ngFor="let person of people ;trackBy: trackId" class="col-md-4"  style="padding-top:15px;width:100%">
-            <div [routerLink]="['../person', person.id ]" class="vivi-card">
+        <div *ngFor="let person of people ;trackBy: trackId" class="col-md-4"  style="padding-top:0px;padding-left:0px;padding-right:0px;width:100%">
+            <div [routerLink]="['../person', person.id ]" class="">
                 <img *ngIf="person.pic" class="vivi-img" [src]="'data:' + person.picContentType + ';base64,' + person.pic" style="" alt="person image">
-                <div class="vivi-card-body">
+                <div class="vivi-card-body" style="padding-left: 31px;padding-right: 31px">
                     <h2 class="vivi-card-title">{{person.name}}</h2>
                     <h4 class="vivi-card-content">{{person.email}}</h4>
                     <h4 class="vivi-card-content">{{person.telephone}}</h4>
@@ -12,4 +16,18 @@
             </div>
         </div>
     </div>
+    <ul class="nav flex-column col-md-4">
+        <li class="nav-item vivi-bb">
+            <a class="nav-link" routerLink="/person" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >我的朋友</a>
+        </li>
+        <li class="nav-item vivi-bb">
+            <a class="nav-link" routerLink="/transaction" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" >我的账簿</a>
+        </li>
+        <li class="nav-item vivi-bb">
+            <a class="nav-link" routerLink="/password" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"  href="#">我的密码</a>
+        </li>
+        <li class="nav-item vivi-bb">
+            <a class="nav-link" (click)="logout()">退出</a>
+        </li>
+    </ul>
 </div>

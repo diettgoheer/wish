@@ -7,8 +7,73 @@ Navbar
 }
 
 .jh-navbar {
-    background-color: #3c763d;
-    padding: .2em 1em;
+    background-color: #3d3d3d;
+    padding: .2em .2em;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+/*.vivi-navbar .navbar-nav .dropdown-menu {
+    position: static;
+    float: none;
+}
+.vivi-navbar > .container {
+    padding-right: 0;
+    padding-left: 0;
+}*/
+
+.vivi-navbar {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.vivi-navbar .navbar-nav {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+.vivi-navbar .navbar-nav .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+    padding-bottom: .2rem;
+    padding-top: .2rem;
+}
+.vivi-navbar > .container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.vivi-navbar .navbar-collapse {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    width: 100%;
+}
+.vivi-navbar .navbar-toggler {
+    display: none;
 }
 
 .jh-navbar .profile-image {
@@ -27,11 +92,12 @@ Navbar
 }
 
 .jh-navbar ul.navbar-nav {
-    padding: 0.5em;
+    /*padding: 0.5em;*/
 }
 
 .jh-navbar .navbar-nav .nav-item {
-    margin-left: 1.5rem;
+    margin-left: .85rem;
+    margin-right: .85rem;
 }
 
 .jh-navbar a.nav-link {

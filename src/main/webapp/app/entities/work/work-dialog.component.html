@@ -31,7 +31,7 @@
                 </small>
             </div>
         </div>
-        <div class="form-group">
+      <!--  <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.description" for="field_description">Description</label>
             <textarea type="text" class="form-control" name="description" id="field_description"
                 [(ngModel)]="work.description" maxlength="70" ></textarea>
@@ -41,17 +41,13 @@
                    This field cannot be longer than 70 characters.
                 </small>
             </div>
-        </div>
+        </div>-->
         <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.budget" for="field_budget">Budget</label>
             <input type="number" class="form-control" name="budget" id="field_budget"
                 [(ngModel)]="work.budget"  />
         </div>-->
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="wishApp.work.totalPrice" for="field_totalPrice">Total Price</label>
-            <input type="number" class="form-control" name="totalPrice" id="field_totalPrice"
-                [(ngModel)]="work.totalPrice"  required/>
-        </div>
+
         <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.startDate" for="field_startDate">Start Date</label>
             <div class="input-group">
@@ -72,15 +68,27 @@
                 </span>
             </div>
         </div>-->
-        <div class="form-group">
+      <!--  <div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.type" for="field_type">Type</label>
-            <!--<input type="text" class="form-control" name="type" id="field_type"
-                [(ngModel)]="work.type"  />-->
+            &lt;!&ndash;<input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="work.type"  />&ndash;&gt;
             <select class="form-control" name="status" [(ngModel)]="work.type" id="field_type"  required>
-                <option value="科研" >科研</option>
-                <option value="其他" >其他</option>
-                <!--<option value="已完成" >已完成</option>-->
+                <option value="B01" >B01</option>
+                &lt;!&ndash;<option value="其他" >其他</option>&ndash;&gt;
+                &lt;!&ndash;<option value="已完成" >已完成</option>&ndash;&gt;
             </select>
+        </div>-->
+        <div class="form-group">
+            <label jhiTranslate="wishApp.work.serv" for="field_buy_serv">serv</label>
+            <select class="form-control" id="field_buy_serv" name="buy_serv" [(ngModel)]="work.buyServ" required>
+                <!-- <option [ngValue]="null"></option>-->
+                <option [ngValue]="servOption.id === work.buyServ?.id ? work.buyServ : servOption" *ngFor="let servOption of servs | filter: {status:'已上线'} ; trackBy: trackServById">{{servOption.name}}-{{servOption.sm.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="wishApp.work.totalPrice" for="field_totalPrice">Total Price</label>
+            <input type="number" class="form-control" name="totalPrice" id="field_totalPrice"
+                   [(ngModel)]="work.totalPrice"  required/>
         </div>
         <!--<div class="form-group">
             <label class="form-control-label" jhiTranslate="wishApp.work.status" for="field_status">Status</label>
@@ -149,13 +157,7 @@
                 <option [ngValue]="getSelected(work.servs, servOption)" *ngFor="let servOption of servs; trackBy: trackServById">{{servOption.name}}</option>
             </select>
         </div>-->
-        <div class="form-group">
-            <label jhiTranslate="wishApp.work.serv" for="field_buy_serv">serv</label>
-            <select class="form-control" id="field_buy_serv" name="buy_serv" [(ngModel)]="work.buyServ" required>
-               <!-- <option [ngValue]="null"></option>-->
-                <option [ngValue]="servOption.id === work.buyServ?.id ? work.buyServ : servOption" *ngFor="let servOption of servs | filter: {status:'已上线'} ; trackBy: trackServById">{{servOption.name}}</option>
-            </select>
-        </div>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
